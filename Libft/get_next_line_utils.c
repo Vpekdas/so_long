@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:54:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/01/08 16:03:29 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:02:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
+// void	*ft_calloc(size_t nmemb, size_t size)
+// {
+// 	void	*ptr;
 
-	if (nmemb == 0 || size == 0)
-		return (malloc(1));
-	if (SIZE_MAX / nmemb < size)
-		return (NULL);
-	ptr = malloc(size * nmemb);
-	if (!ptr)
-		return (NULL);
-	ft_memset(ptr, '\0', nmemb * size);
-	return (ptr);
-}
+// 	if (nmemb == 0 || size == 0)
+// 		return (malloc(1));
+// 	if (SIZE_MAX / nmemb < size)
+// 		return (NULL);
+// 	ptr = malloc(size * nmemb);
+// 	if (!ptr)
+// 		return (NULL);
+// 	ft_memset(ptr, '\0', nmemb * size);
+// 	return (ptr);
+// }
 
 char	*ft_strchr(const char *s, int c)
 {

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 10:25:40 by vopekdas          #+#    #+#             */
-/*   Updated: 2023/11/29 11:40:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:11:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,17 @@ char	*ft_remaining_char_buffer(char *buffer)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, char *buffer)
 {
-	static char	*buffer[10496];
 	char		*line;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer[fd] = read_fd(fd, buffer[fd]);
-	if (!buffer[fd])
+	buffer = read_fd(fd, buffer);
+	if (!buffer)
 		return (NULL);
-	line = ft_line(buffer[fd]);
-	buffer[fd] = ft_remaining_char_buffer(buffer[fd]);
+	line = ft_line(buffer);
+	buffer = ft_remaining_char_buffer(buffer);
+	free(buffer);
 	return (line);
 }

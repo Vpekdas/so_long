@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:44:29 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/01/26 16:41:49 by vopekdas         ###   ########.fr       */
+/*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
+/*   Updated: 2024/01/30 17:07:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#ifndef SO_LONG_H
 
-# define GET_NEXT_LINE_H
+# define SO_LONG_H
 
-# include "libft.h"
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdint.h>
-# include <stddef.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-char		*get_next_line(int fd, char *buffer);
-char		*ft_strjoin_and_free(char *s1, char *s2);
+# include "Libft/libft.h"
+# include "ft_printf/include/ft_printf.h"
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 
 #endif
