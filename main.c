@@ -6,50 +6,44 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/01/30 18:16:03 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:55:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <math.h>
 
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+
+int	ft_color_window(int keycode, t_vars *vars)
+{
+	static int i = 0;
+	static int j = 0;
+	if (keycode == XK_Escape)
+		mlx_destroy_window(vars->mlx, vars->win);
+	if (keycode == 'w')
+		j++;
+	else if (keycode == 's')
+		j--;
+	else if (keycode == 'a')
+		i--;
+	else if (keycode == 'd')
+		i++;
+	mlx_pixel_put(vars->mlx, vars->win, i, j, 0x00FF0000);
+	return (0);
 }
 
 int	main(void)
 {
-	void *mlx;
-	void *win;
-	t_data img;
+	t_vars	vars;
 
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, 1280, 720, "so_long");
-	if (!win)
-		return (1);
-	img.img = mlx_new_image(mlx, 1280, 720);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	for (int i = 0; i < 1280; i++)
-		for(int j = 0; j < 720; j++)
-			my_mlx_pixel_put(&img, i, j, 0x00FFFF00 + i * j);
-	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
-	mlx_loop(mlx);
-	free(mlx);
-	free(win);
-	return (0);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 1280, 720, "Hello world!");
+	mlx_hook(vars.win, 2, 1L<<0, ft_color_window, &vars);
+	mlx_loop(vars.mlx);
 }
