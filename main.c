@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/01/31 16:55:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:03:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ typedef struct	s_vars {
 	void	*win;
 }				t_vars;
 
-
-
 int	ft_color_window(int keycode, t_vars *vars)
 {
 	static int i = 0;
@@ -27,14 +25,14 @@ int	ft_color_window(int keycode, t_vars *vars)
 	if (keycode == XK_Escape)
 		mlx_destroy_window(vars->mlx, vars->win);
 	if (keycode == 'w')
-		j++;
-	else if (keycode == 's')
 		j--;
+	else if (keycode == 's')
+		j++;
 	else if (keycode == 'a')
 		i--;
 	else if (keycode == 'd')
 		i++;
-	mlx_pixel_put(vars->mlx, vars->win, i, j, 0x00FF0000);
+	mlx_pixel_put(vars->mlx, vars->win, i, j, 0x00100000 * (j + i) + 0x00001000 * j + 0x00000010 * i);
 	return (0);
 }
 
