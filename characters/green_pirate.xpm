@@ -1,0 +1,33 @@
+/* XPM */
+static char *green_pirate[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 11 1 ",
+"  c #1C1117",
+". c #0B2A00",
+"X c #1F2000",
+"o c gray16",
+"O c #3C3C3C",
+"+ c #466300",
+"@ c #854C30",
+"# c #D8BCB1",
+"$ c #D9DA9D",
+"% c #FEFFFF",
+"& c None",
+/* pixels */
+"&&&&        &&&&",
+"&&&  OOOOOOO &&&",
+"&&& OOOOOOOO &&&",
+"&&& ### ###OO &&",
+"&&& #### ##OO &&",
+"&&& .###   OO &&",
+"&&& .###      &&",
+"&& OO###   oo &&",
+"&& +OOOOOOoo+ &&",
+"&& +OooOOoo++ &&",
+"&&& +OOoo+++ &&&",
+"&&& +OOo+++++ &&",
+"&& ++%O%%++++ &&",
+"&& ++$$$$+++++ &",
+"&&  XX    @    &",
+"&&&    &&   &&&&"
+};
