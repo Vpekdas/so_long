@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/01/30 17:07:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:45:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,32 @@
 # include "ft_printf/include/ft_printf.h"
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
+# include <math.h>
+# include <sys/select.h>
+# include <sys/time.h>
+
+# define SCALE 4
+# define SPEED 4
+# define FRAME_INTERVAL 16
+
+typedef struct game
+{
+	void		*mlx;
+	void		*win;
+	t_img		*screen;
+	t_img		*hat;
+	t_img		*player;
+	int			x;
+	int			y;
+	suseconds_t	last_frame;
+	int			key_a;
+	int			key_w;
+	int			key_s;
+	int			key_d;
+	int			mouse_l;
+}				t_game;
+
+void	ft_clear_sprite(t_img *img, unsigned int color);
+void	ft_draw_sprite(t_game *game, t_img *img, int x, int y);
 
 #endif
