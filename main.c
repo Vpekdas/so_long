@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/02 18:22:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:23:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,3 +102,6 @@ int	main(void)
 	mlx_do_key_autorepeaton(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 }
+// TODO: add a map
+// TODO: print the map
+// TODO: parse the map
