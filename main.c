@@ -6,39 +6,49 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/01 15:06:31 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:07:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Libft/libft.h"
 #include "minilibx-linux/mlx.h"
 #include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
+#include <X11/X.h>
 #include <math.h>
+#include <sys/select.h>
+#include <sys/time.h>
 
 #define SCALE 4
+#define SPEED 4
+#define FRAME_INTERVAL 16
 
 typedef struct	game {
 	void	*mlx;
 	void	*win;
 	t_img	*img;
+	t_img	*hat;
+	t_img	*pirate;
+	int		player_x;
+	int		player_y;
+	suseconds_t	last_frame;
+
+	int		key_a;
+	int		key_w;
+	int		key_s;
+	int		key_d;
 }				t_game;
 
-int	ft_color_window(int keycode, t_game *game)
+void	clear_img(t_img *img, unsigned int color)
 {
-	static int i = 0;
-	static int j = 0;
-	if (keycode == XK_Escape)
-		mlx_loop_end(game->mlx);
-	if (keycode == 'w')
-		j--;
-	else if (keycode == 's')
-		j++;
-	else if (keycode == 'a')
-		i--;
-	else if (keycode == 'd')
+	int	i;
+
+	i = 0;
+	while (i < img->width * img->height)
+	{
+		((unsigned int *)img->data)[i] = color;
 		i++;
-	mlx_pixel_put(game->mlx, game->win, i, j, 0x00100000 * (j + i) + 0x00001000 * j + 0x00000010 * i);
-	return (0);
+	}
 }
 
 void	draw_sprite(t_game *game, t_img *img, int x, int y)
@@ -71,29 +81,86 @@ void	draw_sprite(t_game *game, t_img *img, int x, int y)
 	}
 }
 
-void	update()
+int	ft_key_pressed(int keycode, t_game *game)
 {
+	if (keycode == XK_Escape)
+		mlx_loop_end(game->mlx);
+	if (keycode == 'w')
+		game->key_w = 1;
+	if (keycode == 's')
+		game->key_s = 1;
+	if (keycode == 'a')
+		game->key_a = 1;
+	if (keycode == 'd')
+		game->key_d = 1;
+	return (0);
+}
+
+int	ft_key_released(int keycode, t_game *game)
+{
+	if (keycode == 'w')
+		game->key_w = 0;
+	if (keycode == 's')
+		game->key_s = 0;
+	if (keycode == 'a')
+		game->key_a = 0;
+	if (keycode == 'd')
+		game->key_d = 0;
+	return (0);
+}
+
+suseconds_t	getms()
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+int	ft_update(t_game *game)
+{
+	suseconds_t	now;
+
+	now = getms();
+	if (now - game->last_frame < FRAME_INTERVAL)
+		return (0);
+	game->last_frame = now;
+	if (game->key_w)
+		game->player_y -= SPEED;
+	if (game->key_s)
+		game->player_y += SPEED;
+	if (game->key_a)
+		game->player_x -= SPEED;
+	if (game->key_d)
+		game->player_x += SPEED;
+	clear_img(game->img, 0x0);
+	draw_sprite(game, game->pirate, game->player_x, game->player_y);
+	draw_sprite(game, game->hat, game->player_x, game->player_y - 16 * SCALE);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (0);
 }
 
 int	main(void)
 {
 	t_game	game;
-	void	*img, *hat;
 	int height = 100;
 	int width = 100;
 
+	ft_bzero(&game, sizeof(t_game));
+	game.player_x = 640;
+	game.player_y = 360;
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 1280, 720, "so_long");
 	game.img = mlx_new_image(game.mlx, 1280, 720);
-	img = mlx_xpm_file_to_image(game.mlx, "characters/red_pirate.xpm", &width, &height);
-	hat = mlx_xpm_file_to_image(game.mlx, "accessories/pirate_hat.xpm", &width, &height);
+	game.pirate = mlx_xpm_file_to_image(game.mlx, "characters/red_pirate.xpm", &width, &height);
+	game.hat = mlx_xpm_file_to_image(game.mlx, "accessories/pirate_hat.xpm", &width, &height);
+	game.last_frame = 0;
 
-	int player_x = 32, player_y = 32;
-
-	draw_sprite(&game, img, player_x, player_y);
-	draw_sprite(&game, hat, player_x, player_y - 16 * SCALE);
-	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
-	mlx_hook(game.win, 2, 1L << 0, ft_color_window, &game);
+	mlx_do_key_autorepeatoff(game.mlx);
+	mlx_loop_hook(game.mlx, ft_update, &game);
+	mlx_hook(game.win, KeyPress, KeyPressMask, ft_key_pressed, &game);
+	mlx_hook(game.win, KeyRelease, KeyReleaseMask, ft_key_released, &game);
 	mlx_loop(game.mlx);
+	mlx_do_key_autorepeaton(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 }
