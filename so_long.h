@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/03 16:48:29 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/03 17:23:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/select.h>
 # include <sys/time.h>
 
-# define SCALE 4
+# define SCALE 2
 # define SPEED 4
 # define FRAME_INTERVAL 16
 

@@ -6,10 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/03 16:49:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/03 18:03:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Libft/libft.h"
+#include "ft_printf/include/ft_printf.h"
 #include "so_long.h"
 
 int	ft_key_pressed(int keycode, t_game *game)
@@ -54,6 +56,53 @@ int	ft_close(t_game *game)
 	return (0);
 }
 
+char	*ft_gnl(char **line, int fd)
+{
+	*line = get_next_line(fd);
+	return (*line);
+}
+
+char	**ft_parse_map(char *path)
+{
+	char	**map;
+	char	*line;
+	int		fd;
+	int		i;
+
+	i = 0;
+	map = malloc(sizeof(char *) * 1000);
+	if (!map)
+		return (NULL);
+	fd = open(path, O_RDONLY);
+	while (ft_gnl(&line, fd))
+	{
+		map[i] = line;
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
+int	ft_print_map(char **map, t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '1')
+				ft_draw_sprite(game, game->wall, j * 64, i * 64);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	ft_update(t_game *game)
 {
 	suseconds_t	now;
@@ -72,7 +121,7 @@ int	ft_update(t_game *game)
 		game->x += SPEED;
 	ft_clear_sprite(game->screen, 0x0);
 	ft_draw_sprite(game, game->player, game->x, game->y);
-	ft_draw_sprite(game, game->wall, 100, 100);
+	ft_print_map(ft_parse_map("map.ber"), game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	return (0);
 }
@@ -97,6 +146,4 @@ int	main(void)
 	mlx_loop(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 }
-// TODO: add a map
-// TODO: print the map
-// TODO: parse the map
+// TODO: parse and print the map
