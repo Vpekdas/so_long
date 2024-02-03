@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/02 17:45:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/03 16:48:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct game
 	void		*mlx;
 	void		*win;
 	t_img		*screen;
-	t_img		*hat;
+	t_img		*wall;
 	t_img		*player;
 	int			x;
 	int			y;

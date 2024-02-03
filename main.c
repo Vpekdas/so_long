@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/02 18:23:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/03 16:49:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
 #include "so_long.h"
 
 int	ft_key_pressed(int keycode, t_game *game)
@@ -73,7 +72,7 @@ int	ft_update(t_game *game)
 		game->x += SPEED;
 	ft_clear_sprite(game->screen, 0x0);
 	ft_draw_sprite(game, game->player, game->x, game->y);
-	ft_draw_sprite(game, game->hat, game->x, game->y - 16 * SCALE);
+	ft_draw_sprite(game, game->wall, 100, 100);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	return (0);
 }
@@ -85,21 +84,17 @@ int	main(void)
 	int width = 100;
 
 	ft_bzero(&game, sizeof(t_game));
-	game.x = 640;
-	game.y = 360;
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 1280, 720, "so_long");
 	game.screen = mlx_new_image(game.mlx, 1280, 720);
-	game.player = mlx_xpm_file_to_image(game.mlx, "characters/red_pirate.xpm", &width, &height);
-	game.hat = mlx_xpm_file_to_image(game.mlx, "accessories/pirate_hat.xpm", &width, &height);
+	game.player = mlx_xpm_file_to_image(game.mlx, "Idle_1.xpm", &width, &height);
+	game.wall = mlx_xpm_file_to_image(game.mlx, "tilesetcave.xpm", &width, &height);
 
-	mlx_do_key_autorepeatoff(game.mlx);
 	mlx_loop_hook(game.mlx, ft_update, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, ft_key_pressed, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, ft_key_released, &game);
 	mlx_hook(game.win, DestroyNotify, ButtonPressMask, ft_close, &game);
 	mlx_loop(game.mlx);
-	mlx_do_key_autorepeaton(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 }
 // TODO: add a map
