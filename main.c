@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/03 18:03:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:29:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,53 +56,6 @@ int	ft_close(t_game *game)
 	return (0);
 }
 
-char	*ft_gnl(char **line, int fd)
-{
-	*line = get_next_line(fd);
-	return (*line);
-}
-
-char	**ft_parse_map(char *path)
-{
-	char	**map;
-	char	*line;
-	int		fd;
-	int		i;
-
-	i = 0;
-	map = malloc(sizeof(char *) * 1000);
-	if (!map)
-		return (NULL);
-	fd = open(path, O_RDONLY);
-	while (ft_gnl(&line, fd))
-	{
-		map[i] = line;
-		i++;
-	}
-	map[i] = NULL;
-	return (map);
-}
-
-int	ft_print_map(char **map, t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '1')
-				ft_draw_sprite(game, game->wall, j * 64, i * 64);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
 int	ft_update(t_game *game)
 {
 	suseconds_t	now;
@@ -119,9 +72,9 @@ int	ft_update(t_game *game)
 		game->x -= SPEED;
 	if (game->key_d)
 		game->x += SPEED;
-	ft_clear_sprite(game->screen, 0x0);
+	ft_clear_sprite(game->screen, ((int*)game->mid->data)[0]);
 	ft_draw_sprite(game, game->player, game->x, game->y);
-	ft_print_map(ft_parse_map("map.ber"), game);
+	ft_print_map(game->map, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	return (0);
 }
@@ -137,7 +90,16 @@ int	main(void)
 	game.win = mlx_new_window(game.mlx, 1280, 720, "so_long");
 	game.screen = mlx_new_image(game.mlx, 1280, 720);
 	game.player = mlx_xpm_file_to_image(game.mlx, "Idle_1.xpm", &width, &height);
-	game.wall = mlx_xpm_file_to_image(game.mlx, "tilesetcave.xpm", &width, &height);
+	game.top_left = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/top_left.xpm", &width, &height);
+	game.top = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/top.xpm", &width, &height);
+	game.top_right = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/top_right.xpm", &width, &height);
+	game.left = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/left.xpm", &width, &height);
+	game.mid = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/mid.xpm", &width, &height);
+	game.right = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/right.xpm", &width, &height);
+	game.bot_left = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/bot_left.xpm", &width, &height);
+	game.bot = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/bot.xpm", &width, &height);
+	game.bot_right = mlx_xpm_file_to_image(game.mlx, "textures/Background Cave/final_xpm/bot_right.xpm", &width, &height);
+	game.map = ft_parse_map(&game, "maps/map.ber");
 
 	mlx_loop_hook(game.mlx, ft_update, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, ft_key_pressed, &game);

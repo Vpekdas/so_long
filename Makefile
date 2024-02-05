@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/02 17:40:29 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/05 15:44:33 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ LIGHT_PURPLE=\033[1;35m
 NAME = so_long
 
 SOURCES = main.c \
-		print_sprite.c
+		print_sprite.c \
+		print_tile.c \
+		maps_utils.c \
 
 BONUS_SOURCES = 
 
