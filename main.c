@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/05 16:29:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:56:37 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_update(t_game *game)
 		game->x -= SPEED;
 	if (game->key_d)
 		game->x += SPEED;
-	ft_clear_sprite(game->screen, ((int*)game->mid->data)[0]);
+	ft_clear_sprite(game->screen, 0); // ((int*)game->mid->data)[0]
 	ft_draw_sprite(game, game->player, game->x, game->y);
 	ft_print_map(game->map, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
