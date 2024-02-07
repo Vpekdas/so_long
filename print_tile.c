@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:27:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 14:23:21 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:38:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,21 @@ void	ft_print_tile(t_game *g, char **m, int x, int y)
 	if (y == 0 || x == 0 || x == g->map_width - 1)
 		return ;
 	if (isg(g, m, x - 1, y) && isg(g, m, x + 1, y) && y == g->map_height - 1)
-		ft_draw_sprite(g, g->sprite.top, x * 32 * SCALE, y * 32 * SCALE);
-	else if (isg(g, m, x - 1, y) && isg(g, m, x, y - 1) && isg(g, m, x, y + 1) && x == 0)
-		ft_draw_sprite(g, g->sprite.right, x * 32 * SCALE, y * 32 * SCALE);
-	else if (isg(g, m, x + 1, y) && isg(g, m, x, y - 1) && isg(g, m, x, y + 1) && x == g->map_width - 1)
-		ft_draw_sprite(g, g->sprite.left, x * 32 * SCALE, y * 32 * SCALE);
+		ft_draw_sprite(g, g->spr.top, x * 32 * SCALE, y * 32 * SCALE);
+	else if (isg(g, m, x - 1, y)
+		&& isg(g, m, x, y - 1) && isg(g, m, x, y + 1) && x == 0)
+		ft_draw_sprite(g, g->spr.right, x * 32 * SCALE, y * 32 * SCALE);
+	else if (isg(g, m, x + 1, y) && isg(g, m, x, y - 1)
+		&& isg(g, m, x, y + 1) && x == g->map_width - 1)
+		ft_draw_sprite(g, g->spr.left, x * 32 * SCALE, y * 32 * SCALE);
 	else if (isg(g, m, x, y - 1))
-		ft_draw_sprite(g, g->sprite.top_left, x * 32 * SCALE, y * 32 * SCALE);
+		ft_draw_sprite(g, g->spr.top_left, x * 32 * SCALE, y * 32 * SCALE);
 	else if (isg(g, m, x, y + 1))
-		ft_draw_sprite(g, g->sprite.top_left, x * 32 * SCALE, y * 32 * SCALE);
+		ft_draw_sprite(g, g->spr.top_left, x * 32 * SCALE, y * 32 * SCALE);
 	else if (isg(g, m, x - 1, y) && isg(g, m, x + 1, y))
-		ft_draw_sprite(g, g->sprite.top_left, x * 32 * SCALE, y * 32 * SCALE);
+		ft_draw_sprite(g, g->spr.top_left, x * 32 * SCALE, y * 32 * SCALE);
 	else if (isg(g, m, x - 1, y))
-		ft_draw_sprite(g, g->sprite.top_left, x * 32 * SCALE, y * 32 * SCALE);
+		ft_draw_sprite(g, g->spr.top_left, x * 32 * SCALE, y * 32 * SCALE);
 	else if (isg(g, m, x + 1, y))
-		ft_draw_sprite(g, g->sprite.top_left, x * 32 * SCALE, y * 32 * SCALE);
-
+		ft_draw_sprite(g, g->spr.top_left, x * 32 * SCALE, y * 32 * SCALE);
 }
-
-// TODO: fix texture print when a wall is surrounder by other wall, i need to print left, right, top or left, not just mid

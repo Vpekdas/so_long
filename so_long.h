@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 16:44:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:38:06 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,33 @@ typedef struct sprite
 	t_img	*bot_tl;
 }			t_sprite;
 
+typedef struct player
+{
+	int		x;
+	int		y;
+	int		w;
+	int		h;
+	int		ox;
+	int		oy;
+	float	vx;
+	float	vy;
+	bool	already_jumped;
+}				t_player;
+
+typedef struct s_box
+{
+	int	x;
+	int	y;
+	int	w;
+	int	h;
+}	t_box;
+
 typedef struct game
 {
 	void		*mlx;
 	void		*win;
-	t_sprite	sprite;
+	t_sprite	spr;
+	t_player	player;
 	suseconds_t	last_frame;
 	int			key_a;
 	int			key_w;
@@ -60,26 +82,7 @@ typedef struct game
 	char		**map;
 	int			map_width;
 	int			map_height;
-
-	int			x;
-	int			y;
-	int			w;
-	int			h;
-	int			ox;
-	int			oy;
-	float		vx;
-	float		vy;
-
-	bool		already_jumped;
 }				t_game;
-
-typedef struct s_box
-{
-	int	x;
-	int	y;
-	int	w;
-	int	h;
-}	t_box;
 
 bool		ft_collide(t_box a, t_box b);
 bool		ft_collide_with_map(t_box a, t_game *game);
@@ -97,5 +100,5 @@ void		ft_draw_sprite(t_game *game, t_img *img, int x, int y);
 bool		isg(t_game *game, char **map, int x, int y);
 void		ft_print_tile(t_game *g, char **m, int x, int y);
 void		ft_init_sprite(t_game *game);
-
+void		ft_detect_key(t_game *game);
 #endif

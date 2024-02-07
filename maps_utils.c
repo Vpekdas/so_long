@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/05 16:07:15 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:59:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	ft_print_map(char **map, t_game *game)
 		{
 			if (map[i][j] == '1')
 				ft_print_tile(game, game->map, j, i);
-				//ft_draw_sprite(game, game->mid, j * 128, i * 128);
 			j++;
 		}
 		i++;
