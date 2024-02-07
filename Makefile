@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/06 15:55:42 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/07 16:22:00 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,12 @@ LIGHT_PURPLE=\033[1;35m
 
 NAME = so_long
 
-SOURCES = main.c \
-		print_sprite.c \
-		print_tile.c \
-		maps_utils.c \
-		collision.c \
+SOURCES = collision.c	\
+			handle_keys.c \
+			main.c \
+			maps_utils.c \
+			print_sprite.c \
+			print_tile.c \
 
 BONUS_SOURCES = 
 
@@ -43,7 +44,7 @@ BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 CC=cc
 
-CFLAGS=-Wall -Wextra -g3 # -Werror
+CFLAGS=-Wall -Wextra -g3 -MMD # -Werror
 
 RM = rm -f
 
@@ -53,10 +54,12 @@ all: libft ft_printf minilibx $(NAME)
 	@echo "$(LIGHT_CYAN)"
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
+-include $(SOURCES:.c=.d)
+
 $(NAME): $(OBJECTS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
 	@echo "$(LIGHT_CYAN)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lbsd -lm
+	$(CC) -g3 -o $(NAME) $(OBJECTS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lbsd -lm
 
 libft: 
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
@@ -96,7 +99,7 @@ minilibx:
 
 clean:
 	@echo "$(LIGHT_PURPLE)"
-	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
+	$(RM) $(OBJECTS) $(BONUS_OBJECTS) *.d
 	cd $(LIBFT_PATH) && make clean
 	cd $(FT_PRINTF_PATH) && make clean
 	cd $(MINILIBX_PATH) && make clean

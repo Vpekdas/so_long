@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/06 16:03:40 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:33:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,34 @@
 # include <sys/select.h>
 # include <sys/time.h>
 # include <stdbool.h>
+#include <stdio.h>
 
 # define SCALE 2
 # define SPEED 4
 # define FRAME_INTERVAL 16
 
+typedef struct sprite
+{
+	t_img	*player;
+	t_img	*top_left;
+	t_img	*top;
+	t_img	*top_right;
+	t_img	*left;
+	t_img	*mid;
+	t_img	*right;
+	t_img	*bot_left;
+	t_img	*bot;
+	t_img	*bot_right;
+	t_img	*tl;
+	t_img	*mid_tl;
+	t_img	*bot_tl;
+}			t_sprite;
+
 typedef struct game
 {
 	void		*mlx;
 	void		*win;
+	t_sprite	sprite;
 	suseconds_t	last_frame;
 	int			key_a;
 	int			key_w;
@@ -38,19 +57,6 @@ typedef struct game
 	int			key_d;
 	int			mouse_l;
 	t_img		*screen;
-	t_img		*player;
-	t_img		*top_left;
-	t_img		*top;
-	t_img		*top_right;
-	t_img		*left;
-	t_img		*mid;
-	t_img		*right;
-	t_img		*bot_left;
-	t_img		*bot;
-	t_img		*bot_right;
-	t_img		*tl;
-	t_img		*mid_tl;
-	t_img		*bot_tl;
 	char		**map;
 	int			map_width;
 	int			map_height;
@@ -61,6 +67,8 @@ typedef struct game
 	int			h;
 	int			ox;
 	int			oy;
+	float		vx;
+	float		vy;
 }				t_game;
 
 typedef struct s_box
@@ -71,15 +79,21 @@ typedef struct s_box
 	int	h;
 }	t_box;
 
-char	*ft_gnl(char **line, int fd);
-char	**ft_parse_map(t_game *game, char *path);
-int		ft_print_map(char **map, t_game *game);
-
-void	ft_clear_sprite(t_img *img, unsigned int color);
-void	ft_draw_sprite(t_game *game, t_img *img, int x, int y);
-void	ft_print_tile(t_game *game, char **map, int x, int y);
-
-bool	ft_collide(t_box a, t_box b);
-bool	ft_collide_with_map(t_box a, t_game *game);
+bool		ft_collide(t_box a, t_box b);
+bool		ft_collide_with_map(t_box a, t_game *game);
+int			ft_key_pressed(int keycode, t_game *game);
+int			ft_key_released(int keycode, t_game *game);
+suseconds_t	ft_getms(void);
+int			ft_close(t_game *game);
+void		ft_move_player(t_game *game, float vx, float vy);
+int			ft_update(t_game *game);
+char		*ft_gnl(char **line, int fd);
+char		**ft_parse_map(t_game *game, char *path);
+int			ft_print_map(char **map, t_game *game);
+void		ft_clear_sprite(t_img *img, unsigned int color);
+void		ft_draw_sprite(t_game *game, t_img *img, int x, int y);
+bool		isg(t_game *game, char **map, int x, int y);
+void		ft_print_tile(t_game *g, char **m, int x, int y);
+void		ft_init_sprite(t_game *game);
 
 #endif

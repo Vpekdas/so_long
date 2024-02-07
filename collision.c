@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/06 15:57:50 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:40:42 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 bool	ft_collide(t_box a, t_box b)
 {
@@ -32,12 +31,44 @@ bool	ft_collide_with_map(t_box a, t_game *game)
 		y = 0;
 		while (y < game->map_height)
 		{
-			if (game->map[y][x] == '1'
-				&& ft_collide(a, (t_box){x * 32 * SCALE, y * 32 * SCALE, 32 * SCALE, 32 * SCALE}))
+			if (game->map[y][x] == '1' && ft_collide(a, (t_box){x * 32 * SCALE,
+				y * 32 * SCALE, 32 * SCALE, 32 * SCALE}))
 				return (true);
 			y++;
 		}
 		x++;
 	}
 	return (false);
+}
+
+void	ft_move_player(t_game *game, float vx, float vy)
+{
+	const float	precision = 0.5;
+	const bool	greater_than_zero_x = vx > 0;
+	const bool	greater_than_zero_y = vy > 0;
+
+	printf("vy = %f\n", vy);
+	while (((greater_than_zero_x && vx > 0) || (!greater_than_zero_x && vx <= 0))
+		&& ft_collide_with_map((t_box){game->x + game->ox + vx, game->y + game->oy, game->w, game->h}, game))
+	{
+		if (greater_than_zero_x)
+			vx -= precision;
+		else if (!greater_than_zero_x)
+			vx += precision;
+	}
+	if ((greater_than_zero_x && vx < 0) || (!greater_than_zero_x && vx > 0))
+		vx = 0;
+	game->x += vx;
+	while ((greater_than_zero_y && vy > 0) || (!greater_than_zero_y && vy <= 0)
+		&& ft_collide_with_map((t_box){game->x + game->ox, game->y + game->oy + vy, game->w, game->h}, game))
+	{
+		printf("2. vy = %f\n", vy);
+		if (greater_than_zero_y)
+			vy -= precision;
+		else if (!greater_than_zero_y)
+			vy += precision;
+	}
+	if ((greater_than_zero_y && vy < 0) || (!greater_than_zero_y && vy > 0))
+		vy = 0;
+	game->y += vy;
 }
