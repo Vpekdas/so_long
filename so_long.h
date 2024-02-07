@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 15:33:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:44:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <stdio.h>
 
 # define SCALE 2
-# define SPEED 4
+# define SPEED 8
 # define FRAME_INTERVAL 16
 
 typedef struct sprite
@@ -69,6 +69,8 @@ typedef struct game
 	int			oy;
 	float		vx;
 	float		vy;
+
+	bool		already_jumped;
 }				t_game;
 
 typedef struct s_box

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 15:34:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:50:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,20 @@ int	ft_update(t_game *game)
 		return (0);
 	game->last_frame = now;
 	game->vx = 0;
-	if (game->key_w)
-		game->vy -= 4;
-	if (game->key_s)
+	if (game->key_w && ft_collide_with_map((t_box){game->x + game->ox, game->y + game->h - game->oy, game->w, 1}, game) && game->already_jumped == false)
+	{
+		game->vy -= 25;
+		game->already_jumped = true;
+	}
+	else if (!game->key_w)
+		game->already_jumped = false;
+	if (game->key_s && !ft_collide_with_map((t_box){game->x + game->ox, game->y + game->h - game->oy, game->w, 1}, game))
 		game->vy += SPEED;
 	if (game->key_a)
 		game->vx -= SPEED;
 	if (game->key_d)
 		game->vx += SPEED;
-	game->vy += 8 * 0.016;
+	game->vy += 18 * 0.016;
 	ft_move_player(game, game->vx, game->vy);
 	ft_clear_sprite(game->screen, 0x00ffffff); // ((int*)game->mid->data)[0]
 	ft_print_map(game->map, game);
