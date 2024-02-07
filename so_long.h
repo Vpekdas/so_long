@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 17:38:06 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:50:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,5 @@ bool		isg(t_game *game, char **map, int x, int y);
 void		ft_print_tile(t_game *g, char **m, int x, int y);
 void		ft_init_sprite(t_game *game);
 void		ft_detect_key(t_game *game);
+void		ft_init_player_and_map(t_game *game);
 #endif

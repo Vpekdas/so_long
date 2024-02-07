@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 17:42:59 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:49:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	ft_init_sprite(t_game *g)
 	w = 100;
 	h = 100;
 	g->spr.player = mlx_xpm_file_to_image(g->mlx, "Idle_1.xpm", &w, &h);
-	g->spr.tl = mlx_xpm_file_to_image(g->mlx, "textures/mid/tl.xpm", &w, &h);
-	g->spr.top = mlx_xpm_file_to_image(g->mlx, "textures/mid/top.xpm", &w, &h);
+	g->spr.tl = mlx_xpm_file_to_image(g->mlx, "textures/tl.xpm", &w, &h);
+	g->spr.top = mlx_xpm_file_to_image(g->mlx, "textures/top.xpm", &w, &h);
 	g->spr.top_right = mlx_xpm_file_to_image
 		(g->mlx, "textures/top_right.xpm", &w, &h);
 	g->spr.left = mlx_xpm_file_to_image(g->mlx, "textures/left.xpm", &w, &h);
