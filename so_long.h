@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:36:14 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:45:36 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ typedef struct player
 
 typedef struct s_box
 {
-	int	x;
-	int	y;
-	int	weight;
+	int	pos_x;
+	int	pos_y;
+	int	width;
 	int	height;
 }	t_box;
 
