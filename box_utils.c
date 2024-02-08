@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:18:56 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:47:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:52:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,3 @@ t_box	map_box_scale(int x, int y)
 	return (box);
 }
 
-bool	collide(t_box player, t_box object)
-{
-	return (player.pos_x < object.pos_x + object.width
-		&& player.pos_x + player.width > object.pos_x
-		&& player.pos_y < object.pos_y + object.height
-		&& player.pos_y + player.height > object.pos_y);
-}

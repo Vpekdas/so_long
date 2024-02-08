@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:22:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:59:36 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,22 @@ void	draw_sprite(t_game *game, t_img *img, int x, int y)
 
 void	init_sprite(t_game *g)
 {
-	int	w;
-	int	h;
+	int			w;
+	int			h;
 
 	w = 100;
 	h = 100;
-	g->spr.player = mlx_xpm_file_to_image(g->mlx, "Idle_1.xpm", &w, &h);
-	g->spr.tl = mlx_xpm_file_to_image(g->mlx, "textures/tl.xpm", &w, &h);
-	g->spr.top = mlx_xpm_file_to_image(g->mlx, "textures/top.xpm", &w, &h);
-	g->spr.top_right = mlx_xpm_file_to_image
-		(g->mlx, "textures/top_right.xpm", &w, &h);
-	g->spr.left = mlx_xpm_file_to_image(g->mlx, "textures/left.xpm", &w, &h);
-	g->spr.mid = mlx_xpm_file_to_image(g->mlx, "textures/mid.xpm", &w, &h);
-	g->spr.right = mlx_xpm_file_to_image(g->mlx, "textures/right.xpm", &w, &h);
-	g->spr.bot_left = mlx_xpm_file_to_image
-		(g->mlx, "textures/bot_left.xpm", &w, &h);
-	g->spr.bot = mlx_xpm_file_to_image(g->mlx, "textures/bot.xpm", &w, &h);
-	g->spr.bot_right = mlx_xpm_file_to_image
-		(g->mlx, "textures/bot_right.xpm", &w, &h);
-	g->spr.tl = mlx_xpm_file_to_image(g->mlx, "textures/tl.xpm", &w, &h);
-	g->spr.mid_tl = mlx_xpm_file_to_image
-		(g->mlx, "textures/mid_tl.xpm", &w, &h);
-	g->spr.bot_tl = mlx_xpm_file_to_image
-		(g->mlx, "textures/bot_tl.xpm", &w, &h);
+	g->sprite.player = mlx_xpm_file_to_image(g->mlx, "Idle_1.xpm", &w, &h);
+	g->sprite.tl = mlx_xpm_file_to_image(g->mlx, "textures/tl.xpm", &w, &h);
+	g->sprite.top = mlx_xpm_file_to_image(g->mlx, "textures/top.xpm", &w, &h);
+	g->sprite.top_right = mlx_xpm_file_to_image(g->mlx, "textures/top_right.xpm", &w, &h);
+	g->sprite.left = mlx_xpm_file_to_image(g->mlx, "textures/left.xpm", &w, &h);
+	g->sprite.mid = mlx_xpm_file_to_image(g->mlx, "textures/mid.xpm", &w, &h);
+	g->sprite.right = mlx_xpm_file_to_image(g->mlx, "textures/right.xpm", &w, &h);
+	g->sprite.bot_left = mlx_xpm_file_to_image(g->mlx, "textures/bot_left.xpm", &w, &h);
+	g->sprite.bot = mlx_xpm_file_to_image(g->mlx, "textures/bot.xpm", &w, &h);
+	g->sprite.bot_right = mlx_xpm_file_to_image(g->mlx, "textures/bot_right.xpm", &w, &h);
+	g->sprite.tl = mlx_xpm_file_to_image(g->mlx, "textures/tl.xpm", &w, &h);
+	g->sprite.mid_tl = mlx_xpm_file_to_image(g->mlx, "textures/mid_tl.xpm", &w, &h);
+	g->sprite.bot_tl = mlx_xpm_file_to_image(g->mlx, "textures/bot_tl.xpm", &w, &h);
 }

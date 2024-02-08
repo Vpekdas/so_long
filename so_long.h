@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:45:36 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:51:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,27 @@
 # define SPEED 8
 # define FRAME_INTERVAL 16
 
-typedef struct sprite
+typedef struct s_sprite
 {
 	t_img	*player;
-	t_img	*top_left;
-	t_img	*top;
-	t_img	*top_right;
+	t_img	*bot_left;
+	t_img	*bot_right;
+	t_img	*bot_tl;
+	t_img	*bot;
+	t_img	*br_left;
+	t_img	*br_mid;
+	t_img	*br_right;
 	t_img	*left;
+	t_img	*mid_tl;
 	t_img	*mid;
 	t_img	*right;
-	t_img	*bot_left;
-	t_img	*bot;
-	t_img	*bot_right;
 	t_img	*tl;
-	t_img	*mid_tl;
-	t_img	*bot_tl;
+	t_img	*top_left;
+	t_img	*top_right;
+	t_img	*top;
 }			t_sprite;
 
-typedef struct player
+typedef struct s_player
 {
 	int		pos_x;
 	int		pos_y;
@@ -66,18 +69,18 @@ typedef struct s_box
 	int	height;
 }	t_box;
 
-typedef struct game
+typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_sprite	spr;
+	t_sprite	sprite;
 	t_player	player;
 	suseconds_t	last_frame;
 	int			key_a;
 	int			key_w;
 	int			key_s;
 	int			key_d;
-	int			mouse_l;
+	int			mouse_left;
 	t_img		*screen;
 	char		**map;
 	int			map_width;
