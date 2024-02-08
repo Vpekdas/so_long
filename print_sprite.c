@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 17:49:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:22:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_clear_sprite(t_img *img, unsigned int color)
+void	clear_sprite(t_img *img, unsigned int color)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ void	ft_clear_sprite(t_img *img, unsigned int color)
 	}
 }
 
-void	ft_draw_sprite(t_game *game, t_img *img, int x, int y)
+void	draw_sprite(t_game *game, t_img *img, int x, int y)
 {
 	int				i;
 	int				j;
@@ -57,7 +57,7 @@ void	ft_draw_sprite(t_game *game, t_img *img, int x, int y)
 	}
 }
 
-void	ft_init_sprite(t_game *g)
+void	init_sprite(t_game *g)
 {
 	int	w;
 	int	h;

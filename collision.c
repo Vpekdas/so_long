@@ -6,24 +6,17 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 17:14:27 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:25:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	ft_collide(t_box a, t_box b)
+bool	collide_with_map(t_box a, t_game *game)
 {
-	return (a.x < b.x + b.w
-		&& a.x + a.w > b.x
-		&& a.y < b.y + b.h
-		&& a.y + a.h > b.y);
-}
-
-bool	ft_collide_with_map(t_box a, t_game *game)
-{
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	t_box	box;
 
 	x = 0;
 	while (x < game->map_width)
@@ -31,8 +24,8 @@ bool	ft_collide_with_map(t_box a, t_game *game)
 		y = 0;
 		while (y < game->map_height)
 		{
-			if (game->map[y][x] == '1' && ft_collide(a, (t_box){x * 32 * SCALE,
-				y * 32 * SCALE, 32 * SCALE, 32 * SCALE}))
+			box = map_box_scale(x, y);
+			if (game->map[y][x] == '1' && collide(a, box))
 				return (true);
 			y++;
 		}
@@ -41,17 +34,16 @@ bool	ft_collide_with_map(t_box a, t_game *game)
 	return (false);
 }
 
-void	ft_move_player(t_game *game, float vx, float vy)
+void	move_player(t_game *game, float vx, float vy)
 {
 	const float	precision = 0.5;
 	const bool	greater_than_zero_x = vx > 0;
 	const bool	greater_than_zero_y = vy > 0;
+	bool		collide_x;
+	bool		collide_y;
 
-	while (((greater_than_zero_x && vx > 0)
-			|| (!greater_than_zero_x && vx <= 0))
-		&& ft_collide_with_map((t_box){game->player.x
-			+ game->player.ox + vx, game->player.y
-			+ game->player.oy, game->player.w, game->player.h}, game))
+	collide_x = collide_with_map(player_box_x_off(game, vx), game);
+	while (((greater_than_zero_x && vx > 0) || (!greater_than_zero_x && vx <= 0)) && collide_x == true)
 	{
 		if (greater_than_zero_x)
 			vx -= precision;
@@ -61,11 +53,8 @@ void	ft_move_player(t_game *game, float vx, float vy)
 	if ((greater_than_zero_x && vx < 0) || (!greater_than_zero_x && vx > 0))
 		vx = 0;
 	game->player.x += vx;
-	while (((greater_than_zero_y && vy > 0)
-			|| (!greater_than_zero_y && vy <= 0))
-		&& ft_collide_with_map((t_box){game->player.x + game->player.ox,
-			game->player.y + game->player.oy + vy,
-			game->player.w, game->player.h}, game))
+	collide_y = collide_with_map(player_box_y_off(game, vy), game);
+	while (((greater_than_zero_y && vy > 0) || (!greater_than_zero_y && vy <= 0)) && collide_y == true)
 	{
 		if (greater_than_zero_y)
 			vy -= precision;
@@ -74,8 +63,8 @@ void	ft_move_player(t_game *game, float vx, float vy)
 	}
 	if ((greater_than_zero_y && vy < 0) || (!greater_than_zero_y && vy > 0))
 	{
-		game->player.vy = 0;
 		vy = 0;
+		game->player.vy = 0;
 	}
 	game->player.y += vy;
 }

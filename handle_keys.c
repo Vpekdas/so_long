@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 17:18:27 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:25:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_key_pressed(int keycode, t_game *game)
+int	key_pressed(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
 		mlx_loop_end(game->mlx);
@@ -27,7 +27,7 @@ int	ft_key_pressed(int keycode, t_game *game)
 	return (0);
 }
 
-int	ft_key_released(int keycode, t_game *game)
+int	key_released(int keycode, t_game *game)
 {
 	if (keycode == 'w')
 		game->key_w = 0;
@@ -40,19 +40,19 @@ int	ft_key_released(int keycode, t_game *game)
 	return (0);
 }
 
-void	ft_detect_key(t_game *game)
+void	detect_key(t_game *game)
 {
-	if (game->key_w && ft_collide_with_map((t_box){game->player.x
+	if (game->key_w && collide_with_map((t_box){game->player.x
 			+ game->player.ox, game->player.y
 			+ game->player.h - game->player.oy, game->player.w, 1}, game) &&
 		!game->player.already_jumped)
 	{
-		game->player.vy -= 25;
+		game->player.vy -= 10;
 		game->player.already_jumped = true;
 	}
 	else if (!game->key_w)
 		game->player.already_jumped = false;
-	if (game->key_s && !ft_collide_with_map((t_box){game->player.x
+	if (game->key_s && !collide_with_map((t_box){game->player.x
 			+ game->player.ox,
 			game->player.y + game->player.h - game->player.oy,
 			game->player.w, 1}, game))

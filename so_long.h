@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 17:50:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:27:06 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct s_box
 {
 	int	x;
 	int	y;
-	int	w;
-	int	h;
+	int	weight;
+	int	height;
 }	t_box;
 
 typedef struct game
@@ -84,22 +84,28 @@ typedef struct game
 	int			map_height;
 }				t_game;
 
-bool		ft_collide(t_box a, t_box b);
-bool		ft_collide_with_map(t_box a, t_game *game);
-int			ft_key_pressed(int keycode, t_game *game);
-int			ft_key_released(int keycode, t_game *game);
-suseconds_t	ft_getms(void);
-int			ft_close(t_game *game);
-void		ft_move_player(t_game *game, float vx, float vy);
-int			ft_update(t_game *game);
-char		*ft_gnl(char **line, int fd);
-char		**ft_parse_map(t_game *game, char *path);
-int			ft_print_map(char **map, t_game *game);
-void		ft_clear_sprite(t_img *img, unsigned int color);
-void		ft_draw_sprite(t_game *game, t_img *img, int x, int y);
+t_box		player_box_x_off(t_game *game, float vx);
+t_box		player_box_y_off(t_game *game, float vy);
+t_box		map_box_scale(int x, int y);
+bool		collide(t_box player, t_box object);
+bool		collide_with_map(t_box a, t_game *game);
+void		move_player(t_game *game, float vx, float vy);
+suseconds_t	getms(void);
+int			key_pressed(int keycode, t_game *game);
+int			key_released(int keycode, t_game *game);
+void		detect_key(t_game *game);
+int			close_game(t_game *game);
+void		init_player_and_map(t_game *game);
+char		*gnl(char **line, int fd);
+char		**parse_map(t_game *game, char *path);
+int			print_map(char **map, t_game *game);
+void		clear_sprite(t_img *img, unsigned int color);
+void		draw_sprite(t_game *game, t_img *img, int x, int y);
+void		init_sprite(t_game *g);
 bool		isg(t_game *game, char **map, int x, int y);
-void		ft_print_tile(t_game *g, char **m, int x, int y);
-void		ft_init_sprite(t_game *game);
-void		ft_detect_key(t_game *game);
-void		ft_init_player_and_map(t_game *game);
+int			update(t_game *game);
+bool		isg(t_game *game, char **map, int x, int y);
+void		print_tile(t_game *g, char **m, int x, int y);
+
+
 #endif

@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/07 17:27:45 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/08 14:20:11 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SOURCES = collision.c	\
 			print_tile.c \
 			handle_animation.c \
 			update_game.c \
+			box_utils.c \
 
 BONUS_SOURCES = 
 

@@ -6,19 +6,19 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/07 16:59:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:26:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_gnl(char **line, int fd)
+char	*gnl(char **line, int fd)
 {
 	*line = get_next_line(fd);
 	return (*line);
 }
 
-char	**ft_parse_map(t_game *game, char *path)
+char	**parse_map(t_game *game, char *path)
 {
 	char	**map;
 	char	*line;
@@ -30,7 +30,7 @@ char	**ft_parse_map(t_game *game, char *path)
 	if (!map)
 		return (NULL);
 	fd = open(path, O_RDONLY);
-	while (ft_gnl(&line, fd))
+	while (gnl(&line, fd))
 	{
 		map[i] = line;
 		i++;
@@ -41,7 +41,7 @@ char	**ft_parse_map(t_game *game, char *path)
 	return (map);
 }
 
-int	ft_print_map(char **map, t_game *game)
+int	print_map(char **map, t_game *game)
 {
 	int	i;
 	int	j;
@@ -53,7 +53,7 @@ int	ft_print_map(char **map, t_game *game)
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-				ft_print_tile(game, game->map, j, i);
+				print_tile(game, game->map, j, i);
 			j++;
 		}
 		i++;
