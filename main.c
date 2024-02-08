@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:26:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:39:21 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	close_game(t_game *game)
 
 void	init_player_and_map(t_game *game)
 {
-	game->player.x = 128;
-	game->player.y = 128;
-	game->player.w = 24 * SCALE;
-	game->player.h = 60 * SCALE;
-	game->player.ox = 32 * SCALE;
-	game->player.oy = 0;
+	game->player.pos_x = 128;
+	game->player.pos_y = 128;
+	game->player.width = 24 * SCALE;
+	game->player.height = 60 * SCALE;
+	game->player.offset_x = 32 * SCALE;
+	game->player.offset_y = 0;
 	game->map = parse_map(game, "maps/map.ber");
 
 }

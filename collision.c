@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:25:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:38:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	move_player(t_game *game, float vx, float vy)
 	}
 	if ((greater_than_zero_x && vx < 0) || (!greater_than_zero_x && vx > 0))
 		vx = 0;
-	game->player.x += vx;
+	game->player.pos_x += vx;
 	collide_y = collide_with_map(player_box_y_off(game, vy), game);
 	while (((greater_than_zero_y && vy > 0) || (!greater_than_zero_y && vy <= 0)) && collide_y == true)
 	{
@@ -64,7 +64,7 @@ void	move_player(t_game *game, float vx, float vy)
 	if ((greater_than_zero_y && vy < 0) || (!greater_than_zero_y && vy > 0))
 	{
 		vy = 0;
-		game->player.vy = 0;
+		game->player.velocity_y = 0;
 	}
-	game->player.y += vy;
+	game->player.pos_y += vy;
 }

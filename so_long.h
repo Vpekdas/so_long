@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:27:06 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:36:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ typedef struct sprite
 
 typedef struct player
 {
-	int		x;
-	int		y;
-	int		w;
-	int		h;
-	int		ox;
-	int		oy;
-	float	vx;
-	float	vy;
+	int		pos_x;
+	int		pos_y;
+	int		width;
+	int		height;
+	int		offset_x;
+	int		offset_y;
+	float	velocity_x;
+	float	velocity_y;
 	bool	already_jumped;
 }				t_player;
 

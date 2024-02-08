@@ -6,31 +6,32 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:18:56 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:21:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:37:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_box	player_box_x_off(t_game *game, float vx)
+t_box	player_box_x_off(t_game *game, float velocity_x)
 {
 	t_box	hitbox;
 
-	hitbox.x = game->player.x + game->player.ox + vx;
-	hitbox.y = game->player.y + game->player.oy;
-	hitbox.weight = game->player.w;
-	hitbox.height = game->player.h;
+	hitbox.x = game->player.pos_x + game->player.offset_x + velocity_x;
+	hitbox.y = game->player.pos_y + game->player.offset_y;
+	hitbox.weight = game->player.width;
+	hitbox.height = game->player.height;
 	return (hitbox);
 }
 
-t_box	player_box_y_off(t_game *game, float vy)
+t_box	player_box_y_off(t_game *game, float velocity_y)
 {
 	t_box	hitbox;
 
-	hitbox.x = game->player.x + game->player.ox;
-	hitbox.y = game->player.y + game->player.oy + vy;
-	hitbox.weight = game->player.w;
-	hitbox.height = game->player.h;
+	hitbox.x = game->player.pos_x + game->player.offset_x;
+	hitbox.y = game->player.pos_y + game->player.offset_y + velocity_y;
+	hitbox.weight = game->player.width;
+	hitbox.height = game->player.height;
+	return (hitbox);
 	return (hitbox);
 }
 
