@@ -6,11 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:26:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:03:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
+#include <X11/Xlib.h>
 
 char	*gnl(char **line, int fd)
 {
@@ -41,22 +43,34 @@ char	**parse_map(t_game *game, char *path)
 	return (map);
 }
 
+void	print_collectible(t_game *g, int x, int y)
+{
+	t_box	player;
+
+	player = player_box_x_y_off(g, g->player.velocity_x, g->player.velocity_y);
+	if (collide_with_collectible(player, g) == true)
+		return ;
+	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE);
+}
+
 int	print_map(char **map, t_game *game)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (map[i])
+	y = 0;
+	while (map[y])
 	{
-		j = 0;
-		while (map[i][j])
+		x = 0;
+		while (map[y][x])
 		{
-			if (map[i][j] == '1')
-				print_tile(game, game->map, j, i);
-			j++;
+			if (map[y][x] == '1')
+				print_tile(game, game->map, x, y);
+			else if (map[y][x] == 'C')
+				print_collectible(game, x, y);
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (0);
 }

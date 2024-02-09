@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 16:51:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:52:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,24 @@
 # define SPEED 8
 # define FRAME_INTERVAL 16
 
+// enum
+// {
+// 	SP_PLAYER,
+// 	SP_BOTLEFT,
+// 	SP_BOTRIGHT,
+// 	SP_BOT,
+// 	SP_MAX,
+// };
+
+// t_img	*imgs[SP_MAX];
+// imgs[SP_PLAYER] = mlx_load_xpm_to_image(...);
+// imgs[SP_BOTLEFT] = mlx_load_xpm_to_image(...);
+
+
 typedef struct s_sprite
 {
 	t_img	*player;
+	t_img	*collectible;
 	t_img	*bot_left;
 	t_img	*bot_right;
 	t_img	*bot_tl;
@@ -109,6 +124,7 @@ bool		isg(t_game *game, char **map, int x, int y);
 int			update(t_game *game);
 bool		isg(t_game *game, char **map, int x, int y);
 void		print_tile(t_game *g, char **m, int x, int y);
-
+bool		collide_with_collectible(t_box player, t_game *game);
+t_box		player_box_x_y_off(t_game	*game, float velocity_x, float velocity_y);
 
 #endif

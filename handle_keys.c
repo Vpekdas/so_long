@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 14:38:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:17:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,32 @@ int	key_released(int keycode, t_game *game)
 	return (0);
 }
 
+t_box	player_box_x_y(t_game *game)
+{
+	t_box	box;
+
+	box.pos_x = game->player.pos_x + game->player.offset_x;
+	box.pos_y = game->player.pos_y + game->player.height - game->player.offset_y;
+	box.width = game->player.width;
+	box.height = 1;
+	return (box);
+}
+
 void	detect_key(t_game *game)
 {
-	if (game->key_w && collide_with_map((t_box){game->player.pos_x
-			+ game->player.offset_x, game->player.pos_y
-			+ game->player.height - game->player.offset_y, game->player.width, 1}, game) &&
-		!game->player.already_jumped)
+	t_box	box;
+	bool	jump;
+
+	jump = game->player.already_jumped;
+	box = player_box_x_y(game);
+	if (game->key_w && collide_with_map(box, game) && !jump)
 	{
 		game->player.velocity_y -= 10;
 		game->player.already_jumped = true;
 	}
 	else if (!game->key_w)
 		game->player.already_jumped = false;
-	if (game->key_s && !collide_with_map((t_box){game->player.pos_x
-			+ game->player.offset_x,
-			game->player.pos_y + game->player.height - game->player.offset_y,
-			game->player.width, 1}, game))
+	if (game->key_s && !collide_with_map(box, game))
 		game->player.velocity_y += SPEED;
 	if (game->key_a)
 		game->player.velocity_x -= SPEED;
