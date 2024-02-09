@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 18:03:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:05:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ void	print_collectible(t_game *g, int x, int y)
 	t_box	player;
 
 	player = player_box_x_y_off(g, g->player.velocity_x, g->player.velocity_y);
-	if (collide_with_collectible(player, g) == true)
+	if (collide_with_collectible(player, g, x, y) == true)
+	{
+		g->map[x][y] = '0';
 		return ;
+	}
 	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE);
 }
 
@@ -66,7 +69,7 @@ int	print_map(char **map, t_game *game)
 		{
 			if (map[y][x] == '1')
 				print_tile(game, game->map, x, y);
-			else if (map[y][x] == 'C')
+			if (map[y][x] == 'C')
 				print_collectible(game, x, y);
 			x++;
 		}

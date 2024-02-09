@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/08 17:17:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:03:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	update(t_game *game)
 		+ game->player.height - game->player.offset_y, game->player.width, 1}, game))
 		game->player.velocity_y += 18 * 0.016;
 	move_player(game, game->player.velocity_x, game->player.velocity_y);
-	clear_sprite(game->screen, 0x00ffffff); // ((int*)game->mid->data)[0]
+	clear_sprite(game->screen, 0x00ffffff);
 	print_map(game->map, game);
 	draw_sprite(game, game->sprite.player, game->player.pos_x, game->player.pos_y);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 18:08:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:23:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,13 @@ bool	collide_with_map(t_box player, t_game *game)
 	return (false);
 }
 
-bool	collide_with_collectible(t_box player, t_game *game)
+bool	collide_with_collectible(t_box player, t_game *game, int x, int y)
 {
-	int		x;
-	int		y;
 	t_box	entity_box;
 
-	x = 0;
-	while (x < game->map_width)
-	{
-		y = 0;
-		while (y < game->map_height)
-		{
-			entity_box = map_box_scale(x, y);
-			if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
-				return (true);
-			y++;
-		}
-		x++;
-	}
+	entity_box = map_box_scale(x, y);
+	if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
+		return (true);
 	return (false);
 }
 
