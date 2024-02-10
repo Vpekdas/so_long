@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/10 17:09:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:22:17 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	collide_with_map(t_box player, t_game *game)
 	return (false);
 }
 
-bool	collide_with_collectible(t_box player, t_game *game)
+void	collide_with_collectible(t_box player, t_game *game)
 {
 	int		x;
 	int		y;
@@ -58,13 +58,11 @@ bool	collide_with_collectible(t_box player, t_game *game)
 			if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
 			{
 				game->map[y][x] = '0';
-				return (true);
 			}
 			y++;
 		}
 		x++;
 	}
-	return (false);
 }
 
 void	adjust_velocity_x(t_game *game, float vx)
