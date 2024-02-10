@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:27:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 17:30:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:06:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ void	print_tile(t_game *g, char **m, int x, int y)
 		draw_sprite(g, g->sprite.top, x * 32 * SCALE, y * 32 * SCALE);
 	else
 	 	draw_sprite(g, g->sprite.top, x * 32 * SCALE, y * 32 * SCALE);
-
 }

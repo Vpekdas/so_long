@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 18:48:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:51:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	close_game(t_game *game)
 	mlx_loop_end(game->mlx);
 	return (0);
 }
+
+
 
 int	main(void)
 {

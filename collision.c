@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 18:23:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:35:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdbool.h>
 
 bool	collide(t_box player, t_box object)
 {
@@ -42,13 +43,28 @@ bool	collide_with_map(t_box player, t_game *game)
 	return (false);
 }
 
-bool	collide_with_collectible(t_box player, t_game *game, int x, int y)
+bool	collide_with_collectible(t_box player, t_game *game)
 {
+	int		x;
+	int		y;
 	t_box	entity_box;
 
-	entity_box = map_box_scale(x, y);
-	if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
-		return (true);
+	x = 0;
+	while (x < game->map_width)
+	{
+		y = 0;
+		while (y < game->map_height)
+		{
+			entity_box = map_box_scale(x, y);
+			if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
+			{
+				game->map[y][x] = '0';
+				return (true);
+			}
+			y++;
+		}
+		x++;
+	}
 	return (false);
 }
 
@@ -96,5 +112,4 @@ void	move_player(t_game *game, float velocity_x, float velocity_y)
 {
 	adjust_velocity_x(game, velocity_x);
 	adjust_velocity_y(game, velocity_y);
-
 }

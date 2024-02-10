@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 19:01:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:33:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,21 @@ typedef struct s_box
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_sprite	sprite;
-	t_player	player;
-	suseconds_t	last_frame;
-	int			key_a;
-	int			key_w;
-	int			key_s;
-	int			key_d;
-	int			mouse_left;
-	t_img		*screen;
-	char		**map;
-	int			map_width;
-	int			map_height;
-}				t_game;
+	void			*mlx;
+	void			*win;
+	t_sprite		sprite;
+	t_player		player;
+	suseconds_t		last_frame;
+	int				key_a;
+	int				key_w;
+	int				key_s;
+	int				key_d;
+	int				mouse_left;
+	t_img			*screen;
+	char			**map;
+	int				map_width;
+	int				map_height;
+}					t_game;
 
 t_box		player_box_x_off(t_game *game, float vx);
 t_box		player_box_y_off(t_game *game, float vy);
@@ -124,7 +124,7 @@ bool		isg(t_game *game, char **map, int x, int y);
 int			update(t_game *game);
 bool		isg(t_game *game, char **map, int x, int y);
 void		print_tile(t_game *g, char **m, int x, int y);
-bool		collide_with_collectible(t_box player, t_game *game, int x, int y);
 t_box		player_box_x_y_off(t_game	*game, float velocity_x, float velocity_y);
-
+t_box		player_box_x_off_minus_off_y(t_game	*game);
+bool	collide_with_collectible(t_box player, t_game *game);
 #endif

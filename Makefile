@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/09 16:25:28 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/10 15:40:01 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ all: libft ft_printf minilibx $(NAME)
 $(NAME): $(OBJECTS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
 	@echo "$(LIGHT_CYAN)"
-	$(CC) -g3 -o $(NAME) $(OBJECTS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lbsd -lm
+	$(CC) -g3 -o $(NAME) $(OBJECTS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext
 
 libft: 
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
