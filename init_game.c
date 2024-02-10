@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/10 17:08:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:18:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	init_sprite(t_game *g)
 	g->sprite.mid_tl = load_sprite(g->mlx, "textures/tiles/mid_tl.xpm");
 	g->sprite.bot_tl = load_sprite(g->mlx, "textures/tiles/bot_tl.xpm");
 	g->sprite.collectible = load_sprite(g->mlx, "textures/collectibles/collectible.xpm");
+	g->sprite.door = load_sprite(g->mlx, "textures/door/treasure.xpm");
 }
