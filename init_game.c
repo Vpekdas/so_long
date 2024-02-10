@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 18:25:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:08:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ t_img	*load_sprite(void *img, char *filename)
 void	init_sprite(t_game *g)
 {
 	g->sprite.player = load_sprite(g->mlx, "Idle_1.xpm");
-	g->sprite.tl = load_sprite(g->mlx, "textures/tl.xpm");
-	g->sprite.top = load_sprite(g->mlx, "textures/top.xpm");
-	g->sprite.top_right = load_sprite(g->mlx, "textures/top_right.xpm");
-	g->sprite.left = load_sprite(g->mlx, "textures/left.xpm");
-	g->sprite.mid = load_sprite(g->mlx, "textures/mid.xpm");
-	g->sprite.right = load_sprite(g->mlx, "textures/right.xpm");
-	g->sprite.bot_left = load_sprite(g->mlx, "textures/bot_left.xpm");
-	g->sprite.bot = load_sprite(g->mlx, "textures/bot.xpm");
-	g->sprite.bot_right = load_sprite(g->mlx, "textures/bot_right.xpm");
-	g->sprite.tl = load_sprite(g->mlx, "textures/tl.xpm");
-	g->sprite.mid_tl = load_sprite(g->mlx, "textures/mid_tl.xpm");
-	g->sprite.bot_tl = load_sprite(g->mlx, "textures/bot_tl.xpm");
-	g->sprite.collectible = load_sprite(g->mlx, "textures/collectible.xpm");
+	g->sprite.tl = load_sprite(g->mlx, "textures/tiles/tl.xpm");
+	g->sprite.top = load_sprite(g->mlx, "textures/tiles/top.xpm");
+	g->sprite.top_right = load_sprite(g->mlx, "textures/tiles/top_right.xpm");
+	g->sprite.left = load_sprite(g->mlx, "textures/tiles/left.xpm");
+	g->sprite.mid = load_sprite(g->mlx, "textures/tiles/mid.xpm");
+	g->sprite.right = load_sprite(g->mlx, "textures/tiles/right.xpm");
+	g->sprite.bot_left = load_sprite(g->mlx, "textures/tiles/bot_left.xpm");
+	g->sprite.bot = load_sprite(g->mlx, "textures/tiles/bot.xpm");
+	g->sprite.bot_right = load_sprite(g->mlx, "textures/tiles/bot_right.xpm");
+	g->sprite.tl = load_sprite(g->mlx, "textures/tiles/tl.xpm");
+	g->sprite.mid_tl = load_sprite(g->mlx, "textures/tiles/mid_tl.xpm");
+	g->sprite.bot_tl = load_sprite(g->mlx, "textures/tiles/bot_tl.xpm");
+	g->sprite.collectible = load_sprite(g->mlx, "textures/collectibles/collectible.xpm");
 }
