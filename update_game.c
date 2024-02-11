@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 15:25:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:08:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	update(t_game *game)
 	suseconds_t	now;
 	t_box		player_box;
 
-	player_box = player_box_x_off_minus_off_y(game);
+
 	now = getms();
 	if (now - game->last_frame < FRAME_INTERVAL)
 		return (0);
 	game->last_frame = now;
 	game->player.velocity_x = 0;
 	detect_key(game);
+	player_box = player_box_x_y_off_below(game);
 	if (!collide_with_map(player_box, game))
 		game->player.velocity_y += 18 * 0.016;
+	player_box = player_box_y_off(game, game->player.velocity_y);
 	collide_with_collectible(player_box, game);
 	move_player(game, game->player.velocity_x, game->player.velocity_y);
 	collide_with_exit_door(player_box, game);

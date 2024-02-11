@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 15:21:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:01:39 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	collide_with_collectible(t_box player, t_game *game)
 	int		y;
 	t_box	entity_box;
 
-	x = 0;
-	while (x < game->map_width)
+	y = 0;
+	while (y < game->map_height)
 	{
-		y = 0;
-		while (y < game->map_height)
+		x = 0;
+		while (x < game->map_width)
 		{
 			entity_box = map_box_scale(x, y);
 			if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
@@ -30,9 +30,9 @@ void	collide_with_collectible(t_box player, t_game *game)
 				game->map[y][x] = '0';
 				game->collectibles_numbers--;
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 int	find_collectible_numbers(t_game *game, char **map)

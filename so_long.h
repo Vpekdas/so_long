@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 15:24:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:53:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int			update(t_game *game);
 bool		isg(t_game *game, char **map, int x, int y);
 void		print_tile(t_game *g, char **m, int x, int y);
 t_box		player_box_x_y_off(t_game	*game, float velocity_x, float velocity_y);
-t_box		player_box_x_off_minus_off_y(t_game	*game);
+t_box	player_box_x_y_off_below(t_game	*game);
 void		collide_with_collectible(t_box player, t_game *game);
 int	find_collectible_numbers(t_game *game, char **map);
 void	collide_with_exit_door(t_box player, t_game *game);
