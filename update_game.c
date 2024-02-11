@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/10 15:35:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:25:42 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	update(t_game *game)
 		game->player.velocity_y += 18 * 0.016;
 	collide_with_collectible(player_box, game);
 	move_player(game, game->player.velocity_x, game->player.velocity_y);
+	collide_with_exit_door(player_box, game);
 	clear_sprite(game->screen, 0x00ffffff);
 	print_map(game->map, game);
 	draw_sprite(game, game->sprite.player, game->player.pos_x, game->player.pos_y);

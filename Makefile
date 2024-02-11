@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/10 15:40:01 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/11 15:25:03 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ SOURCES = collision.c	\
 			update_game.c \
 			box_utils.c \
 			init_game.c \
+			collectibles_utils.c \
+			exit_door_utils.c \
+			
 
 BONUS_SOURCES = 
 

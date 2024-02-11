@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/10 17:22:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:27:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,6 @@ bool	collide_with_map(t_box player, t_game *game)
 	return (false);
 }
 
-void	collide_with_collectible(t_box player, t_game *game)
-{
-	int		x;
-	int		y;
-	t_box	entity_box;
-
-	x = 0;
-	while (x < game->map_width)
-	{
-		y = 0;
-		while (y < game->map_height)
-		{
-			entity_box = map_box_scale(x, y);
-			if (game->map[y][x] == 'C' && collide(player, entity_box) == true)
-			{
-				game->map[y][x] = '0';
-			}
-			y++;
-		}
-		x++;
-	}
-}
-
 void	adjust_velocity_x(t_game *game, float vx)
 {
 	const float	precision = 0.5;
@@ -98,7 +75,7 @@ void	adjust_velocity_y(t_game *game, float vy)
 		else if (!vy_positive)
 			vy += precision;
 	}
-	if ((vy_positive && vy < 0) || (!vy_positive && vy > 0))
+	if ((vy_positive && vy < 0) || (!vy_positive && vy >= 0))
 	{
 		vy = 0;
 		game->player.velocity_y = 0;

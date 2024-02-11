@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/10 17:18:40 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:21:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_player_and_map(t_game *game)
 	game->player.offset_x = 32 * SCALE;
 	game->player.offset_y = 0;
 	game->map = parse_map(game, "maps/map.ber");
+	game->collectibles_numbers = find_collectible_numbers(game, game->map);
 
 }
 
