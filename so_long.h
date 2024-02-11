@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 15:53:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:56:44 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_sprite
 	t_img	*player;
 	t_img	*collectible;
 	t_img	*door;
+	t_img	*background;
 	t_img	*bot_left;
 	t_img	*bot_right;
 	t_img	*bot_tl;

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 15:24:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:35:27 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(void)
 	ft_bzero(&game, sizeof(t_game));
 
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 1280, 720, "so_long");
-	game.screen = mlx_new_image(game.mlx, 1280, 720);
+	game.win = mlx_new_window(game.mlx, 1920, 600, "so_long");
+	game.screen = mlx_new_image(game.mlx, 1920, 600);
 	init_player_and_map(&game);
 	init_sprite(&game);
 	mlx_loop_hook(game.mlx, update, &game);

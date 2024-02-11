@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 16:08:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:07:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	update(t_game *game)
 {
 	suseconds_t	now;
 	t_box		player_box;
-
 
 	now = getms();
 	if (now - game->last_frame < FRAME_INTERVAL)
