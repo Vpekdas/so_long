@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 17:07:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:10:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	print_door(t_game *g, int x, int y)
 
 void	print_collectible(t_game *g, int x, int y)
 {
-	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE);
+	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE );
 }
 
 int	print_map(char **map, t_game *game)
