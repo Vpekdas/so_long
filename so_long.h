@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 15:38:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:55:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ typedef struct s_sprite
 	t_img	*door;
 	t_img	*background;
 	t_img	*background2;
-	t_img	*background3;
-	t_img	*background4;
 	t_img	*water;
 	t_img	*bot_left;
 	t_img	*bot_right;
@@ -143,5 +141,8 @@ void	collide_with_exit_door(t_box player, t_game *game);
 void	draw_collectible(t_game *g, int x, int y);
 void	draw_door(t_game *g, int x, int y);
 void	draw_background(t_game *game);
+t_box	player_box_x_y(t_game *game);
+t_box	player_box_stop_scrolling_left(t_game	*game);
+t_box	player_box_stop_scrolling_right(t_game	*game);
 
 #endif

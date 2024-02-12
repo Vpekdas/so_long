@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 15:50:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:55:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,6 @@ int	key_released(int keycode, t_game *game)
 	return (0);
 }
 
-t_box	player_box_x_y(t_game *game)
-{
-	t_box	box;
-
-	box.pos_x = game->player.pos_x + game->player.offset_x;
-	box.pos_y = game->player.pos_y + game->player.height - game->player.offset_y;
-	box.width = game->player.width;
-	box.height = 1;
-	return (box);
-}
-
 void	detect_key(t_game *game)
 {
 	t_box	box;
@@ -67,18 +56,26 @@ void	detect_key(t_game *game)
 		game->player.already_jumped = false;
 	if (game->key_s && !collide_with_map(box, game))
 		game->player.velocity_y += SPEED;
+	box = player_box_stop_scrolling_left(game);
 	if (game->key_a)
 	{
 		game->player.velocity_x -= SPEED;
-		game->bg1_scroll -= 2;
-		game->bg2_scroll -= 4;
-		game->water_scroll -= 2;
+		if (!collide_with_map(box, game))
+		{
+			game->bg1_scroll -= 4;
+			game->bg2_scroll -= 2;
+			game->water_scroll -= 2;
+		}
 	}
+	box = player_box_stop_scrolling_right(game);
 	if (game->key_d)
 	{
 		game->player.velocity_x += SPEED;
-		game->bg1_scroll += 2;
-		game->bg2_scroll += 4;
-		game->water_scroll += 2;
+		if (!collide_with_map(box, game))
+		{
+			game->bg1_scroll += 4;
+			game->bg2_scroll += 2;
+			game->water_scroll += 2;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:18:56 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 11:58:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:55:16 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ t_box	player_box_y_off(t_game *game, float velocity_y)
 	box.height = game->player.height;
 	return (box);
 }
+
+t_box	player_box_x_y(t_game *game)
+{
+	t_box	box;
+
+	box.pos_x = game->player.pos_x + game->player.offset_x;
+	box.pos_y = game->player.pos_y + game->player.height - game->player.offset_y;
+	box.width = game->player.width;
+	box.height = 1;
+	return (box);
+}
 t_box	player_box_x_y_off(t_game	*game, float velocity_x, float velocity_y)
 {
 	t_box	box;
@@ -53,6 +64,29 @@ t_box	player_box_x_y_off_below(t_game	*game)
 	box.height = 1;
 	return (box);
 }
+t_box	player_box_stop_scrolling_left(t_game	*game)
+{
+	t_box	box;
+
+	box.pos_x = game->player.pos_x + game->player.width - game->player.offset_x;
+	box.pos_y = game->player.pos_y;
+	box.width = game->player.width;
+	box.height = game->player.height;
+	return (box);
+}
+
+t_box	player_box_stop_scrolling_right(t_game	*game)
+{
+	t_box	box;
+
+	box.pos_x = game->player.pos_x + game->player.width + game->player.offset_x;
+	box.pos_y = game->player.pos_y;
+	box.width = game->player.width;
+	box.height = game->player.height;
+	return (box);
+}
+
+
 
 t_box	map_box_scale(int x, int y)
 {

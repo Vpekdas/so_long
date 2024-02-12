@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 13:31:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:32:43 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	collide_with_collectible(t_box player, t_game *game)
 	t_box	entity_box;
 
 	y = 0;
-	while (y < game->map_height)
+	while (y < game->map_height - 1)
 	{
 		x = 0;
-		while (x < game->map_width)
+		while (x < game->map_width - 1)
 		{
 			entity_box = map_box_scale(x, y);
 			if (game->map[y][x] == 'C' && collide(player, entity_box) == true)

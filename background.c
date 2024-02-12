@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:31:21 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 15:55:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:27:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	draw_background_sprite(t_game *game, t_img *img, int x, int scroll)
+void	draw_background_sprite(t_game *game, t_img *img, int scroll)
 {
 	int				i;
 	int				j;
@@ -24,12 +24,12 @@ static void	draw_background_sprite(t_game *game, t_img *img, int x, int scroll)
 		j = -1;
 		while (++j < img->height * 3)
 		{
-			if (j < 0 || j >= game->screen->height || i + x < 0 || i + x >= game->screen->width)
+			if (j < 0 || j >= game->screen->height || i + scroll < 0 || i >= game->screen->width)
 				continue ;
 			color = ((int *)img->data)[(int)(j / 3) * img->width + (int)(((i + scroll) % (img->width * 3)) / 3)];
 			if (color == 0xFF000000)
 				continue ;
-			((int *)game->screen->data)[j * game->screen->width + (x + i)] = color;
+			((int *)game->screen->data)[j * game->screen->width + i] = color;
 		}
 		i++;
 	}
@@ -37,7 +37,7 @@ static void	draw_background_sprite(t_game *game, t_img *img, int x, int scroll)
 
 void	draw_background(t_game *game)
 {
-	draw_background_sprite(game, game->sprite.water, 0, game->water_scroll);
-	draw_background_sprite(game, game->sprite.background2, 0, game->bg1_scroll);
-	draw_background_sprite(game, game->sprite.background, 0, game->bg2_scroll);
+	draw_background_sprite(game, game->sprite.water, game->water_scroll);
+	draw_background_sprite(game, game->sprite.background2, game->bg2_scroll);
+	draw_background_sprite(game, game->sprite.background, game->bg1_scroll);
 }
