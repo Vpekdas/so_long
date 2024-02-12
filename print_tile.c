@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:27:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 12:07:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:32:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_wall(t_game *game, char **map, int x, int y)
 	return (map[y][x] == '1');
 }
 
-void	print_tile(t_game *g, char **m, int x, int y)
+void	draw_tile(t_game *g, char **m, int x, int y)
 {
 	if (y == 0 || x == 0 || x == g->map_width - 1)
 		return ;

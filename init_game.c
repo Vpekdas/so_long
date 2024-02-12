@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 17:01:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:43:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_player_and_map(t_game *game)
 {
-	game->player.pos_x = 100;
-	game->player.pos_y = 100;
+	game->player.pos_x = 200;
+	game->player.pos_y = 70;
 	game->player.width = 24 * SCALE;
 	game->player.height = 60 * SCALE;
 	game->player.offset_x = 32 * SCALE;
@@ -51,4 +51,8 @@ void	init_sprite(t_game *g)
 	g->sprite.collectible = load_sprite(g->mlx, "textures/collectibles/collectible.xpm");
 	g->sprite.door = load_sprite(g->mlx, "textures/door/treasure.xpm");
 	g->sprite.background = load_sprite(g->mlx, "textures/tiles/png/rocksfront.xpm");
+	g->sprite.background2 = load_sprite(g->mlx, "textures/tiles/png/rocksback.xpm");
+	g->sprite.background3 = load_sprite(g->mlx, "textures/tiles/png/bg.xpm");
+	g->sprite.background4 = load_sprite(g->mlx, "textures/tiles/png/bg2.xpm");
+	g->sprite.water = load_sprite(g->mlx, "textures/tiles/png/water.xpm");
 }

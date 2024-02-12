@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collectibles_utils.c                               :+:      :+:    :+:   */
+/*   collectibles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 16:01:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:31:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,8 @@ int	find_collectible_numbers(t_game *game, char **map)
 		y++;
 	}
 	return (collectibles_numbers);
+}
+void	draw_collectible(t_game *g, int x, int y)
+{
+	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE );
 }

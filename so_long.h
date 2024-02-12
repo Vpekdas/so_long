@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 16:56:44 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:38:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define SCALE 2
 # define SPEED 8
 # define FRAME_INTERVAL 16
+# define WINDOWS_WIDTH 1280
+# define WINDOWS_HEIGHT 720
 
 // enum
 // {
@@ -48,6 +50,10 @@ typedef struct s_sprite
 	t_img	*collectible;
 	t_img	*door;
 	t_img	*background;
+	t_img	*background2;
+	t_img	*background3;
+	t_img	*background4;
+	t_img	*water;
 	t_img	*bot_left;
 	t_img	*bot_right;
 	t_img	*bot_tl;
@@ -102,6 +108,9 @@ typedef struct s_game
 	int				map_width;
 	int				map_height;
 	int				collectibles_numbers;
+	int				bg1_scroll;
+	int				bg2_scroll;
+	int				water_scroll;
 }					t_game;
 
 t_box		player_box_x_off(t_game *game, float vx);
@@ -125,11 +134,14 @@ void		init_sprite(t_game *g);
 bool		isg(t_game *game, char **map, int x, int y);
 int			update(t_game *game);
 bool		isg(t_game *game, char **map, int x, int y);
-void		print_tile(t_game *g, char **m, int x, int y);
+void		draw_tile(t_game *g, char **m, int x, int y);
 t_box		player_box_x_y_off(t_game	*game, float velocity_x, float velocity_y);
 t_box	player_box_x_y_off_below(t_game	*game);
 void		collide_with_collectible(t_box player, t_game *game);
 int	find_collectible_numbers(t_game *game, char **map);
 void	collide_with_exit_door(t_box player, t_game *game);
+void	draw_collectible(t_game *g, int x, int y);
+void	draw_door(t_game *g, int x, int y);
+void	draw_background(t_game *game);
 
 #endif

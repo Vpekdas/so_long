@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 12:12:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:12:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	clear_sprite(t_img *img, unsigned int color)
 
 void	draw_sprite(t_game *game, t_img *img, int x, int y)
 {
-	const int		offx = -game->player.pos_x + 1920 / 2 - 64 * SCALE / 2;
-	const int		offy = -game->player.pos_y + 600 / 2 - 64 * SCALE / 2;
+	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - 64 * SCALE / 2;
+	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 - 64 * SCALE / 2;
 	int				i;
 	int				j;
 	unsigned int	color;

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 12:10:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:32:56 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*gnl(char **line, int fd)
 	*line = get_next_line(fd);
 	return (*line);
 }
+
 int	count_map_height(char *path)
 {
 	int		fd;
@@ -57,16 +58,6 @@ char	**parse_map(t_game *game, char *path)
 	return (map);
 }
 
-void	print_door(t_game *g, int x, int y)
-{
-	draw_sprite(g, g->sprite.door, x * 32 * SCALE, y * 32 * SCALE);
-}
-
-void	print_collectible(t_game *g, int x, int y)
-{
-	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE );
-}
-
 int	print_map(char **map, t_game *game)
 {
 	int	x;
@@ -79,11 +70,11 @@ int	print_map(char **map, t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				print_tile(game, game->map, x, y);
+				draw_tile(game, game->map, x, y);
 			else if (map[y][x] == 'C')
-				print_collectible(game, x, y);
+				draw_collectible(game, x, y);
 			else if (map[y][x] == 'D')
-				print_door(game, x, y);
+				draw_door(game, x, y);
 			x++;
 		}
 		y++;

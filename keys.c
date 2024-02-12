@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_keys.c                                      :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/09 16:17:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:50:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,17 @@ void	detect_key(t_game *game)
 	if (game->key_s && !collide_with_map(box, game))
 		game->player.velocity_y += SPEED;
 	if (game->key_a)
+	{
 		game->player.velocity_x -= SPEED;
+		game->bg1_scroll -= 2;
+		game->bg2_scroll -= 4;
+		game->water_scroll -= 2;
+	}
 	if (game->key_d)
+	{
 		game->player.velocity_x += SPEED;
+		game->bg1_scroll += 2;
+		game->bg2_scroll += 4;
+		game->water_scroll += 2;
+	}
 }

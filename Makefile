@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/12 11:41:32 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/12 13:34:40 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,17 +24,19 @@ LIGHT_PURPLE=\033[1;35m
 NAME = so_long
 
 SOURCES = animation.c \
-		box.c\
-		collectibles.c\
-		collision.c\
-		exit_door.c\
-		init_game.c\
-		keys.c\
-		main.c\
-		maps.c\
-		print_sprite.c\
-		print_tile.c\
-		update_game.c\
+		background.c \
+		box.c \
+		collectibles.c \
+		collision.c \
+		exit_door.c \
+		init_game.c \
+		keys.c \
+		main.c \
+		maps.c \
+		print_sprite.c \
+		print_tile.c \
+		update_game.c \
+
 
 BONUS_SOURCES = 
 

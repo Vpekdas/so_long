@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_door_utils.c                                  :+:      :+:    :+:   */
+/*   exit_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:22:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/11 15:25:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:35:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ void	collide_with_exit_door(t_box player, t_game *game)
 		}
 		x++;
 	}
+}
+
+void	draw_door(t_game *g, int x, int y)
+{
+	draw_sprite(g, g->sprite.door, x * 32 * SCALE, y * 32 * SCALE);
 }
