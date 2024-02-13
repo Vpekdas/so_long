@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 13:49:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:00:23 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ int	key_pressed(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
 		mlx_loop_end(game->mlx);
-	if (keycode == 'w')
+	if (keycode == 'w' || keycode == XK_Up)
 		game->key_w = 1;
-	if (keycode == 's')
+	if (keycode == 's' || keycode == XK_Down)
 		game->key_s = 1;
-	if (keycode == 'a')
+	if (keycode == 'a' || keycode == XK_Left)
 		game->key_a = 1;
-	if (keycode == 'd')
+	if (keycode == 'd' || keycode == XK_Right)
 		game->key_d = 1;
 	return (0);
 }
 
 int	key_released(int keycode, t_game *game)
 {
-	if (keycode == 'w')
+	if (keycode == 'w' || keycode == XK_Up)
 		game->key_w = 0;
-	if (keycode == 's')
+	if (keycode == 's' || keycode == XK_Down)
 		game->key_s = 0;
-	if (keycode == 'a')
+	if (keycode == 'a' || keycode == XK_Left)
 		game->key_a = 0;
-	if (keycode == 'd')
+	if (keycode == 'd' || keycode == XK_Right)
 		game->key_d = 0;
 	return (0);
 }
