@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 15:43:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:39:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define SCALE 2
 # define SPEED 8
 # define FRAME_INTERVAL 16
-# define WINDOWS_WIDTH 1280
+# define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 480
 
 // enum
@@ -75,6 +75,8 @@ typedef struct s_anim_player
 	t_img		**img;
 	suseconds_t	current_frame;
 	suseconds_t	last_frame;
+	int			anim_index;
+	int			frame;
 }				t_anim_player;
 
 typedef struct s_player
@@ -156,4 +158,5 @@ t_box	player_box_stop_scrolling_left(t_game	*game);
 t_box	player_box_stop_scrolling_right(t_game	*game);
 void	draw_background_sprite(t_game *game, t_img *img, int scroll);
 void	draw_vignette(t_game *game);
+void	update_anim_player(t_game *game, suseconds_t now, t_img **img, int	anim_nb);
 #endif

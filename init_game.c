@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 14:47:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:25:51 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,10 @@ void	init_sprite(t_game *g)
 	g->sprite.background2 = load_sprite(g->mlx, "textures/tiles/png/rocksback.xpm");
 	g->sprite.water = load_sprite(g->mlx, "textures/tiles/png/water.xpm");
 	g->sprite.foreground = load_sprite(g->mlx, "textures/tiles/png/foreground.xpm");
-
+	g->anim_player.img = malloc(sizeof(t_img *) * 5);
+	g->anim_player.img[0] = load_sprite(g->mlx, "textures/Player/idle1.xpm");
+	g->anim_player.img[1] = load_sprite(g->mlx, "textures/Player/idle2.xpm");
+	g->anim_player.img[2] = load_sprite(g->mlx, "textures/Player/idle3.xpm");
+	g->anim_player.img[3] = load_sprite(g->mlx, "textures/Player/idle4.xpm");
+	g->anim_player.img[4] = load_sprite(g->mlx, "textures/Player/idle5.xpm");
 }
