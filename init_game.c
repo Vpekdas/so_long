@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 16:14:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 12:09:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_player_and_map(t_game *game)
 {
-	game->player.pos_x = 200;
+	game->player.pos_x = 1500;
 	game->player.pos_y = 70;
 	game->player.width = 24 * SCALE;
 	game->player.height = 60 * SCALE;

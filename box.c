@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:18:56 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 18:55:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:38:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_box	player_box_stop_scrolling_left(t_game	*game)
 {
 	t_box	box;
 
-	box.pos_x = game->player.pos_x + game->player.width - game->player.offset_x;
+	box.pos_x = game->player.pos_x + game->player.width - game->player.offset_x + 32;
 	box.pos_y = game->player.pos_y;
 	box.width = game->player.width;
 	box.height = game->player.height;
@@ -79,14 +79,12 @@ t_box	player_box_stop_scrolling_right(t_game	*game)
 {
 	t_box	box;
 
-	box.pos_x = game->player.pos_x + game->player.width + game->player.offset_x;
+	box.pos_x = game->player.pos_x + game->player.width + game->player.offset_x - 32;
 	box.pos_y = game->player.pos_y;
 	box.width = game->player.width;
 	box.height = game->player.height;
 	return (box);
 }
-
-
 
 t_box	map_box_scale(int x, int y)
 {
