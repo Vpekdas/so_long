@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 13:58:55 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:43:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SPEED 8
 # define FRAME_INTERVAL 16
 # define WINDOWS_WIDTH 1280
-# define WINDOWS_HEIGHT 720
+# define WINDOWS_HEIGHT 480
 
 // enum
 // {
@@ -52,6 +52,7 @@ typedef struct s_sprite
 	t_img	*background;
 	t_img	*background2;
 	t_img	*water;
+	t_img	*foreground;
 	t_img	*bot_left;
 	t_img	*bot_right;
 	t_img	*bot_tl;
@@ -69,6 +70,13 @@ typedef struct s_sprite
 	t_img	*top;
 }			t_sprite;
 
+typedef struct s_anim_player
+{
+	t_img		**img;
+	suseconds_t	current_frame;
+	suseconds_t	last_frame;
+}				t_anim_player;
+
 typedef struct s_player
 {
 	int		pos_x;
@@ -80,7 +88,7 @@ typedef struct s_player
 	float	velocity_x;
 	float	velocity_y;
 	bool	already_jumped;
-}				t_player;
+}			t_player;
 
 typedef struct s_box
 {
@@ -88,7 +96,7 @@ typedef struct s_box
 	int	pos_y;
 	int	width;
 	int	height;
-}	t_box;
+}		t_box;
 
 typedef struct s_game
 {
@@ -97,6 +105,7 @@ typedef struct s_game
 	t_img			*screen;
 	t_sprite		sprite;
 	t_player		player;
+	t_anim_player	anim_player;
 	suseconds_t		last_frame;
 	int				key_a;
 	int				key_w;
@@ -109,6 +118,7 @@ typedef struct s_game
 	int				bg1_scroll;
 	int				bg2_scroll;
 	int				water_scroll;
+	int				fg_scroll;
 }					t_game;
 
 t_box		player_box_x_off(t_game *game, float vx);
@@ -144,5 +154,6 @@ void	draw_background(t_game *game);
 t_box	player_box_x_y(t_game *game);
 t_box	player_box_stop_scrolling_left(t_game	*game);
 t_box	player_box_stop_scrolling_right(t_game	*game);
-
+void	draw_background_sprite(t_game *game, t_img *img, int scroll);
+void	draw_vignette(t_game *game);
 #endif

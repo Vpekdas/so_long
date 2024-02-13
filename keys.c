@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 14:00:23 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:23:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ void	detect_key(t_game *game)
 		game->player.velocity_x -= SPEED;
 		if (!collide_with_map(box, game))
 		{
-			game->bg1_scroll -= 4;
-			game->bg2_scroll -= 2;
-			game->water_scroll -= 2;
 		}
 	}
 	box = player_box_stop_scrolling_right(game);
@@ -73,9 +70,6 @@ void	detect_key(t_game *game)
 		game->player.velocity_x += SPEED;
 		if (!collide_with_map(box, game))
 		{
-			game->bg1_scroll += 4;
-			game->bg2_scroll += 2;
-			game->water_scroll += 2;
 		}
 	}
 }

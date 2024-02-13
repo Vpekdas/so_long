@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 18:35:21 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:42:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	update(t_game *game)
 	draw_background(game);
 	print_map(game->map, game);
 	draw_sprite(game, game->sprite.player, game->player.pos_x, game->player.pos_y);
+	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
+	draw_vignette(game);
 	return (0);
 }

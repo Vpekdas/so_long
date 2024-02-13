@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 18:36:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:28:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,8 @@ void	move_player(t_game *game, float velocity_x, float velocity_y)
 {
 	adjust_velocity_x(game, velocity_x);
 	adjust_velocity_y(game, velocity_y);
+	game->water_scroll = game->player.pos_x * 0.25;
+	game->bg2_scroll = game->player.pos_x * 0.25;
+	game->bg1_scroll = game->player.pos_x * 0.5;
+	game->fg_scroll = game->player.pos_x * 3;
 }

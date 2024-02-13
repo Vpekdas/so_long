@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/12 13:34:40 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/13 16:31:56 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 CC=cc
 
-CFLAGS=-Wall -Wextra -Werror -g3 -MMD 
+CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin
 
 RM = rm -f
 

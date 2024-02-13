@@ -6,10 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 12:09:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:47:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
 
 void	init_player_and_map(t_game *game)
@@ -53,4 +54,6 @@ void	init_sprite(t_game *g)
 	g->sprite.background = load_sprite(g->mlx, "textures/tiles/png/rocksfront.xpm");
 	g->sprite.background2 = load_sprite(g->mlx, "textures/tiles/png/rocksback.xpm");
 	g->sprite.water = load_sprite(g->mlx, "textures/tiles/png/water.xpm");
+	g->sprite.foreground = load_sprite(g->mlx, "textures/tiles/png/foreground.xpm");
+
 }
