@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 18:39:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:13:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_anim_player
 	suseconds_t	last_frame;
 	int			anim_index;
 	int			frame;
+	int			frame_count;
 }				t_anim_player;
 
 typedef struct s_player
@@ -90,6 +91,7 @@ typedef struct s_player
 	float	velocity_x;
 	float	velocity_y;
 	bool	already_jumped;
+	char	*animation_type;
 }			t_player;
 
 typedef struct s_box
@@ -100,6 +102,13 @@ typedef struct s_box
 	int	height;
 }		t_box;
 
+typedef struct s_draw_info
+{
+	int		x;
+	int		y;
+	bool	flipped;
+}			t_draw_info;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -107,8 +116,9 @@ typedef struct s_game
 	t_img			*screen;
 	t_sprite		sprite;
 	t_player		player;
-	t_anim_player	anim_player;
-	suseconds_t		last_frame;
+	t_anim_player	anim;
+	t_anim_player	anim_player_run;
+	t_draw_info		draw_info;
 	int				key_a;
 	int				key_w;
 	int				key_s;
@@ -158,5 +168,7 @@ t_box	player_box_stop_scrolling_left(t_game	*game);
 t_box	player_box_stop_scrolling_right(t_game	*game);
 void	draw_background_sprite(t_game *game, t_img *img, int scroll);
 void	draw_vignette(t_game *game);
-void	update_anim_player(t_game *game, suseconds_t now, t_img **img, int	anim_nb);
+void	draw_anim_player(t_game *game, t_anim_player *anim);
+void	draw_sprite_player(t_game *game, t_img *img, t_draw_info draw_info);
+void	update_anim_player(t_game *game);
 #endif

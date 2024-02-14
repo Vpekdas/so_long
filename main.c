@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 15:10:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:09:57 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,4 @@ int	main(void)
 	mlx_loop(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 }
+// TODO: Protect mlx NULL pointer

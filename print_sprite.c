@@ -6,13 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 16:48:36 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:27:03 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
-#include <stdio.h>
 
 void	clear_sprite(t_img *img, unsigned int color)
 {
@@ -22,6 +20,35 @@ void	clear_sprite(t_img *img, unsigned int color)
 	while (i < img->width * img->height)
 	{
 		((unsigned int *)img->data)[i] = color;
+		i++;
+	}
+}
+
+void	draw_sprite_player(t_game *game, t_img *img, t_draw_info draw_info)
+{
+	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - 82 * 1 / 2;
+	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 - 58 * SCALE / 2;
+	int				i;
+	int				j;
+	unsigned int	color;
+
+	i = 0;
+	while (i < img->width * SCALE)
+	{
+		j = -1;
+		while (++j < img->height * SCALE)
+		{
+			if (j + draw_info.y + offy < 0 || j + draw_info.y + offy >= game->screen->height
+				|| i + draw_info.x + offx < 0 || i + draw_info.x + offx >= game->screen->width)
+				continue ;
+			if (!draw_info.flipped)
+				color = ((int *)img->data)[(int)(j / SCALE) * img->width + (int)(i / SCALE)];
+			else
+			 	color = ((int *)img->data)[(int)(j / SCALE) * img->width + (int)((img->width * SCALE - (i + 1)) / SCALE)];
+			if (color == 0xFF000000)
+				continue ;
+			((int *)game->screen->data)[(draw_info.y + j + offy) * game->screen->width + (draw_info.x + i + offx)] = color;
+		}
 		i++;
 	}
 }

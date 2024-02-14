@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/13 18:25:51 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:05:22 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
 
 void	init_player_and_map(t_game *game)
@@ -34,9 +33,61 @@ t_img	*load_sprite(void *img, char *filename)
 	return (mlx_xpm_file_to_image(img, filename, &width, &height));
 }
 
+void	init_anim_sprite_player(t_game *game)
+{
+	game->anim.img = malloc(sizeof(t_img *) * 26);
+	game->anim.img[0] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/1.xpm");
+	game->anim.img[1] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/2.xpm");
+	game->anim.img[2] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/3.xpm");
+	game->anim.img[3] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/4.xpm");
+	game->anim.img[4] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/5.xpm");
+	game->anim.img[5] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/6.xpm");
+	game->anim.img[6] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/7.xpm");
+	game->anim.img[7] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/8.xpm");
+	game->anim.img[8] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/9.xpm");
+	game->anim.img[9] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/10.xpm");
+	game->anim.img[10] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/11.xpm");
+	game->anim.img[11] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/12.xpm");
+	game->anim.img[12] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/13.xpm");
+	game->anim.img[13] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/14.xpm");
+	game->anim.img[14] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/15.xpm");
+	game->anim.img[15] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/16.xpm");
+	game->anim.img[16] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/17.xpm");
+	game->anim.img[17] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/18.xpm");
+	game->anim.img[18] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/19.xpm");
+	game->anim.img[19] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/20.xpm");
+	game->anim.img[20] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/21.xpm");
+	game->anim.img[21] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/22.xpm");
+	game->anim.img[22] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/23.xpm");
+	game->anim.img[23] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/24.xpm");
+	game->anim.img[24] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/25.xpm");
+	game->anim.img[25] = load_sprite(game->mlx, "textures/Pirate/Player/Idle/26.xpm");
+	game->anim.frame_count = 26;
+}
+
+void	init_anim_sprite_player_run(t_game *game)
+{
+	game->anim_player_run.img = malloc(sizeof(t_img *) * 14);
+	game->anim_player_run.img[0] = load_sprite(game->mlx, "textures/Pirate/Player/Run/1.xpm");
+	game->anim_player_run.img[1] = load_sprite(game->mlx, "textures/Pirate/Player/Run/2.xpm");
+	game->anim_player_run.img[2] = load_sprite(game->mlx, "textures/Pirate/Player/Run/3.xpm");
+	game->anim_player_run.img[3] = load_sprite(game->mlx, "textures/Pirate/Player/Run/4.xpm");
+	game->anim_player_run.img[4] = load_sprite(game->mlx, "textures/Pirate/Player/Run/5.xpm");
+	game->anim_player_run.img[5] = load_sprite(game->mlx, "textures/Pirate/Player/Run/6.xpm");
+	game->anim_player_run.img[6] = load_sprite(game->mlx, "textures/Pirate/Player/Run/7.xpm");
+	game->anim_player_run.img[7] = load_sprite(game->mlx, "textures/Pirate/Player/Run/8.xpm");
+	game->anim_player_run.img[8] = load_sprite(game->mlx, "textures/Pirate/Player/Run/9.xpm");
+	game->anim_player_run.img[9] = load_sprite(game->mlx, "textures/Pirate/Player/Run/10.xpm");
+	game->anim_player_run.img[10] = load_sprite(game->mlx, "textures/Pirate/Player/Run/11.xpm");
+	game->anim_player_run.img[11] = load_sprite(game->mlx, "textures/Pirate/Player/Run/12.xpm");
+	game->anim_player_run.img[12] = load_sprite(game->mlx, "textures/Pirate/Player/Run/13.xpm");
+	game->anim_player_run.img[13] = load_sprite(game->mlx, "textures/Pirate/Player/Run/14.xpm");
+	game->anim_player_run.frame_count = 14;
+}
+
+
 void	init_sprite(t_game *g)
 {
-	g->sprite.player = load_sprite(g->mlx, "Idle_1.xpm");
 	g->sprite.tl = load_sprite(g->mlx, "textures/tiles/tl.xpm");
 	g->sprite.top = load_sprite(g->mlx, "textures/tiles/top.xpm");
 	g->sprite.top_right = load_sprite(g->mlx, "textures/tiles/top_right.xpm");
@@ -55,10 +106,7 @@ void	init_sprite(t_game *g)
 	g->sprite.background2 = load_sprite(g->mlx, "textures/tiles/png/rocksback.xpm");
 	g->sprite.water = load_sprite(g->mlx, "textures/tiles/png/water.xpm");
 	g->sprite.foreground = load_sprite(g->mlx, "textures/tiles/png/foreground.xpm");
-	g->anim_player.img = malloc(sizeof(t_img *) * 5);
-	g->anim_player.img[0] = load_sprite(g->mlx, "textures/Player/idle1.xpm");
-	g->anim_player.img[1] = load_sprite(g->mlx, "textures/Player/idle2.xpm");
-	g->anim_player.img[2] = load_sprite(g->mlx, "textures/Player/idle3.xpm");
-	g->anim_player.img[3] = load_sprite(g->mlx, "textures/Player/idle4.xpm");
-	g->anim_player.img[4] = load_sprite(g->mlx, "textures/Player/idle5.xpm");
+	init_anim_sprite_player(g);
+	init_anim_sprite_player_run(g);
+
 }
