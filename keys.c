@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 16:28:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:22:56 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	detect_key(t_game *game)
 	box = player_box_x_y(game);
 	if (game->key_w && collide_with_map(box, game) && !jump)
 	{
-		game->player.velocity_y -= 10;
+		game->player.velocity_y = -10;
 		game->player.already_jumped = true;
 	}
 	else if (!game->key_w)

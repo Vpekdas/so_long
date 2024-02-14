@@ -6,11 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 16:26:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:21:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <X11/Xlib.h>
+#include <math.h>
 
 bool	collide(t_box player, t_box object)
 {
@@ -65,23 +67,26 @@ void	adjust_velocity_y(t_game *game, float vy)
 {
 	const bool	vy_positive = vy > 0;
 	bool		collide_y;
+	bool		should_collide;
 	const float	precision = 0.5;
 
 	collide_y = collide_with_map(player_box_y_off(game, vy), game);
-	while (((vy_positive && vy > 0) || (!vy_positive && vy < 0)) && collide_y)
+	should_collide = collide_y;
+	while (collide_y && fabs(vy) > precision)
 	{
-		if (vy_positive)
-			vy -= precision;
-		else if (!vy_positive)
-			vy += precision;
+		collide_y = collide_with_map(player_box_y_off(game, vy), game);
+		vy -= precision * (vy_positive * 2 - 1);
 	}
-	if ((vy_positive && vy < 0) || (!vy_positive && vy >= 0))
+	if (should_collide)
 	{
-		vy = 0;
+		if (fabs(vy) <= precision)
+			vy = 0;
 		game->player.velocity_y = 0;
+		//game->player.already_jumped = 0;
 	}
 	game->player.pos_y += vy;
 }
+
 void	move_player(t_game *game, float velocity_x, float velocity_y)
 {
 	adjust_velocity_x(game, velocity_x);
