@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 16:32:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:27:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	collide_with_collectible(t_box player, t_game *game)
 		y++;
 	}
 }
+
 int	find_collectible_numbers(t_game *game, char **map)
 {
 	int	x;
@@ -56,7 +57,8 @@ int	find_collectible_numbers(t_game *game, char **map)
 	}
 	return (collectibles_numbers);
 }
+
 void	draw_collectible(t_game *g, int x, int y)
 {
-	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE );
+	draw_sprite(g, g->sprite.collectible, x * 32 * SCALE, y * 32 * SCALE);
 }

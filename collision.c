@@ -6,13 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 19:21:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:28:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <X11/Xlib.h>
-#include <math.h>
 
 bool	collide(t_box player, t_box object)
 {
@@ -82,7 +80,6 @@ void	adjust_velocity_y(t_game *game, float vy)
 		if (fabs(vy) <= precision)
 			vy = 0;
 		game->player.velocity_y = 0;
-		//game->player.already_jumped = 0;
 	}
 	game->player.pos_y += vy;
 }

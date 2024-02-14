@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 19:21:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:30:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,35 +67,30 @@ void	draw_sprite(t_game *game, t_img *img, int x, int y)
 		j = -1;
 		while (++j < img->height * SCALE)
 		{
-			if (j + y + offy < 0 || j + y + offy >= game->screen->height || i + x + offx < 0 || i + x + offx >= game->screen->width)
+			if (j + y + offy < 0 || j + y + offy >= game->screen->height
+				|| i + x + offx < 0 || i + x + offx >= game->screen->width)
 				continue ;
-			color = ((int *)img->data)[(int)(j / SCALE) * img->width + (int)(i / SCALE)];
+			color = ((int *)img->data)[(int)
+				(j / SCALE) *img->width + (int)(i / SCALE)];
 			if (color == 0xFF000000)
 				continue ;
-			((int *)game->screen->data)[(y + j + offy) * game->screen->width + (x + i + offx)] = color;
+			((int *)game->screen->data)[(y + j + offy)
+				* game->screen->width + (x + i + offx)] = color;
 		}
 		i++;
 	}
 }
 
-typedef struct
-{
-	unsigned char	b;
-	unsigned char	g;
-	unsigned char	r;
-	unsigned char	t;
-}	t_trgb;
-
 void	draw_vignette(t_game *game)
 {
-	int				i;
-	int				j;
-	int si;
-	int sj;
-	float ri;
-	float rj;
-	t_trgb			color;
-
+	int		i;
+	int		j;
+	int 	si;
+	int 	sj;
+	float 	ri;
+	float 	rj;
+	t_trgb	color;
+	
 	i = -1;
 	while (++i < WINDOWS_WIDTH)
 	{

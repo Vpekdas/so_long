@@ -6,13 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 16:38:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:26:56 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <X11/XKBlib.h>
-#include <sys/select.h>
 
 suseconds_t	getms(void)
 {

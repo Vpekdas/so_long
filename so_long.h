@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 16:15:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:29:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,14 @@ typedef struct s_draw_info
 	int		y;
 	bool	flipped;
 }			t_draw_info;
+
+typedef struct s_trgb
+{
+	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	t;
+}	t_trgb;
 
 typedef struct s_game
 {
