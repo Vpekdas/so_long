@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 14:22:50 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:28:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ void	detect_key(t_game *game)
 		game->player.already_jumped = false;
 	if (game->key_s && !collide_with_map(box, game))
 		game->player.velocity_y += SPEED;
-	box = player_box_stop_scrolling_left(game);
 	if (game->key_a)
 		game->player.velocity_x -= SPEED;
-	box = player_box_stop_scrolling_right(game);
 	if (game->key_d)
 		game->player.velocity_x += SPEED;
 }

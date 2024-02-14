@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 15:05:22 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:17:07 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,21 @@ void	init_anim_sprite_player_run(t_game *game)
 	game->anim_player_run.frame_count = 14;
 }
 
+void	init_anim_sprite_player_jump(t_game *game)
+{
+	game->anim_player_jump.img = malloc(sizeof(t_img *) * 4);
+	game->anim_player_jump.img[0] = load_sprite(game->mlx, "textures/Pirate/Player/Jump/1.xpm");
+	game->anim_player_jump.img[1] = load_sprite(game->mlx, "textures/Pirate/Player/Jump/2.xpm");
+	game->anim_player_jump.img[2] = load_sprite(game->mlx, "textures/Pirate/Player/Jump/3.xpm");
+	game->anim_player_jump.img[3] = load_sprite(game->mlx, "textures/Pirate/Player/Jump/4.xpm");
+}
+
+void	init_anim_sprite_player_fall(t_game *game)
+{
+	game->anim_player_fall.img = malloc(sizeof(t_img *) * 2);
+	game->anim_player_fall.img[0] = load_sprite(game->mlx, "textures/Pirate/Player/Fall/1.xpm");
+	game->anim_player_fall.img[1] = load_sprite(game->mlx, "textures/Pirate/Player/Fall/2.xpm");
+}
 
 void	init_sprite(t_game *g)
 {
@@ -108,5 +123,7 @@ void	init_sprite(t_game *g)
 	g->sprite.foreground = load_sprite(g->mlx, "textures/tiles/png/foreground.xpm");
 	init_anim_sprite_player(g);
 	init_anim_sprite_player_run(g);
+	init_anim_sprite_player_jump(g);
+	init_anim_sprite_player_fall(g);
 
 }

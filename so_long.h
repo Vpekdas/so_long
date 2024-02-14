@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 15:13:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:15:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ typedef struct s_game
 	t_player		player;
 	t_anim_player	anim;
 	t_anim_player	anim_player_run;
+	t_anim_player	anim_player_jump;
+	t_anim_player	anim_player_fall;
 	t_draw_info		draw_info;
 	int				key_a;
 	int				key_w;

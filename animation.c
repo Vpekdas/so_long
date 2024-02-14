@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 15:24:56 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:38:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ void	draw_anim_player(t_game *game, t_anim_player *anim)
 
 void	update_anim_player(t_game *game)
 {
+	t_box	player_box;
+
 	game->draw_info.x = game->player.pos_x;
 	game->draw_info.y = game->player.pos_y;
+	player_box = player_box_x_y_off_below(game);
 	if (game->key_d)
 	{
 		game->draw_info.flipped = false;
@@ -55,6 +58,10 @@ void	update_anim_player(t_game *game)
 		game->draw_info.flipped = true;
 		draw_anim_player(game, &game->anim_player_run);
 	}
+	else if (game->key_w && !collide_with_map(player_box, game))
+		draw_anim_player(game, &game->anim_player_jump);
+	else if (game->key_s && !collide_with_map(player_box, game))
+		draw_anim_player(game, &game->anim_player_fall);
 	else
 		draw_anim_player(game, &game->anim);
 
