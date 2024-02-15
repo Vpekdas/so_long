@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 19:26:56 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:53:44 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ suseconds_t	getms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	draw_anim_player(t_game *game, t_anim_player *anim)
+void	draw_anim_player(t_game *game, t_anim *anim)
 {
 	int			anim_cooldown;
 
@@ -62,5 +62,4 @@ void	update_anim_player(t_game *game)
 		draw_anim_player(game, &game->anim_player_fall);
 	else
 		draw_anim_player(game, &game->anim);
-
 }

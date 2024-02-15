@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/12 16:26:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:32:23 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ int	print_map(char **map, t_game *game)
 		{
 			if (map[y][x] == '1')
 				draw_tile(game, game->map, x, y);
-			else if (map[y][x] == 'C')
-				draw_collectible(game, x, y);
 			else if (map[y][x] == 'D')
 				draw_door(game, x, y);
 			x++;

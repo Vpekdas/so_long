@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 16:19:07 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:31:59 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	update(t_game *game)
 	draw_background(game);
 	print_map(game->map, game);
 	update_anim_player(game);
+	update_anim_collectible(game->map, game);
 	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	draw_vignette(game);
