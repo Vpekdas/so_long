@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/13 16:31:56 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/15 16:16:36 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SOURCES = animation.c \
 		print_sprite.c \
 		print_tile.c \
 		update_game.c \
-
+		bomb.c
 
 BONUS_SOURCES = 
 

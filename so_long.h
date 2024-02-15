@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/15 13:31:21 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:58:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@ typedef struct s_player
 	char	*animation_type;
 }			t_player;
 
+typedef struct bomb
+{
+	int	speed;
+	int	pos_x;
+	int	pos_y;
+	int	bomb_number;
+	bool	direction;
+}				t_bomb;
+
 typedef struct s_box
 {
 	int	pos_x;
@@ -124,6 +133,7 @@ typedef struct s_game
 	t_img			*screen;
 	t_sprite		sprite;
 	t_player		player;
+	t_bomb			bomb;
 	t_anim			anim;
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
@@ -134,6 +144,7 @@ typedef struct s_game
 	int				key_w;
 	int				key_s;
 	int				key_d;
+	int				key_space;
 	char			**map;
 	int				map_width;
 	int				map_height;
@@ -183,4 +194,6 @@ void	draw_anim_player(t_game *game, t_anim *anim);
 void	draw_sprite_player(t_game *game, t_img *img, t_draw_info draw_info);
 void	update_anim_player(t_game *game);
 void	update_anim_collectible(char **map, t_game *game);
+void	shoot_bomb(t_game *game);
+void	update_bomb(t_game *game);
 #endif

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/15 13:55:37 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:55:51 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void	init_sprite(t_game *g)
 	init_anim_sprite_player_run(g);
 	init_anim_sprite_player_jump(g);
 	init_anim_sprite_player_fall(g);
-	g->sprite.bomb = load_sprite(g->mlx, "texture/bomb/1.xpm");
+	g->sprite.bomb = load_sprite(g->mlx, "textures/bomb/1.xpm");
+	g->bomb.speed = 15;
 	init_anim_sprite_collectible(g);
 }
