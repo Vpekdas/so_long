@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/15 13:56:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:02:23 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y)
 }
 
 void	update_anim_collectible(char **map, t_game *game)
-
 {
 	int	x;
 	int	y;

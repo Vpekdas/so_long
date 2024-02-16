@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/15 17:58:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:18:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,26 @@ typedef struct s_player
 	float	velocity_x;
 	float	velocity_y;
 	bool	already_jumped;
-	char	*animation_type;
 }			t_player;
+
+typedef struct s_enemy
+{
+	int		pos_x;
+	int		pos_y;
+	int		width;
+	int		height;
+	int		offset_x;
+	int		offset_y;
+	float	velocity_x;
+	float	velocity_y;
+}				t_enemy;
 
 typedef struct bomb
 {
-	int	speed;
-	int	pos_x;
-	int	pos_y;
-	int	bomb_number;
+	int		speed;
+	int		pos_x;
+	int		pos_y;
+	int		bomb_number;
 	bool	direction;
 }				t_bomb;
 
@@ -134,6 +145,7 @@ typedef struct s_game
 	t_sprite		sprite;
 	t_player		player;
 	t_bomb			bomb;
+	t_img			door;
 	t_anim			anim;
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
@@ -196,4 +208,6 @@ void	update_anim_player(t_game *game);
 void	update_anim_collectible(char **map, t_game *game);
 void	shoot_bomb(t_game *game);
 void	update_bomb(t_game *game);
+t_box	bomb_box(t_game *game);
+void	draw_chest(t_game *game, int x, int y);
 #endif

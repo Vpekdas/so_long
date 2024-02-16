@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:22:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 19:26:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:00:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	collide_with_exit_door(t_box player, t_game *game)
 		y++;
 	}
 }
-
-void	draw_door(t_game *g, int x, int y)
+void	draw_chest(t_game *game, int x, int y)
 {
-	draw_sprite(g, g->sprite.door, x * 32 * SCALE, y * 32 * SCALE);
+	draw_sprite(game, game->sprite.door, x * 32 * SCALE, y * 32 * SCALE);
 }
