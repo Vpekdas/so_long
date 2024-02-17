@@ -6,33 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/16 17:03:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:15:03 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	find_player_position(t_game *game, char **map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'P')
-			{
-				game->player.pos_x = x * 32;
-				game->player.pos_y = y * 32;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 void	init_player_and_map(t_game *game)
 {
