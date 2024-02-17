@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 16:15:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:41:07 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void		draw_tile(t_game *g, char **m, int x, int y);
 t_box		player_box_x_y_off(t_game	*game, float velocity_x, float velocity_y);
 t_box	player_box_x_y_off_below(t_game	*game);
 void		collide_with_collectible(t_box player, t_game *game);
-int	find_collectible_numbers(t_game *game, char **map);
+int		find_collectible_numbers(t_game *game, char **map);
 void	collide_with_exit_chest(t_box player, t_game *game);
 void	draw_collectible(t_game *g, int x, int y);
 void	draw_door(t_game *g, int x, int y);
