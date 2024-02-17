@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 16:16:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:12:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ int	update(t_game *game)
 	print_map(game->map, game);
 	update_anim_collectible(game->map, game);
 	update_anim_player(game);
+	update_anim_enemy(game);
 	update_bomb(game);
 	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	draw_vignette(game);
+	printf("x player pos == %d\n", game->player.pos_x);
+	printf("x enemy pos == %d\n", game->enemy.pos_x);
 	return (0);
 }
