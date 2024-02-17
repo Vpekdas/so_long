@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 17:16:48 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:02:38 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	find_enemy_position(t_game *game, char **map)
 		{
 			if (map[y][x] == 'E')
 			{
-				game->enemy.pos_x = x * 32;
-				game->enemy.pos_y = y * 32;
+				game->enemy.pos_x = x * 32 * SCALE;
+				game->enemy.pos_y = y * 32 * SCALE;
 			}
 			x++;
 		}
@@ -36,8 +36,8 @@ void	find_enemy_position(t_game *game, char **map)
 
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 {
-	const int		offx = -game->enemy.pos_x + WINDOWS_WIDTH / 2 - 72 / SCALE + 100;
-	const int		offy = -game->enemy.pos_y + WINDOWS_HEIGHT / 2 - 80 * SCALE - 40;
+	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - 70;
+	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 * 1 / 2 - 20;
 	int				i;
 	int				j;
 	unsigned int	color;
@@ -79,7 +79,7 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 			anim->frame = 0;
 		}
 	}
-	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info);
+	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info_enemy);
 }
 
 void	update_anim_enemy(t_game *game)
