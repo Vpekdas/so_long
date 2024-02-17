@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 17:12:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:16:48 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	find_enemy_position(t_game *game, char **map)
 
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 {
-	const int		offx = -game->enemy.pos_x + WINDOWS_WIDTH / 2 - 72 * 1 / 2;
-	const int		offy = -game->enemy.pos_y + WINDOWS_HEIGHT / 2 - 80 * SCALE / 2;
+	const int		offx = -game->enemy.pos_x + WINDOWS_WIDTH / 2 - 72 / SCALE + 100;
+	const int		offy = -game->enemy.pos_y + WINDOWS_HEIGHT / 2 - 80 * SCALE - 40;
 	int				i;
 	int				j;
 	unsigned int	color;
