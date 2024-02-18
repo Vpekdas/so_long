@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 17:00:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:25:56 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,44 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 	}
 	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info_enemy);
 }
+t_box	enemy_box_y_off(t_game *game, float velocity_y)
+{
+	t_box	box;
+
+	box.pos_x = game->enemy.pos_x + game->enemy.offset_x;
+	box.pos_y = game->enemy.pos_y + game->enemy.offset_y + velocity_y;
+	box.width = game->enemy.width;
+	box.height = game->enemy.height;
+	return (box);
+}
+
 
 void	update_anim_enemy(t_game *game)
 {
+	t_box	player;
+	t_box	enemy;
+
+	player = player_box_y_off(game, game->player.velocity_y);
+	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
 	game->draw_info_enemy.x = game->enemy.pos_x;
 	game->draw_info_enemy.y = game->enemy.pos_y;
-	draw_anim_enemy(game, &game->anim_enemy_idle);
+	if (game->player.pos_x < game->enemy.pos_x)
+		game->draw_info_enemy.flipped = true;
+	else
+		game->draw_info_enemy.flipped = false;
+	if (collide(player, enemy))
+		draw_anim_enemy(game, &game->anim_enemy_attack);
+	else
+		draw_anim_enemy(game, &game->anim_enemy_idle);
 }
 void	move_enemy(t_game *game)
 {
-	if (game->enemy.pos_x > game->player.pos_x)
+	if (game->enemy.pos_x - 32 > game->player.pos_x)
 		game->enemy.pos_x -= SPEED / 2;
-	if (game->enemy.pos_x < game->player.pos_x)
+	else if (game->enemy.pos_x + 32 < game->player.pos_x)
 		game->enemy.pos_x += SPEED / 2;
 	if (game->enemy.pos_y > game->player.pos_y)
 		game->enemy.pos_y -= SPEED / 2;
-	if (game->enemy.pos_y < game->player.pos_y)
+	else if (game->enemy.pos_y < game->player.pos_y)
 		game->enemy.pos_y += SPEED / 2;
-	else
-	{
-	 	game->enemy.pos_x = game->enemy.pos_x;
-	 	game->enemy.pos_y = game->enemy.pos_y;
-	}
 }

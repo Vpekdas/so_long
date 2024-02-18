@@ -6,10 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 15:50:27 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:09:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
 
 t_img	*load_sprite(void *img, char *filename)
@@ -145,6 +146,19 @@ void	init_anim_enemy_idle(t_game *game)
 	game->anim_enemy_idle.img[31] = load_sprite(game->mlx, "textures/Enemy/Idle/32.xpm");
 }
 
+void	init_anim_enemy_attack(t_game *game)
+{
+	game->anim_enemy_attack.img = malloc(sizeof(t_img *) * 7);
+	game->anim_enemy_attack.frame_count = 7; 
+	game->anim_enemy_attack.img[0] = load_sprite(game->mlx, "textures/Enemy/Attack/1.xpm");
+	game->anim_enemy_attack.img[1] = load_sprite(game->mlx, "textures/Enemy/Attack/2.xpm");
+	game->anim_enemy_attack.img[2] = load_sprite(game->mlx, "textures/Enemy/Attack/3.xpm");
+	game->anim_enemy_attack.img[3] = load_sprite(game->mlx, "textures/Enemy/Attack/4.xpm");
+	game->anim_enemy_attack.img[4] = load_sprite(game->mlx, "textures/Enemy/Attack/5.xpm");
+	game->anim_enemy_attack.img[5] = load_sprite(game->mlx, "textures/Enemy/Attack/6.xpm");
+	game->anim_enemy_attack.img[6] = load_sprite(game->mlx, "textures/Enemy/Attack/7.xpm");
+}
+
 
 void	init_sprite(t_game *g)
 {
@@ -173,4 +187,5 @@ void	init_sprite(t_game *g)
 	init_anim_player_fall(g);
 	init_anim_collectible(g);
 	init_anim_enemy_idle(g);
+	init_anim_enemy_attack(g);
 }
