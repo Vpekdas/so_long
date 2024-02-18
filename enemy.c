@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 18:11:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 18:42:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,30 +92,38 @@ t_box	enemy_box_y_off(t_game *game, float velocity_y)
 	return (box);
 }
 
-
 void	update_anim_enemy(t_game *game)
 {
 	t_box	player;
 	t_box	enemy;
 
-	player = player_box_y_off(game, game->player.velocity_y);
-	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
-	game->draw_info_enemy.x = game->enemy.pos_x;
-	game->draw_info_enemy.y = game->enemy.pos_y;
-	if (game->player.pos_x < game->enemy.pos_x)
-		game->draw_info_enemy.flipped = true;
-	else
-		game->draw_info_enemy.flipped = false;
-	if (collide(player, enemy))
-		draw_anim_enemy(game, &game->anim_enemy_attack);
-	else
-		draw_anim_enemy(game, &game->anim_enemy_idle);
+	game->enemy.last_frame = getms();
+	if (game->enemy.health > 0)
+	{
+		player = player_box_y_off(game, game->player.velocity_y);
+		enemy = enemy_box_y_off(game, game->enemy.velocity_y);
+		game->draw_info_enemy.x = game->enemy.pos_x;
+		game->draw_info_enemy.y = game->enemy.pos_y;
+		if (game->player.pos_x < game->enemy.pos_x)
+			game->draw_info_enemy.flipped = true;
+		else
+			game->draw_info_enemy.flipped = false;
+		if (collide(player, enemy))
+			draw_anim_enemy(game, &game->anim_enemy_attack);
+		else
+			draw_anim_enemy(game, &game->anim_enemy_idle);
+	}
 }
 
 void	move_enemy(t_game *game)
 {
-	if (abs(game->bomb.pos_x - game->enemy.pos_x) <= 400)
-		game->enemy.pos_y -= 10;
+	t_box	enemy;
+	t_box	bomb;
+
+	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
+	bomb = bomb_box(game);
+	if (abs(game->bomb.pos_x - game->enemy.pos_x) <= 200)
+		game->enemy.pos_y -= 20;
 	if (game->enemy.pos_x - 32 > game->player.pos_x)
 		game->enemy.pos_x -= SPEED / 2;
 	else if (game->enemy.pos_x + 32 < game->player.pos_x)
@@ -126,4 +134,15 @@ void	move_enemy(t_game *game)
 		game->enemy.pos_y += SPEED / 2;
 	if (game->enemy.pos_y <= 0)
 		game->enemy.pos_y = game->player.pos_y;
+	if (getms() - game->enemy.last_frame > 10)
+		game->enemy.invulnerable = false;
+	if (collide(enemy, bomb) && !game->enemy.invulnerable)
+	{
+		game->enemy.health--;
+		game->enemy.invulnerable = true;
+	}
+	if (game->enemy.invulnerable)
+		printf("invulnerable\n");
+	else if (!game->enemy.invulnerable)
+		printf("vulnerable\n");
 }

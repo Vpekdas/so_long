@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 17:07:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 18:23:59 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ typedef struct s_enemy
 	float	velocity_x;
 	float	velocity_y;
 	bool	already_jumped;
+	int		health;
+	bool	invulnerable;
+	suseconds_t	last_frame;
 }				t_enemy;
 
 typedef struct bomb
@@ -111,6 +114,8 @@ typedef struct bomb
 	int		speed;
 	int		pos_x;
 	int		pos_y;
+	int		height;
+	int		width;
 	int		bomb_number;
 	bool	direction;
 }				t_bomb;
