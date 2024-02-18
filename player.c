@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 17:08:20 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:13:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	update_anim_player(t_game *game)
 	else
 		draw_anim_player(game, &game->anim);
 }
+
 void	adjust_velocity_x(t_game *game, float vx)
 {
 	const float	precision = 0.5;
@@ -112,10 +113,10 @@ void	find_player_position(t_game *game, char **map)
 	int	y;
 
 	y = 0;
-	while (map[y])
+	while (y < game->map_height)
 	{
 		x = 0;
-		while (map[y][x])
+		while (x < game->map_width)
 		{
 			if (map[y][x] == 'P')
 			{

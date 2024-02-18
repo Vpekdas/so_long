@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 18:03:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:00:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	find_enemy_position(t_game *game, char **map)
 		{
 			if (map[y][x] == 'E')
 			{
-				game->enemy.pos_x = x * 32 * SCALE;
-				game->enemy.pos_y = y * 32 * SCALE;
+				game->enemy.pos_x = x * 32 * SCALE - 20;
+				game->enemy.pos_y = y * 32 * SCALE - 52;
 			}
 			x++;
 		}
@@ -37,7 +37,7 @@ void	find_enemy_position(t_game *game, char **map)
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 {
 	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - 70;
-	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 * 1 / 2 - 20;
+	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 - 90;
 	int				i;
 	int				j;
 	unsigned int	color;
@@ -87,4 +87,20 @@ void	update_anim_enemy(t_game *game)
 	game->draw_info_enemy.x = game->enemy.pos_x;
 	game->draw_info_enemy.y = game->enemy.pos_y;
 	draw_anim_enemy(game, &game->anim_enemy_idle);
+}
+void	move_enemy(t_game *game)
+{
+	if (game->enemy.pos_x > game->player.pos_x)
+		game->enemy.pos_x -= SPEED / 2;
+	if (game->enemy.pos_x < game->player.pos_x)
+		game->enemy.pos_x += SPEED / 2;
+	if (game->enemy.pos_y > game->player.pos_y)
+		game->enemy.pos_y -= SPEED / 2;
+	if (game->enemy.pos_y < game->player.pos_y)
+		game->enemy.pos_y += SPEED / 2;
+	else
+	{
+	 	game->enemy.pos_x = game->enemy.pos_x;
+	 	game->enemy.pos_y = game->enemy.pos_y;
+	}
 }

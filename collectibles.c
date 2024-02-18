@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 17:34:20 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:14:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	update_anim_collectible(char **map, t_game *game)
 	int	y;
 
 	y = 0;
-	while (map[y])
+	while (y < game->map_height)
 	{
 		x = 0;
-		while (map[y][x])
+		while (x < game->map_width)
 		{
 			if (map[y][x] == 'C')
 				draw_anim_collectible(game, &game->collectible, x, y);

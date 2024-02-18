@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/14 14:09:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:11:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(void)
 	ft_bzero(&game, sizeof(t_game));
 
 	game.mlx = mlx_init();
+	// TODO: Protect mlx NULL pointer
 	game.win = mlx_new_window(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT, "so_long");
 	game.screen = mlx_new_image(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
 	init_player_and_map(&game);
@@ -36,4 +37,3 @@ int	main(void)
 	mlx_loop(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 }
-// TODO: Protect mlx NULL pointer

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/16 16:59:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:16:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	print_map(char **map, t_game *game)
 	int	y;
 
 	y = 0;
-	while (map[y])
+	while (y < game->map_height)
 	{
 		x = 0;
-		while (map[y][x])
+		while (x < game->map_width)
 		{
 			if (map[y][x] == '1')
 				draw_tile(game, game->map, x, y);

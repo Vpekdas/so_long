@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 16:56:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:49:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,4 +217,5 @@ void	draw_chest(t_game *game, int x, int y);
 void	find_player_position(t_game *game, char **map);
 void	find_enemy_position(t_game *game, char **map);
 void	update_anim_enemy(t_game *game);
+void	move_enemy(t_game *game);
 #endif
