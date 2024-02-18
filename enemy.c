@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 17:25:56 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/18 18:11:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,11 @@ void	update_anim_enemy(t_game *game)
 	else
 		draw_anim_enemy(game, &game->anim_enemy_idle);
 }
+
 void	move_enemy(t_game *game)
 {
+	if (abs(game->bomb.pos_x - game->enemy.pos_x) <= 400)
+		game->enemy.pos_y -= 10;
 	if (game->enemy.pos_x - 32 > game->player.pos_x)
 		game->enemy.pos_x -= SPEED / 2;
 	else if (game->enemy.pos_x + 32 < game->player.pos_x)
@@ -121,4 +124,6 @@ void	move_enemy(t_game *game)
 		game->enemy.pos_y -= SPEED / 2;
 	else if (game->enemy.pos_y < game->player.pos_y)
 		game->enemy.pos_y += SPEED / 2;
+	if (game->enemy.pos_y <= 0)
+		game->enemy.pos_y = game->player.pos_y;
 }
