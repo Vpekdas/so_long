@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 18:18:46 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:17:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	move_enemy(t_game *game)
 	t_box	player;
 
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
+
 	player = player_box_y_off(game, game->player.velocity_y);
 	bomb = bomb_box(game);
 	if (game->enemy.health == 0)
