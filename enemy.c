@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 18:42:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:51:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,23 @@ void	find_enemy_position(t_game *game, char **map)
 	}
 }
 
+unsigned int    blend_colors(unsigned int a, unsigned int b, float ratio)
+{
+    const unsigned char    c1[] = {(a >> 16) & 0xFF, (a >> 8) & 0xFF, a & 0xFF};
+    const unsigned char    c2[] = {(b >> 16) & 0xFF, (b >> 8) & 0xFF, b & 0xFF};
+
+    return (((unsigned int)(c1[0] * (1 - ratio) + c2[0] * ratio) << 16)
+        | ((unsigned int)(c1[1] * (1 - ratio) + c2[1] * ratio) << 8)
+        | ((unsigned int)(c1[2] * (1 - ratio) + c2[2] * ratio)));
+}
+
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 {
 	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - 70;
 	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 - 90;
 	int				i;
 	int				j;
-	unsigned int	color;
+	t_trgb			color;
 
 	i = 0;
 	while (i < img->width * SCALE)
@@ -52,12 +62,15 @@ void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 				|| i + draw_info.x + offx < 0 || i + draw_info.x + offx >= game->screen->width)
 				continue ;
 			if (!draw_info.flipped)
-				color = ((int *)img->data)[(int)(j / SCALE) * img->width + (int)(i / SCALE)];
+				color = ((t_trgb *)img->data)[(int)(j / SCALE) * img->width + (int)(i / SCALE)];
 			else
-			 	color = ((int *)img->data)[(int)(j / SCALE) * img->width + (int)((img->width * SCALE - (i + 1)) / SCALE)];
-			if (color == 0xFF000000)
+			 	color = ((t_trgb *)img->data)[(int)(j / SCALE) * img->width + (int)((img->width * SCALE - (i + 1)) / SCALE)];
+			if (color.t == 0xFF)
 				continue ;
-			((int *)game->screen->data)[(draw_info.y + j + offy) * game->screen->width + (draw_info.x + i + offx)] = color;
+			color.t = 0xFF;
+			int pixel = ((int *)game->screen->data)[(draw_info.y + j + offy) * game->screen->width + (draw_info.x + i + offx)];
+			((int *)game->screen->data)[(draw_info.y + j + offy) * game->screen->width + (draw_info.x + i + offx)] =
+				blend_colors(pixel, *((unsigned int *) &color), 0.5);
 		}
 		i++;
 	}
@@ -88,7 +101,7 @@ t_box	enemy_box_y_off(t_game *game, float velocity_y)
 	box.pos_x = game->enemy.pos_x + game->enemy.offset_x;
 	box.pos_y = game->enemy.pos_y + game->enemy.offset_y + velocity_y;
 	box.width = game->enemy.width;
-	box.height = game->enemy.height;
+	box.height = game->enemy.height - 30;
 	return (box);
 }
 
@@ -114,6 +127,11 @@ void	update_anim_enemy(t_game *game)
 			draw_anim_enemy(game, &game->anim_enemy_idle);
 	}
 }
+int	calcul_distance(t_enemy enemy, t_bomb bomb)
+{
+	return (sqrt((enemy.pos_x - bomb.pos_x) * (enemy.pos_x - bomb.pos_x)
+		+ (enemy.pos_y - bomb.pos_y) * (enemy.pos_y - bomb.pos_y)));
+}
 
 void	move_enemy(t_game *game)
 {
@@ -122,7 +140,7 @@ void	move_enemy(t_game *game)
 
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
 	bomb = bomb_box(game);
-	if (abs(game->bomb.pos_x - game->enemy.pos_x) <= 200)
+	if (calcul_distance(game->enemy, game->bomb) <= 200)
 		game->enemy.pos_y -= 20;
 	if (game->enemy.pos_x - 32 > game->player.pos_x)
 		game->enemy.pos_x -= SPEED / 2;
