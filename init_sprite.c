@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 17:09:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:20:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
 
 t_img	*load_sprite(void *img, char *filename)
@@ -108,6 +107,20 @@ void	init_anim_collectible(t_game *game)
 	game->collectible.img[13] = load_sprite(game->mlx, "textures/collectibles/14.xpm");
 }
 
+void	init_anim_player_hit(t_game *game)
+{
+	game->anim_player_hit.img = malloc(sizeof(t_img *) * 8);
+	game->anim_player_hit.frame_count = 8;
+	game->anim_player_hit.img[0] = load_sprite(game->mlx, "textures/Player/Hit/1.xpm");
+	game->anim_player_hit.img[1] = load_sprite(game->mlx, "textures/Player/Hit/2.xpm");
+	game->anim_player_hit.img[2] = load_sprite(game->mlx, "textures/Player/Hit/3.xpm");
+	game->anim_player_hit.img[3] = load_sprite(game->mlx, "textures/Player/Hit/4.xpm");
+	game->anim_player_hit.img[4] = load_sprite(game->mlx, "textures/Player/Hit/5.xpm");
+	game->anim_player_hit.img[5] = load_sprite(game->mlx, "textures/Player/Hit/6.xpm");
+	game->anim_player_hit.img[6] = load_sprite(game->mlx, "textures/Player/Hit/7.xpm");
+	game->anim_player_hit.img[7] = load_sprite(game->mlx, "textures/Player/Hit/8.xpm");
+}
+
 void	init_anim_enemy_idle(t_game *game)
 {
 	game->anim_enemy_idle.img = malloc(sizeof(t_img *) * 32);
@@ -185,6 +198,7 @@ void	init_sprite(t_game *g)
 	init_anim_player_run(g);
 	init_anim_player_jump(g);
 	init_anim_player_fall(g);
+	init_anim_player_hit(g);
 	init_anim_collectible(g);
 	init_anim_enemy_idle(g);
 	init_anim_enemy_attack(g);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 13:24:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:04:03 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_player_and_map(t_game *game)
 	game->player.height = 58 * SCALE;
 	game->player.offset_x = 32 * SCALE;
 	game->player.offset_y = 0;
+	game->player.health = 3;
 	init_enemy(game);
 	game->bomb.speed = 15;
 	game->bomb.height = 16;

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 16:13:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:24:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ void	draw_anim_player(t_game *game, t_anim *anim)
 
 void	update_anim_player(t_game *game)
 {
-	t_box	player_box;
+	t_box	player;
+	t_box	enemy;
 
 	game->draw_info.x = game->player.pos_x;
 	game->draw_info.y = game->player.pos_y;
-	player_box = player_box_x_y_off_below(game);
+	player = player_box_x_y_off_below(game);
+	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
 	if (game->key_d)
 	{
 		game->draw_info.flipped = false;
@@ -48,10 +50,12 @@ void	update_anim_player(t_game *game)
 		game->draw_info.flipped = true;
 		draw_anim_player(game, &game->anim_player_run);
 	}
-	else if (game->key_w && !collide_with_map(player_box, game))
+	else if (game->key_w && !collide_with_map(player, game))
 		draw_anim_player(game, &game->anim_player_jump);
-	else if (game->key_s && !collide_with_map(player_box, game))
+	else if (game->key_s && !collide_with_map(player, game))
 		draw_anim_player(game, &game->anim_player_fall);
+	else if (collide(enemy, player))
+		draw_anim_player(game, &game->anim_player_hit);
 	else
 		draw_anim_player(game, &game->anim);
 }
@@ -100,8 +104,21 @@ void	adjust_velocity_y(t_game *game, float vy)
 
 void	move_player(t_game *game, float velocity_x, float velocity_y)
 {
+	t_box	player;
+	t_box	enemy;
+
 	adjust_velocity_x(game, velocity_x);
 	adjust_velocity_y(game, velocity_y);
+	player = player_box_x_off(game, game->player.velocity_x);
+	if (getms() - game->player.last_frame > 1500)
+		game->player.invulnerable = false;
+	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
+	if (collide(player, enemy) && !game->player.invulnerable)
+	{
+		game->player.health--;
+		game->player.invulnerable = true;
+		game->player.last_frame = getms();
+	}
 	game->water_scroll = game->player.pos_x * 0.25;
 	game->bg2_scroll = game->player.pos_x * 0.25;
 	game->bg1_scroll = game->player.pos_x * 0.5;

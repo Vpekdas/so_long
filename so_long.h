@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 14:14:48 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:22:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ typedef struct s_player
 	float	velocity_x;
 	float	velocity_y;
 	bool	already_jumped;
+	int		health;
+	bool	invulnerable;
+	suseconds_t	last_frame;
 }			t_player;
 
 typedef struct s_enemy
@@ -157,6 +160,7 @@ typedef struct s_game
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
 	t_anim			anim_player_fall;
+	t_anim			anim_player_hit;
 	t_anim			anim_enemy_idle;
 	t_anim			anim_enemy_attack;
 	t_anim			anim_bomb_on;
@@ -226,4 +230,5 @@ void	find_player_position(t_game *game, char **map);
 void	find_enemy_position(t_game *game, char **map);
 void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
+t_box	enemy_box_y_off(t_game *game, float velocity_y);
 #endif

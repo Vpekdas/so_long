@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 13:51:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:18:46 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	update_anim_enemy(t_game *game)
 	t_box	player;
 	t_box	enemy;
 
-	game->enemy.last_frame = getms();
 	if (game->enemy.health > 0)
 	{
 		player = player_box_y_off(game, game->player.velocity_y);
@@ -137,10 +136,18 @@ void	move_enemy(t_game *game)
 {
 	t_box	enemy;
 	t_box	bomb;
+	t_box	player;
 
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
+	player = player_box_y_off(game, game->player.velocity_y);
 	bomb = bomb_box(game);
-	if (calcul_distance(game->enemy, game->bomb) <= 200)
+	if (game->enemy.health == 0)
+	{
+		game->enemy.pos_x = 1;
+		game->enemy.pos_y = 1;
+		return ;
+	}
+	if (calcul_distance(game->enemy, game->bomb) <= 400)
 		game->enemy.pos_y -= 20;
 	if (game->enemy.pos_x - 32 > game->player.pos_x)
 		game->enemy.pos_x -= SPEED / 2;
@@ -152,15 +159,12 @@ void	move_enemy(t_game *game)
 		game->enemy.pos_y += SPEED / 2;
 	if (game->enemy.pos_y <= 0)
 		game->enemy.pos_y = game->player.pos_y;
-	if (getms() - game->enemy.last_frame > 10)
+	if (getms() - game->enemy.last_frame > 1500)
 		game->enemy.invulnerable = false;
 	if (collide(enemy, bomb) && !game->enemy.invulnerable)
 	{
 		game->enemy.health--;
 		game->enemy.invulnerable = true;
+		game->enemy.last_frame = getms();
 	}
-	if (game->enemy.invulnerable)
-		printf("invulnerable\n");
-	else if (!game->enemy.invulnerable)
-		printf("vulnerable\n");
 }
