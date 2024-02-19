@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 18:23:59 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:14:48 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,11 @@ typedef struct s_game
 	t_anim			anim_player_fall;
 	t_anim			anim_enemy_idle;
 	t_anim			anim_enemy_attack;
+	t_anim			anim_bomb_on;
 	t_anim			collectible;
 	t_draw_info		draw_info;
 	t_draw_info		draw_info_enemy;
+	t_draw_info		draw_info_bomb;
 	int				key_a;
 	int				key_w;
 	int				key_s;
