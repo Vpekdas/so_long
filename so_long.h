@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 16:22:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:44:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_enemy
 	int		health;
 	bool	invulnerable;
 	suseconds_t	last_frame;
+	int		number;
 }				t_enemy;
 
 typedef struct bomb
@@ -231,4 +232,6 @@ void	find_enemy_position(t_game *game, char **map);
 void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
+void	flood_fill(int x, int y, char **map, int impulse);
+int	count_map_height(char *path);
 #endif

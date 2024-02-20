@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:18:56 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 18:21:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:19:46 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ t_box	map_box_scale(int x, int y)
 
 	box.pos_x = x * 32 * SCALE;
 	box.pos_y = y * 32 * SCALE;
-	box.width = 32 * SCALE;
-	box.height = 32 * SCALE;
+	box.width = 32;
+	box.height = 32;
 	return (box);
 }
 

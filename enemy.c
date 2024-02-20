@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 19:17:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:46:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	find_enemy_position(t_game *game, char **map)
 			{
 				game->enemy.pos_x = x * 32 * SCALE - 20;
 				game->enemy.pos_y = y * 32 * SCALE - 52;
+				game->enemy.number = 1;
 			}
 			x++;
 		}
@@ -142,9 +143,9 @@ void	move_enemy(t_game *game)
 
 	player = player_box_y_off(game, game->player.velocity_y);
 	bomb = bomb_box(game);
-	if (game->enemy.health == 0)
+	if (game->enemy.health == 0 || game->enemy.number == 0)
 	{
-		game->enemy.pos_x = 1;
+		game->enemy.pos_x = -100;
 		game->enemy.pos_y = 1;
 		return ;
 	}
