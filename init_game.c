@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 14:44:23 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:07:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	init_enemy(t_game *game)
 
 void	init_player_and_map(t_game *game)
 {
-	game->player.width = 28 * SCALE;
+	game->player.width = 44 * SCALE;
 	game->player.height = 58 * SCALE;
-	game->player.offset_x = 32 * SCALE;
+	game->player.offset_x = 24 * SCALE;
 	game->player.offset_y = 0;
 	game->player.health = 3;
 	init_enemy(game);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/19 16:20:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:52:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,12 +187,12 @@ void	init_sprite(t_game *g)
 	g->sprite.tl = load_sprite(g->mlx, "textures/tiles/tl.xpm");
 	g->sprite.mid_tl = load_sprite(g->mlx, "textures/tiles/mid_tl.xpm");
 	g->sprite.bot_tl = load_sprite(g->mlx, "textures/tiles/bot_tl.xpm");
-	g->sprite.door = load_sprite(g->mlx, "textures/door/treasure.xpm");
 	g->sprite.background = load_sprite(g->mlx, "textures/tiles/png/rocksfront.xpm");
 	g->sprite.background2 = load_sprite(g->mlx, "textures/tiles/png/rocksback.xpm");
 	g->sprite.water = load_sprite(g->mlx, "textures/tiles/png/water.xpm");
 	g->sprite.foreground = load_sprite(g->mlx, "textures/tiles/png/foreground.xpm");
 	g->sprite.door = load_sprite(g->mlx, "textures/chest/chest.xpm");
+	g->sprite.door_open = load_sprite(g->mlx, "textures/chest/chest_open.xpm");
 	g->sprite.bomb = load_sprite(g->mlx, "textures/bomb/1.xpm");
 	init_anim_player_idle(g);
 	init_anim_player_run(g);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:22:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 16:14:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:25:20 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ void	collide_with_exit_chest(t_box player, t_game *game)
 }
 void	draw_chest(t_game *game, int x, int y)
 {
-	draw_sprite(game, game->sprite.door, x * 32 * SCALE, y * 32 * SCALE);
+	if (game->collectibles_numbers != 0)
+		draw_sprite(game, game->sprite.door, x * 32 * SCALE, y * 32 * SCALE);
+	else if (game->collectibles_numbers == 0)
+		draw_sprite(game, game->sprite.door_open, x * 32 * SCALE, y * 32 * SCALE);
 }
