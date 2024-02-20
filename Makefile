@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/20 14:02:06 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/20 17:07:26 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,9 @@ SOURCES = animation.c\
 		keys.c\
 		main.c\
 		maps.c\
-		pathfinding.c\
 		player.c\
 		print_tile.c\
+		sandfill.c\
 		update_game.c\
 
 LIBFT_PATH = Libft
