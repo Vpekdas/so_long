@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/20 17:07:26 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/21 15:26:39 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ SOURCES = animation.c\
 		main.c\
 		maps.c\
 		player.c\
+		pathfinding.c\
 		print_tile.c\
-		sandfill.c\
 		update_game.c\
 
 LIBFT_PATH = Libft
@@ -60,16 +60,19 @@ RM = rm -f
 
 .PHONY: all clean fclean re libft ft_printf
 
-all: libft ft_printf minilibx $(NAME)
+all: $(NAME)
 	@echo "$(LIGHT_CYAN)"
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
 -include $(SOURCES:.c=.d)
 
-$(NAME): $(OBJECTS)
+$(NAME): libft ft_printf minilibx $(OBJECTS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
 	@echo "$(LIGHT_CYAN)"
 	$(CC) -g3 -o $(NAME) $(OBJECTS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
+
+bonus: CFLAGS+=-DBONUS=1
+bonus: $(NAME)
 
 libft: 
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"

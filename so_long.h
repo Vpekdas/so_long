@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 19:23:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:23:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@
 # include <sys/select.h>
 # include <sys/time.h>
 # include <stdbool.h>
-#include <stdio.h>
+# include <stdio.h>
 
 # define SCALE 2
 # define SPEED 8
 # define FRAME_INTERVAL 16
 # define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 480
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 // enum
 // {
@@ -148,11 +152,11 @@ typedef struct s_trgb
 	unsigned char	t;
 }	t_trgb;
 
-typedef struct s_sandfill
+typedef struct s_pathfinding
 {
 	int	pos_x;
 	int	pos_y;
-}				t_sandfill;
+}				t_pathfinding;
 
 typedef struct s_game
 {
@@ -184,7 +188,7 @@ typedef struct s_game
 	char			**map;
 	int				map_width;
 	int				map_height;
-	t_sandfill		sandfill;
+	t_pathfinding	pathfinding;
 	int				collectibles_numbers;
 	int				bg1_scroll;
 	int				bg2_scroll;
@@ -241,5 +245,6 @@ void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
-void	sand_fill(int x, int y, char **map, int max_jump, t_game game);
+bool pathfinding(int x, int y, char **map, int max_jump, t_game game);
+
 #endif

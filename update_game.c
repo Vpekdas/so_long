@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 17:07:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:05:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	update(t_game *game)
 	game->enemy.velocity_x = 0;
 	detect_key(game);
 	player_box = player_box_x_y_off_below(game);
-	if (!collide_with_map(player_box, game))
+	if (BONUS && !collide_with_map(player_box, game))
 		game->player.velocity_y += 18 * 0.016;
 	player_box = player_box_y_off(game, game->player.velocity_y);
 	collide_with_collectible(player_box, game);
@@ -39,5 +39,31 @@ int	update(t_game *game)
 	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	draw_vignette(game);
+	printf("health == %d\n", game->enemy.health);
 	return (0);
 }
+
+/*
+
+	cat hello.txt | grep test | shuf
+
+	    PIPE
+	  /      \
+	PIPE      \
+   /    \      \
+ CAT   GREP   SHUF
+
+*/
+
+struct pipe
+{
+	void *left;
+	void *right;
+	char op;
+};
+
+struct command
+{
+	char *program;
+	char **argv;
+};

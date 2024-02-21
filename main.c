@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 18:50:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:24:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,14 @@ int	main(void)
 	mlx_destroy_window(game.mlx, game.win);
 
 	copy_map_tab = copy_map(&game);
-	sand_fill(game.sandfill.pos_x, game.sandfill.pos_y, copy_map_tab, 3, game);
+
+	printf("######################\nMAP BEFORE PATHFINDING\n######################\n");
+	for (int i = 0; i < game.map_height; i++)
+	{
+		printf("%s", copy_map_tab[i]);
+	}
+	pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 3, game);
+	printf("\n\n#####################\nMAP AFTER PATHFINDING\n#####################\n");
 	for (int i = 0; i < game.map_height; i++)
 	{
 		printf("%s", copy_map_tab[i]);

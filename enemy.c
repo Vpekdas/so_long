@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 14:46:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:27:16 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	move_enemy(t_game *game)
 	bomb = bomb_box(game);
 	if (game->enemy.health == 0 || game->enemy.number == 0)
 	{
-		game->enemy.pos_x = -100;
+		game->enemy.pos_x = -1000;
 		game->enemy.pos_y = 1;
 		return ;
 	}
