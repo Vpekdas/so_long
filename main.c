@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/21 15:24:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:56:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 int	close_game(t_game *game)
 {
@@ -61,10 +62,14 @@ int	main(void)
 	{
 		printf("%s", copy_map_tab[i]);
 	}
-	pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 3, game);
+	pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 0, &game, 0);
 	printf("\n\n#####################\nMAP AFTER PATHFINDING\n#####################\n");
 	for (int i = 0; i < game.map_height; i++)
 	{
 		printf("%s", copy_map_tab[i]);
 	}
+	if (game.collectibles_numbers != game.accessible_collectibles)
+		printf("FUCK YOU");
+	game.collectibles_numbers = 0;
+	//for each collectible can it reach exit
 }

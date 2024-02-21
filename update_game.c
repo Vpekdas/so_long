@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/21 16:05:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:10:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	update(t_game *game)
 	game->enemy.velocity_x = 0;
 	detect_key(game);
 	player_box = player_box_x_y_off_below(game);
-	if (BONUS && !collide_with_map(player_box, game))
+	if (!collide_with_map(player_box, game))
 		game->player.velocity_y += 18 * 0.016;
 	player_box = player_box_y_off(game, game->player.velocity_y);
 	collide_with_collectible(player_box, game);

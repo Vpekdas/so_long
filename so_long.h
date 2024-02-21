@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/21 15:23:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:53:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,8 @@ typedef struct s_game
 	int				bg2_scroll;
 	int				water_scroll;
 	int				fg_scroll;
+	int				accessible_collectibles;
+	int				max_jump;
 }					t_game;
 
 t_box		player_box_x_off(t_game *game, float vx);
@@ -245,6 +247,6 @@ void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
-bool pathfinding(int x, int y, char **map, int max_jump, t_game game);
+void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
 
 #endif
