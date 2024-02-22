@@ -6,19 +6,19 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 17:17:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:04:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	pathfinding(int x, int y, char **map, int jump, t_game *game, int depth)
+void	pathfinding(int x, int y, char **map, int jump, t_game *game, int depth)
 {
-	int max_jump = 2;
+	int max_jump = 3;
 	if (x < 0 || x >= game->map_width || y < 0 || y >= game->map_height)
-		return (false);
+		return ;
 	if (map[y][x] == '.' || map[y][x] == '1')
-		return (false);
+		return ;
 	if (map[y][x] == 'C')
 		game->accessible_collectibles++;
 	if (map[y][x] == 'D')
@@ -56,8 +56,5 @@ bool	pathfinding(int x, int y, char **map, int jump, t_game *game, int depth)
 			pathfinding(x - 1, y + 1, map, 0, game, depth + 1);
 		}
 	}
-	if (game->accessible_collectibles == game->collectibles_numbers && game->accessible_door == 1)
-		return (true);
-	else
-	 	return (false);
+
 }

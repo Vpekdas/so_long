@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 17:18:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:05:51 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,33 @@ int	main(void)
 	mlx_destroy_window(game.mlx, game.win);
 
 	copy_map_tab = copy_map(&game);
+	pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 0, &game, 0);
 
-	printf("######################\nMAP BEFORE PATHFINDING\n######################\n");
-	for (int i = 0; i < game.map_height; i++)
-	{
-		printf("%s", copy_map_tab[i]);
-	}
-	if (pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 0, &game, 0))
-		printf("\nMAP CAN BE COMPLETED\n");
+	if (game.accessible_collectibles == game.collectibles_numbers && game.accessible_door == 1)
+		printf("\nMAP CAN BE COMPLETED FOR PLAYER POS\n");
 	else
 		printf("\nMAP CANNOT BE COMPLETED\n");;
-	printf("\n\n#####################\nMAP AFTER PATHFINDING\n#####################\n");
-	for (int i = 0; i < game.map_height; i++)
+
+	t_node	*list = NULL;
+	t_node	*current;
+	list = create_list_collectible(&game);
+	current = list;
+
+
+	while(current)
 	{
-		printf("%s", copy_map_tab[i]);
-	}
+		free(copy_map_tab);
+		copy_map_tab = copy_map(&game);
+		game.accessible_collectibles = 0;
+		game.accessible_door = 0;
+		pathfinding(current->pos_x, current->pos_y, copy_map_tab, 0, &game, 0);
+		if (game.accessible_collectibles == game.collectibles_numbers && game.accessible_door == 1)
+			printf("\nMAP CAN BE COMPLETED FOR COIN POS\n");
+		else
+		{
+			printf("\nMAP CANNOT BE COMPLETED -> x : %d| y : %d\n", current->pos_x, current->pos_y);
+			printf("collectible : %d | door : %d\n", game.accessible_collectibles, game.accessible_collectibles);
+		}
+		current = current->next;
+	}	
 }

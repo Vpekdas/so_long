@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/21 15:26:39 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/22 17:36:49 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SOURCES = animation.c\
 		init_sprite.c\
 		keys.c\
 		main.c\
-		maps.c\
+		map_errors.c\
+		map.c\
 		player.c\
 		pathfinding.c\
 		print_tile.c\

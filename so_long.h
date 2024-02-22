@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 16:05:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:50:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,13 @@ typedef struct s_pathfinding
 	int	pos_y;
 }				t_pathfinding;
 
+typedef struct s_node
+{
+	int		pos_x;
+	int		pos_y;
+	struct s_node	*next;
+}				t_node;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -163,6 +170,7 @@ typedef struct s_game
 	t_player		player;
 	t_enemy			enemy;
 	t_bomb			bomb;
+	t_pathfinding	**collectible_pos;
 	t_img			door;
 	t_anim			anim;
 	t_anim			anim_player_run;
@@ -244,6 +252,6 @@ void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
-bool	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
-
+void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
+t_node	*create_list_collectible(t_game *game);
 #endif
