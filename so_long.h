@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/21 18:53:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:05:28 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@
 # define FRAME_INTERVAL 16
 # define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 480
-
-# ifndef BONUS
-#  define BONUS 0
-# endif
 
 // enum
 // {
@@ -195,6 +191,7 @@ typedef struct s_game
 	int				water_scroll;
 	int				fg_scroll;
 	int				accessible_collectibles;
+	int				accessible_door;
 	int				max_jump;
 }					t_game;
 
@@ -247,6 +244,6 @@ void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
-void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
+bool	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
 
 #endif
