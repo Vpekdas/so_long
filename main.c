@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 19:05:51 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:06:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(void)
 		game.accessible_collectibles = 0;
 		game.accessible_door = 0;
 		pathfinding(current->pos_x, current->pos_y, copy_map_tab, 0, &game, 0);
-		if (game.accessible_collectibles == game.collectibles_numbers && game.accessible_door == 1)
+		if (game.accessible_door == 1)
 			printf("\nMAP CAN BE COMPLETED FOR COIN POS\n");
 		else
 		{
