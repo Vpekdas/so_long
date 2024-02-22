@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/21 19:10:40 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:26:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,5 @@ int	update(t_game *game)
 	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	draw_vignette(game);
-	printf("health == %d\n", game->enemy.health);
 	return (0);
 }
-
-/*
-
-	cat hello.txt | grep test | shuf
-
-	    PIPE
-	  /      \
-	PIPE      \
-   /    \      \
- CAT   GREP   SHUF
-
-*/
-
-struct pipe
-{
-	void *left;
-	void *right;
-	char op;
-};
-
-struct command
-{
-	char *program;
-	char **argv;
-};
