@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 16:39:46 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:51:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <sys/time.h>
 # include <stdbool.h>
 # include <stdio.h>
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 # define SCALE 2
 # define SPEED 8

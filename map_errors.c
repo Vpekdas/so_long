@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 16:56:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:51:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ bool	is_map_rectangular(t_game *game)
 		i++;
 		actual_line = ft_strlen(game->map[i]);
 		if (actual_line != previous_line)
+		{
+			ft_putstr_fd("Error\n, the map is not rectangular\n", 2);
 			return (false);
+		}
 	}
 	return (true);
 }
@@ -93,13 +96,67 @@ bool	check_last_column(t_game *game)
 bool	is_map_surrounder_walls(t_game *game)
 {
 	if (check_first_column(game) == false)
+	{
+		ft_putstr_fd("Error\n, there is no wall somewhere in first column\n", 2);
 		return (false);
+	}
 	if (check_last_column(game) == false)
+	{
+		ft_putstr_fd("Error\n, there is no wall somewhere in last column\n", 2);
 		return (false);
+	}
 	if (check_first_line(game) == false)
+	{
+		ft_putstr_fd("Error\n, there is no wall somewhere in first line\n", 2);
 		return (false);
+	}
 	if (check_last_line(game) == false)
+	{
+		ft_putstr_fd("Error\n, there is no wall somewhere in last line\n", 2);
 		return (false);
+	}
 	else
 		return (true);
+}
+
+bool	is_valid_character(char character)
+{
+	if (character == '0')
+		return (true);
+	else if (character == '1')
+		return (true);
+	else if (character == 'C')
+		return (true);
+	else if (character == 'E')
+		return (true);
+	else if (character == 'P')
+		return (true);
+	else if (character == 'G' && BONUS)
+		return (true);
+	else
+		return (false);
+}
+
+bool	check_map_character(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->map_height)
+	{
+		j = 0;
+		while (j < game->map_width)
+		{
+			if (is_valid_character(game->map[i][j]) == false)
+			{
+				ft_putstr_fd("Error\n, there is an unknown character\n", 2);
+				return (false);
+			}
+			else
+				j++;
+		}
+		i++;
+	}
+	return (true);
 }

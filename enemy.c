@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 14:53:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:07:52 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	find_enemy_position(t_game *game, char **map)
 		{
 			if (map[y][x] == 'G')
 			{
-				game->enemy.pos_x = x * 32 * SCALE - 20;
-				game->enemy.pos_y = y * 32 * SCALE - 52;
+				game->enemy.pos_x = (x - 1) * 32 * SCALE;
+				game->enemy.pos_y = (y - 1) * 32 * SCALE;
 				game->enemy.number = 1;
 			}
 			x++;
@@ -140,7 +140,6 @@ void	move_enemy(t_game *game)
 	t_box	player;
 
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
-
 	player = player_box_y_off(game, game->player.velocity_y);
 	bomb = bomb_box(game);
 	if (game->enemy.health == 0 || game->enemy.number == 0)
@@ -156,10 +155,10 @@ void	move_enemy(t_game *game)
 	else if (game->enemy.pos_x + 32 < game->player.pos_x)
 		game->enemy.pos_x += SPEED / 2;
 	if (game->enemy.pos_y > game->player.pos_y)
-		game->enemy.pos_y -= SPEED / 2;
+		game->enemy.pos_y -= SPEED;
 	else if (game->enemy.pos_y < game->player.pos_y)
-		game->enemy.pos_y += SPEED / 2;
-	if (game->enemy.pos_y <= 0)
+		game->enemy.pos_y += SPEED;
+	else if (game->enemy.pos_y < 0)
 		game->enemy.pos_y = game->player.pos_y;
 	if (getms() - game->enemy.last_frame > 1500)
 		game->enemy.invulnerable = false;
