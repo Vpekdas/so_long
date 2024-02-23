@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 19:06:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:18:20 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**copy_map(t_game *game)
 int	main(void)
 {
 	t_game		game;
-	char		**copy_map_tab;
+	// char		**copy_map_tab;
 
 	ft_bzero(&game, sizeof(t_game));
 	game.mlx = mlx_init();
@@ -54,34 +54,38 @@ int	main(void)
 	mlx_loop(game.mlx);
 	mlx_destroy_window(game.mlx, game.win);
 
-	copy_map_tab = copy_map(&game);
-	pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 0, &game, 0);
+	// copy_map_tab = copy_map(&game);
+	// pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 0, &game, 0);
 
-	if (game.accessible_collectibles == game.collectibles_numbers && game.accessible_door == 1)
-		printf("\nMAP CAN BE COMPLETED FOR PLAYER POS\n");
+	// if (game.accessible_collectibles == game.collectibles_numbers && game.accessible_door == 1)
+	// 	printf("\nMAP CAN BE COMPLETED FOR PLAYER POS\n");
+	// else
+	// 	printf("\nMAP CANNOT BE COMPLETED\n");;
+
+	// t_node	*list = NULL;
+	// t_node	*current;
+	// list = create_list_collectible(&game);
+	// current = list;
+
+
+	// while(current)
+	// {
+	// 	free(copy_map_tab);
+	// 	copy_map_tab = copy_map(&game);
+	// 	game.accessible_collectibles = 0;
+	// 	game.accessible_door = 0;
+	// 	pathfinding(current->pos_x, current->pos_y, copy_map_tab, 0, &game, 0);
+	// 	if (game.accessible_door == 1)
+	// 		printf("\nMAP CAN BE COMPLETED FOR COIN POS\n");
+	// 	else
+	// 	{
+	// 		printf("\nMAP CANNOT BE COMPLETED -> x : %d| y : %d\n", current->pos_x, current->pos_y);
+	// 		printf("collectible : %d | door : %d\n", game.accessible_collectibles, game.accessible_collectibles);
+	// 	}
+	// 	current = current->next;
+	// }
+	if (is_map_rectangular(&game))
+		printf("MAP IS RECTANGULAR\n");
 	else
-		printf("\nMAP CANNOT BE COMPLETED\n");;
-
-	t_node	*list = NULL;
-	t_node	*current;
-	list = create_list_collectible(&game);
-	current = list;
-
-
-	while(current)
-	{
-		free(copy_map_tab);
-		copy_map_tab = copy_map(&game);
-		game.accessible_collectibles = 0;
-		game.accessible_door = 0;
-		pathfinding(current->pos_x, current->pos_y, copy_map_tab, 0, &game, 0);
-		if (game.accessible_door == 1)
-			printf("\nMAP CAN BE COMPLETED FOR COIN POS\n");
-		else
-		{
-			printf("\nMAP CANNOT BE COMPLETED -> x : %d| y : %d\n", current->pos_x, current->pos_y);
-			printf("collectible : %d | door : %d\n", game.accessible_collectibles, game.accessible_collectibles);
-		}
-		current = current->next;
-	}	
+		printf("MAP IS NOT RECTANGULAR\n");
 }

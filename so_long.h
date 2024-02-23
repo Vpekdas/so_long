@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 18:50:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:16:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,4 +254,5 @@ t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
 void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
 t_node	*create_list_collectible(t_game *game);
+bool	is_map_rectangular(t_game *game);
 #endif

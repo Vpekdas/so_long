@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:22:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 19:25:20 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:53:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	collide_with_exit_chest(t_box player, t_game *game)
 		while (x < game->map_height)
 		{
 			entity_box = map_box_scale(y, x);
-			if (game->map[x][y] == 'D' && collide(player, entity_box) == true)
+			if (game->map[x][y] == 'E' && collide(player, entity_box) == true)
 			{
 				if (game->collectibles_numbers == 0)
 				{

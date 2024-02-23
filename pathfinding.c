@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 19:04:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:54:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pathfinding(int x, int y, char **map, int jump, t_game *game, int depth)
 		return ;
 	if (map[y][x] == 'C')
 		game->accessible_collectibles++;
-	if (map[y][x] == 'D')
+	if (map[y][x] == 'E')
 		game->accessible_door++;
 	if (depth > 25)
 		depth = 0;
@@ -56,5 +56,4 @@ void	pathfinding(int x, int y, char **map, int jump, t_game *game, int depth)
 			pathfinding(x - 1, y + 1, map, 0, game, depth + 1);
 		}
 	}
-
 }
