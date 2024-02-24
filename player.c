@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 18:10:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:37:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	move_player(t_game *game, float velocity_x, float velocity_y)
 		game->player.invulnerable = true;
 		game->player.last_frame = getms();
 	}
+	if (game->player.velocity_y >= 100)
+		game->player.velocity_y = 100;
 	game->water_scroll = game->player.pos_x * 0.25;
 	game->bg2_scroll = game->player.pos_x * 0.25;
 	game->bg1_scroll = game->player.pos_x * 0.5;
