@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/22 17:36:49 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/24 15:54:43 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SOURCES = animation.c\
 		draw_sprite.c\
 		enemy.c\
 		exit_chest.c\
+		free_utils.c\
 		init_game.c\
 		init_sprite.c\
 		keys.c\

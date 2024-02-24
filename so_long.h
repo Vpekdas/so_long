@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 17:51:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:31:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ typedef struct s_game
 	t_bomb			bomb;
 	t_pathfinding	**collectible_pos;
 	t_img			door;
-	t_anim			anim;
+	t_anim			anim_player_idle;
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
 	t_anim			anim_player_fall;
@@ -260,4 +260,6 @@ void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth
 t_node	*create_list_collectible(t_game *game);
 bool	is_map_rectangular(t_game *game);
 bool	is_map_surrounder_walls(t_game *game);
+void	free_all_sprites(t_game *game);
+int	close_game(t_game *game);
 #endif

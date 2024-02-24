@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/24 15:37:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:01:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	update_anim_player(t_game *game)
 	else if (collide(enemy, player))
 		draw_anim_player(game, &game->anim_player_hit);
 	else
-		draw_anim_player(game, &game->anim);
+		draw_anim_player(game, &game->anim_player_idle);
 }
 
 void	adjust_velocity_x(t_game *game, float vx)

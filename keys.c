@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/18 16:24:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:33:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_pressed(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
-		mlx_loop_end(game->mlx);
+		close_game(game);
 	if (keycode == 'w' || keycode == XK_Up)
 		game->key_w = 1;
 	if (keycode == 's' || keycode == XK_Down)

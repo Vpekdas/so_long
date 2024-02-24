@@ -6,10 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 16:57:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:21:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minilibx-linux/mlx.h"
 #include "so_long.h"
 
 int	close_game(t_game *game)
@@ -33,14 +34,12 @@ char	**copy_map(t_game *game)
 	return (copy_map);
 }
 
-
-
 int	main(void)
 {
 	t_game		game;
-	// char		**copy_map_tab;
 
-	ft_bzero(&game, sizeof(t_game));
+
+	game = (t_game){0};	
 	game.mlx = mlx_init();
 	// TODO: Protect mlx NULL pointer
 	game.win = mlx_new_window(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT, "so_long");
@@ -52,37 +51,8 @@ int	main(void)
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_released, &game);
 	mlx_hook(game.win, DestroyNotify, 0, close_game, &game);
 	mlx_loop(game.mlx);
+	free_all_sprites(&game);
+	mlx_destroy_image(game.mlx, game.screen);
 	mlx_destroy_window(game.mlx, game.win);
-
-	// copy_map_tab = copy_map(&game);
-	// pathfinding(game.pathfinding.pos_x, game.pathfinding.pos_y, copy_map_tab, 0, &game, 0);
-
-	// if (game.accessible_collectibles == game.collectibles_numbers && game.accessible_door == 1)
-	// 	printf("\nMAP CAN BE COMPLETED FOR PLAYER POS\n");
-	// else
-	// 	printf("\nMAP CANNOT BE COMPLETED\n");;
-
-	// t_node	*list = NULL;
-	// t_node	*current;
-	// list = create_list_collectible(&game);
-	// current = list;
-
-
-	// while(current)
-	// {
-	// 	free(copy_map_tab);
-	// 	copy_map_tab = copy_map(&game);
-	// 	game.accessible_collectibles = 0;
-	// 	game.accessible_door = 0;
-	// 	pathfinding(current->pos_x, current->pos_y, copy_map_tab, 0, &game, 0);
-	// 	if (game.accessible_door == 1)
-	// 		printf("\nMAP CAN BE COMPLETED FOR COIN POS\n");
-	// 	else
-	// 	{
-	// 		printf("\nMAP CANNOT BE COMPLETED -> x : %d| y : %d\n", current->pos_x, current->pos_y);
-	// 		printf("collectible : %d | door : %d\n", game.accessible_collectibles, game.accessible_collectibles);
-	// 	}
-	// 	current = current->next;
-	// }
-
+	free(game.mlx);
 }
