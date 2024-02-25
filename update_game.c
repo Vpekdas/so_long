@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/24 16:43:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:03:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	update(t_game *game)
 	t_box		player_box;
 
 	if (game->player.health == 0)
-		mlx_loop_end(game->mlx);
+		close_game(game);
 	game->player.velocity_x = 0;
 	game->enemy.velocity_x = 0;
 	detect_key(game);
@@ -38,6 +38,5 @@ int	update(t_game *game)
 	update_bomb(game);
 	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
-	draw_vignette(game);
 	return (0);
 }

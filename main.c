@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/24 18:21:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:42:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
 #include "so_long.h"
 
 int	close_game(t_game *game)
@@ -38,10 +37,8 @@ int	main(void)
 {
 	t_game		game;
 
-
 	game = (t_game){0};	
 	game.mlx = mlx_init();
-	// TODO: Protect mlx NULL pointer
 	game.win = mlx_new_window(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT, "so_long");
 	game.screen = mlx_new_image(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
 	init_player_and_map(&game);
@@ -51,8 +48,7 @@ int	main(void)
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_released, &game);
 	mlx_hook(game.win, DestroyNotify, 0, close_game, &game);
 	mlx_loop(game.mlx);
+	free_map(&game);
 	free_all_sprites(&game);
-	mlx_destroy_image(game.mlx, game.screen);
-	mlx_destroy_window(game.mlx, game.win);
 	free(game.mlx);
 }

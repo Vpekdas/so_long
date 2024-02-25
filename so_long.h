@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/24 17:31:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:03:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # endif
 
 # define SCALE 2
-# define SPEED 8
+# define SPEED 4
 # define FRAME_INTERVAL 16
 # define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 480
@@ -50,7 +50,6 @@
 
 typedef struct s_sprite
 {
-	t_img	*player;
 	t_img	*bomb;
 	t_img	*door;
 	t_img	*door_open;
@@ -193,6 +192,7 @@ typedef struct s_game
 	int				key_s;
 	int				key_d;
 	int				key_space;
+	int				key_esc;
 	char			**map;
 	int				map_width;
 	int				map_height;
@@ -262,4 +262,5 @@ bool	is_map_rectangular(t_game *game);
 bool	is_map_surrounder_walls(t_game *game);
 void	free_all_sprites(t_game *game);
 int	close_game(t_game *game);
+void	free_map(t_game *game);
 #endif

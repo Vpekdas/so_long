@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/24 17:33:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:26:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_pressed(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
-		close_game(game);
+		game->key_esc = 1;
 	if (keycode == 'w' || keycode == XK_Up)
 		game->key_w = 1;
 	if (keycode == 's' || keycode == XK_Down)
@@ -49,6 +49,8 @@ void	detect_key(t_game *game)
 	t_box	box;
 	bool	jump;
 
+	if (game->key_esc)
+		close_game(game);
 	jump = game->player.already_jumped;
 	box = player_box_x_y(game);
 	if (game->key_w && collide_with_map(box, game) && !jump)
@@ -61,13 +63,9 @@ void	detect_key(t_game *game)
 	if (game->key_s && !collide_with_map(box, game))
 		game->player.velocity_y += SPEED;
 	if (game->key_a)
-	{
 		game->player.velocity_x -= SPEED;
-	}
 	if (game->key_d)
-	{
 		game->player.velocity_x += SPEED;
-	}
 	if (game->key_space)
 		shoot_bomb(game);
 }

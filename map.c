@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 14:54:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:39:20 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	**parse_map(t_game *game, char *path)
 		map[i] = line;
 		i++;
 	}
+	close(fd);
 	map[i] = NULL;
 	game->map_width = ft_strlen(map[0]) - 1;
 	game->map_height = count_map_height(path);

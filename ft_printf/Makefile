@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 14:36:07 by vopekdas          #+#    #+#              #
-#    Updated: 2024/01/08 12:24:33 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/25 16:13:23 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CC=cc
 
-CFLAGS=-Wall -Wextra -Werror -Iinclude
+CFLAGS=-Wall -Wextra -Werror -g3 -O2 -fno-builtin -Iinclude
 
 RM = rm -f
 

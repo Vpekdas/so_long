@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 10:25:40 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/03 17:50:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:00:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*ft_remaining_char_buffer(char *buffer)
 	if (buffer[i] == 0)
 	{
 		free(buffer);
+		buffer = NULL;
 		return (NULL);
 	}
 	line = ft_calloc((ft_strlen(buffer) - i + 1), 1);
@@ -104,6 +105,7 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*buffer;
+
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
