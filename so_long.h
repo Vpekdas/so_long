@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 16:03:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:00:39 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # endif
 
 # define SCALE 2
-# define SPEED 4
+# define SPEED 8
 # define FRAME_INTERVAL 16
 # define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 480

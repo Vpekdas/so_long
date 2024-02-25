@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/24 15:54:43 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/25 16:58:16 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,15 @@ LIGHT_PURPLE=\033[1;35m
 
 NAME = so_long
 
-SOURCES = animation.c\
+CC=cc
+CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin
+RM = rm -f
+
+LIBFT_PATH = Libft
+FT_PRINTF_PATH = ft_printf
+MINILIBX_PATH = minilibx-linux
+
+SRCS = animation.c\
 		background.c\
 		bomb.c\
 		box.c\
@@ -44,34 +52,20 @@ SOURCES = animation.c\
 		print_tile.c\
 		update_game.c\
 
-LIBFT_PATH = Libft
+OBJS = $(SRCS:.c=.o)
 
-FT_PRINTF_PATH = ft_printf
-
-MINILIBX_PATH = minilibx-linux
-
-OBJECTS = $(SOURCES:.c=.o)
-
-BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
-
-CC=cc
-
-CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin
-
-RM = rm -f
-
-.PHONY: all clean fclean re libft ft_printf
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 	@echo "$(LIGHT_CYAN)"
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
--include $(SOURCES:.c=.d)
+-include $(SRCS:.c=.d)
 
-$(NAME): libft ft_printf minilibx $(OBJECTS)
+$(NAME): libft ft_printf minilibx $(OBJS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
 	@echo "$(LIGHT_CYAN)"
-	$(CC) -g3 -o $(NAME) $(OBJECTS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
+	$(CC) -g3 -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
 
 bonus: CFLAGS+=-DBONUS=1
 bonus: $(NAME)
@@ -114,7 +108,7 @@ minilibx:
 
 clean:
 	@echo "$(LIGHT_PURPLE)"
-	$(RM) $(OBJECTS) $(BONUS_OBJECTS) *.d
+	$(RM) $(OBJS) $(BONUS_OBJS) *.d
 	cd $(LIBFT_PATH) && make clean
 	cd $(FT_PRINTF_PATH) && make clean
 	cd $(MINILIBX_PATH) && make clean
@@ -128,3 +122,5 @@ fclean: clean
 	@printf "$(LIGHT_RED)Cleaned all object files.\n"
 
 re: fclean all
+
+.PHONY: all clean fclean re libft ft_printf
