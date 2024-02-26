@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/23 17:51:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:20:39 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ bool	is_map_rectangular(t_game *game)
 	int	previous_line;
 
 	i = 0;
-	while (i < game->map_height - 1)
+	while (i < game->map_copy.map_height - 1)
 	{
-		previous_line = ft_strlen(game->map[i]);
+		previous_line = ft_strlen(game->map_copy.map[i]);
 		i++;
-		actual_line = ft_strlen(game->map[i]);
+		actual_line = ft_strlen(game->map_copy.map[i]);
 		if (actual_line != previous_line)
 		{
-			ft_putstr_fd("Error\n, the map is not rectangular\n", 2);
+			ft_putstr_fd("Error\n the map is not rectangular\n", 2);
 			return (false);
 		}
 	}
@@ -38,9 +38,9 @@ bool	check_first_line(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->map_width)
+	while (i < game->map_copy.map_width)
 	{
-		if (game->map[0][i] != '1')
+		if (game->map_copy.map[0][i] != '1')
 			return (false);
 		i++;
 	}
@@ -53,10 +53,10 @@ bool	check_last_line(t_game *game)
 	int	map_height;
 
 	i = 0;
-	map_height = game->map_height;
-	while (i < game->map_width)
+	map_height = game->map_copy.map_height;
+	while (i < game->map_copy.map_width)
 	{
-		if (game->map[map_height - 1][i] != '1')
+		if (game->map_copy.map[map_height - 1][i] != '1')
 			return (false);
 		i++;
 	}
@@ -68,9 +68,9 @@ bool	check_first_column(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->map_height)
+	while (i < game->map_copy.map_height)
 	{
-		if (game->map[i][0] != '1')
+		if (game->map_copy.map[i][0] != '1')
 			return (false);
 		i++;
 	}
@@ -83,10 +83,10 @@ bool	check_last_column(t_game *game)
 	int	map_width;
 
 	i = 0;
-	map_width = game->map_width;
-	while (i < game->map_height)
+	map_width = game->map_copy.map_width;
+	while (i < game->map_copy.map_height)
 	{
-		if (game->map[i][map_width - 1] != '1')
+		if (game->map_copy.map[i][map_width - 1] != '1')
 			return (false);
 		i++;
 	}
@@ -97,22 +97,22 @@ bool	is_map_surrounder_walls(t_game *game)
 {
 	if (check_first_column(game) == false)
 	{
-		ft_putstr_fd("Error\n, there is no wall somewhere in first column\n", 2);
+		ft_putstr_fd("Error\nThere is no wall somewhere in first column\n", 2);
 		return (false);
 	}
 	if (check_last_column(game) == false)
 	{
-		ft_putstr_fd("Error\n, there is no wall somewhere in last column\n", 2);
+		ft_putstr_fd("Error\nThere is no wall somewhere in last column\n", 2);
 		return (false);
 	}
 	if (check_first_line(game) == false)
 	{
-		ft_putstr_fd("Error\n, there is no wall somewhere in first line\n", 2);
+		ft_putstr_fd("Error\nThere is no wall somewhere in first line\n", 2);
 		return (false);
 	}
 	if (check_last_line(game) == false)
 	{
-		ft_putstr_fd("Error\n, there is no wall somewhere in last line\n", 2);
+		ft_putstr_fd("Error\nThere is no wall somewhere in last line\n", 2);
 		return (false);
 	}
 	else
@@ -143,14 +143,14 @@ bool	check_map_character(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->map_height)
+	while (i < game->map_copy.map_height)
 	{
 		j = 0;
-		while (j < game->map_width)
+		while (j < game->map_copy.map_width)
 		{
-			if (is_valid_character(game->map[i][j]) == false)
+			if (is_valid_character(game->map_copy.map[i][j]) == false)
 			{
-				ft_putstr_fd("Error\n, there is an unknown character\n", 2);
+				ft_putstr_fd("Error\nThere is an unknown character\n", 2);
 				return (false);
 			}
 			else
@@ -158,5 +158,58 @@ bool	check_map_character(t_game *game)
 		}
 		i++;
 	}
+	return (true);
+}
+
+bool	check_character_number(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->map_copy.map_height)
+	{
+		j = 0;
+		while (j < game->map_copy.map_width)
+		{
+			if (is_valid_character(game->map_copy.map[i][j]) == true)
+			{
+				if (game->map_copy.map[i][j] == 'C')
+					game->character_map.collectible_nb++;
+				else if (game->map_copy.map[i][j] == 'E')
+					game->character_map.exit_nb++;
+				else if (game->map_copy.map[i][j] == 'P')
+					game->character_map.player_nb++;
+				else if (game->map_copy.map[i][j] == 'G' && BONUS)
+					game->character_map.enemy_nb++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	print_error_map(char *str)
+{
+	ft_putstr_fd(str, 2);
+	return (false);
+}
+
+bool	check_map_character_overall(t_game *game)
+{
+	if (is_map_surrounder_walls(game) == false)
+		return (false);
+	if (check_map_character(game) == false)
+		return (false);
+	check_character_number(game);
+	if (game->character_map.collectible_nb == 0)
+		return (print_error_map("Error\nPlace atleast 1 collectible\n"));
+	if (game->character_map.exit_nb != 1)
+		return (print_error_map("Error\nYou need to place only 1 exit\n"));
+	if (game->character_map.player_nb != 1)
+		return (print_error_map("Error\nYou need to place only 1 player\n"));
+	if (game->character_map.enemy_nb > 1 && BONUS)
+		return (print_error_map("Error\nYou can only place 1 enemy maximum\n"));
 	return (true);
 }

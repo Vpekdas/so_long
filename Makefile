@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/25 16:58:16 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/26 18:42:12 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS = animation.c\
 		background.c\
 		bomb.c\
 		box.c\
+		bubble.c\
 		collectibles.c\
 		collision.c\
 		draw_sprite.c\

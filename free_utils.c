@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 16:09:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:24:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,17 @@ void	free_map(t_game *game)
 		i++;
 	}
 	free(game->map);
+}
+
+void	free_copy_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map_copy.map_height)
+	{
+		free(game->map_copy.map[i]);
+		i++;
+	}
+	free(game->map_copy.map);
 }

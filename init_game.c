@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 17:03:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:35:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_player_and_map(t_game *game)
 	game->bomb.speed = 15;
 	game->bomb.height = 16;
 	game->bomb.width = 16;
+	game->bubble.y = game->map_height;
 	game->map = parse_map(game, "maps/map.ber");
 	find_player_position(game, game->map);
 	find_enemy_position(game, game->map);

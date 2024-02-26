@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/26 13:28:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:35:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,6 @@
 # define FRAME_INTERVAL 16
 # define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 480
-
-// enum
-// {
-// 	SP_PLAYER,
-// 	SP_BOTLEFT,
-// 	SP_BOTRIGHT,
-// 	SP_BOT,
-// 	SP_MAX,
-// };
-
-// t_img	*imgs[SP_MAX];
-// imgs[SP_PLAYER] = mlx_load_xpm_to_image(...);
-// imgs[SP_BOTLEFT] = mlx_load_xpm_to_image(...);
 
 
 typedef struct s_sprite
@@ -164,6 +151,29 @@ typedef struct s_node
 	struct s_node	*next;
 }				t_node;
 
+typedef struct s_character_map
+{
+	int	collectible_nb;
+	int	exit_nb;
+	int	player_nb;
+	int	enemy_nb;
+}				t_character_map;
+
+typedef struct s_map_copy
+{
+	char **map;
+	int	map_width;
+	int	map_height;
+}				t_map_copy;
+
+
+typedef struct s_bubble
+{
+	int	x;
+	int	y;
+	float	velocity_y;
+}				t_bubble;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -173,8 +183,7 @@ typedef struct s_game
 	t_player		player;
 	t_enemy			enemy;
 	t_bomb			bomb;
-	t_pathfinding	**collectible_pos;
-	t_img			door;
+	t_bubble		bubble;
 	t_anim			anim_player_idle;
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
@@ -184,9 +193,14 @@ typedef struct s_game
 	t_anim			anim_enemy_attack;
 	t_anim			anim_bomb_on;
 	t_anim			collectible;
+	t_anim			anim_bubble;
 	t_draw_info		draw_info;
 	t_draw_info		draw_info_enemy;
 	t_draw_info		draw_info_bomb;
+	t_pathfinding	**collectible_pos;
+	t_pathfinding	pathfinding;
+	t_character_map character_map;
+	t_map_copy		map_copy;
 	int				key_a;
 	int				key_w;
 	int				key_s;
@@ -196,7 +210,6 @@ typedef struct s_game
 	char			**map;
 	int				map_width;
 	int				map_height;
-	t_pathfinding	pathfinding;
 	int				collectibles_numbers;
 	int				bg1_scroll;
 	int				bg2_scroll;
@@ -263,4 +276,7 @@ bool	is_map_surrounder_walls(t_game *game);
 void	free_all_sprites(t_game *game);
 int	close_game(t_game *game);
 void	free_map(t_game *game);
+bool	check_map_character_overall(t_game *game);
+void	free_copy_map(t_game *game);
+void	update_anim_bubble(t_game *game);
 #endif

@@ -6,12 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 16:09:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:36:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
+#include <stdlib.h>
 
 t_img	*load_sprite(void *img, char *filename)
 {
@@ -175,6 +176,18 @@ void	init_anim_enemy_attack(t_game *game)
 	game->anim_enemy_attack.img[6] = load_sprite(game->mlx, "textures/Enemy/Attack/7.xpm");
 }
 
+void	init_anim_bubble(t_game *game)
+{
+	game->anim_bubble.frame_count = 7;
+	game->anim_bubble.img = malloc(sizeof(t_img *) * 7);
+	game->anim_bubble.img[0] = load_sprite(game->mlx, "Bubbles/1.xpm");
+	game->anim_bubble.img[1] = load_sprite(game->mlx, "Bubbles/2.xpm");
+	game->anim_bubble.img[2] = load_sprite(game->mlx, "Bubbles/3.xpm");
+	game->anim_bubble.img[3] = load_sprite(game->mlx, "Bubbles/4.xpm");
+	game->anim_bubble.img[4] = load_sprite(game->mlx, "Bubbles/5.xpm");
+	game->anim_bubble.img[5] = load_sprite(game->mlx, "Bubbles/6.xpm");
+	game->anim_bubble.img[6] = load_sprite(game->mlx, "Bubbles/7.xpm");
+}
 
 void	init_sprite(t_game *g)
 {
@@ -205,4 +218,5 @@ void	init_sprite(t_game *g)
 	init_anim_collectible(g);
 	init_anim_enemy_idle(g);
 	init_anim_enemy_attack(g);
+	init_anim_bubble(g);
 }
