@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 17:00:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:28:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,8 @@ typedef struct s_pathfinding
 
 typedef struct s_node
 {
-	int		pos_x;
-	int		pos_y;
+	int				pos_x;
+	int				pos_y;
 	struct s_node	*next;
 }				t_node;
 
