@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:25:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:58:05 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	**copy_map(t_game *game)
 	int		i;
 
 	copy_map = malloc(sizeof(char *) * (count_map_height("maps/map.ber") + 1));
+	if (!copy_map)
+		return (NULL);
 	i = 0;
 	while (i < game->map_height)
 	{
@@ -60,7 +62,9 @@ int	main(void)
 	mlx_hook(game.win, DestroyNotify, 0, close_game, &game);
 	mlx_loop(game.mlx);
 	free_map(&game);
+	free_copy_map(&game);
 	free_all_sprites(&game);
+	free_list_bubble(game.bubble_list);
 	mlx_destroy_window(game.mlx, game.win);
 	mlx_destroy_image(game.mlx, game.screen);
 	mlx_destroy_display(game.mlx);

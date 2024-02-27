@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/26 16:24:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:57:50 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	free_all_sprites(t_game *game)
 	free_anim_sprite(&game->anim_player_hit, game);
 	free_anim_sprite(&game->anim_enemy_idle, game);
 	free_anim_sprite(&game->anim_enemy_attack, game);
+	free_anim_sprite(&game->anim_bubble, game);
 	mlx_destroy_image(game->mlx, game->sprite.tl);
 	mlx_destroy_image(game->mlx, game->sprite.top);
 	mlx_destroy_image(game->mlx, game->sprite.top_right);
@@ -79,4 +80,16 @@ void	free_copy_map(t_game *game)
 		i++;
 	}
 	free(game->map_copy.map);
+}
+
+void	free_list_bubble(t_node_bubble *list)
+{
+	t_node_bubble	*tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
 }

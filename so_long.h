@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 15:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:52:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,4 +285,5 @@ t_node	*create_list_collectible(t_game *game);
 t_node	*create_node(int x, int y);
 void	add_node_back(t_node **lst, t_node *new);
 t_node_bubble	*create_list_bubble(t_game *game);
+void	free_list_bubble(t_node_bubble *list);
 #endif
