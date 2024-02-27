@@ -6,13 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 15:20:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:22:07 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx_int.h"
 #include "so_long.h"
-#include <stdlib.h>
 
 t_img	*load_sprite(void *img, char *filename)
 {
@@ -95,20 +93,20 @@ void	init_anim_collectible(t_game *game)
 {
 	game->collectible.frame_count = 14;
 	game->collectible.img = malloc(sizeof(t_img *) * 14);
-	game->collectible.img[0] = load_sprite(game->mlx, "textures/collectibles/1.xpm");
-	game->collectible.img[1] = load_sprite(game->mlx, "textures/collectibles/2.xpm");
-	game->collectible.img[2] = load_sprite(game->mlx, "textures/collectibles/3.xpm");
-	game->collectible.img[3] = load_sprite(game->mlx, "textures/collectibles/4.xpm");
-	game->collectible.img[4] = load_sprite(game->mlx, "textures/collectibles/5.xpm");
-	game->collectible.img[5] = load_sprite(game->mlx, "textures/collectibles/6.xpm");
-	game->collectible.img[6] = load_sprite(game->mlx, "textures/collectibles/7.xpm");
-	game->collectible.img[7] = load_sprite(game->mlx, "textures/collectibles/8.xpm");
-	game->collectible.img[8] = load_sprite(game->mlx, "textures/collectibles/9.xpm");
-	game->collectible.img[9] = load_sprite(game->mlx, "textures/collectibles/10.xpm");
-	game->collectible.img[10] = load_sprite(game->mlx, "textures/collectibles/11.xpm");
-	game->collectible.img[11] = load_sprite(game->mlx, "textures/collectibles/12.xpm");
-	game->collectible.img[12] = load_sprite(game->mlx, "textures/collectibles/13.xpm");
-	game->collectible.img[13] = load_sprite(game->mlx, "textures/collectibles/14.xpm");
+	game->collectible.img[0] = load_sprite(game->mlx, "textures/Collectibles/1.xpm");
+	game->collectible.img[1] = load_sprite(game->mlx, "textures/Collectibles/2.xpm");
+	game->collectible.img[2] = load_sprite(game->mlx, "textures/Collectibles/3.xpm");
+	game->collectible.img[3] = load_sprite(game->mlx, "textures/Collectibles/4.xpm");
+	game->collectible.img[4] = load_sprite(game->mlx, "textures/Collectibles/5.xpm");
+	game->collectible.img[5] = load_sprite(game->mlx, "textures/Collectibles/6.xpm");
+	game->collectible.img[6] = load_sprite(game->mlx, "textures/Collectibles/7.xpm");
+	game->collectible.img[7] = load_sprite(game->mlx, "textures/Collectibles/8.xpm");
+	game->collectible.img[8] = load_sprite(game->mlx, "textures/Collectibles/9.xpm");
+	game->collectible.img[9] = load_sprite(game->mlx, "textures/Collectibles/10.xpm");
+	game->collectible.img[10] = load_sprite(game->mlx, "textures/Collectibles/11.xpm");
+	game->collectible.img[11] = load_sprite(game->mlx, "textures/Collectibles/12.xpm");
+	game->collectible.img[12] = load_sprite(game->mlx, "textures/Collectibles/13.xpm");
+	game->collectible.img[13] = load_sprite(game->mlx, "textures/Collectibles/14.xpm");
 }
 
 void	init_anim_player_hit(t_game *game)
@@ -191,25 +189,24 @@ void	init_anim_bubble(t_game *game)
 
 void	init_sprite(t_game *g)
 {
-
-	g->sprite.tl = load_sprite(g->mlx, "textures/tiles/tl.xpm");
-	g->sprite.top = load_sprite(g->mlx, "textures/tiles/top.xpm");
-	g->sprite.top_right = load_sprite(g->mlx, "textures/tiles/top_right.xpm");
-	g->sprite.left = load_sprite(g->mlx, "textures/tiles/left.xpm");
-	g->sprite.mid = load_sprite(g->mlx, "textures/tiles/mid.xpm");
-	g->sprite.right = load_sprite(g->mlx, "textures/tiles/right.xpm");
-	g->sprite.bot_left = load_sprite(g->mlx, "textures/tiles/bot_left.xpm");
-	g->sprite.bot = load_sprite(g->mlx, "textures/tiles/bot.xpm");
-	g->sprite.bot_right = load_sprite(g->mlx, "textures/tiles/bot_right.xpm");
-	g->sprite.mid_tl = load_sprite(g->mlx, "textures/tiles/mid_tl.xpm");
-	g->sprite.bot_tl = load_sprite(g->mlx, "textures/tiles/bot_tl.xpm");
-	g->sprite.background = load_sprite(g->mlx, "textures/tiles/png/rocksfront.xpm");
-	g->sprite.background2 = load_sprite(g->mlx, "textures/tiles/png/rocksback.xpm");
-	g->sprite.water = load_sprite(g->mlx, "textures/tiles/png/water.xpm");
-	g->sprite.foreground = load_sprite(g->mlx, "textures/tiles/png/foreground.xpm");
-	g->sprite.door = load_sprite(g->mlx, "textures/chest/chest.xpm");
-	g->sprite.door_open = load_sprite(g->mlx, "textures/chest/chest_open.xpm");
-	g->sprite.bomb = load_sprite(g->mlx, "textures/bomb/1.xpm");
+	g->sprite.tl = load_sprite(g->mlx, "textures/Tiles/tl.xpm");
+	g->sprite.top = load_sprite(g->mlx, "textures/Tiles/top.xpm");
+	g->sprite.top_right = load_sprite(g->mlx, "textures/Tiles/top_right.xpm");
+	g->sprite.left = load_sprite(g->mlx, "textures/Tiles/left.xpm");
+	g->sprite.mid = load_sprite(g->mlx, "textures/Tiles/mid.xpm");
+	g->sprite.right = load_sprite(g->mlx, "textures/Tiles/right.xpm");
+	g->sprite.bot_left = load_sprite(g->mlx, "textures/Tiles/bot_left.xpm");
+	g->sprite.bot = load_sprite(g->mlx, "textures/Tiles/bot.xpm");
+	g->sprite.bot_right = load_sprite(g->mlx, "textures/Tiles/bot_right.xpm");
+	g->sprite.mid_tl = load_sprite(g->mlx, "textures/Tiles/mid_tl.xpm");
+	g->sprite.bot_tl = load_sprite(g->mlx, "textures/Tiles/bot_tl.xpm");
+	g->sprite.background = load_sprite(g->mlx, "textures/Tiles/png/rocksfront.xpm");
+	g->sprite.background2 = load_sprite(g->mlx, "textures/Tiles/png/rocksback.xpm");
+	g->sprite.water = load_sprite(g->mlx, "textures/Tiles/png/water.xpm");
+	g->sprite.foreground = load_sprite(g->mlx, "textures/Tiles/png/foreground.xpm");
+	g->sprite.door = load_sprite(g->mlx, "textures/Chest/chest.xpm");
+	g->sprite.door_open = load_sprite(g->mlx, "textures/Chest/chest_open.xpm");
+	g->sprite.bomb = load_sprite(g->mlx, "textures/Bomb/1.xpm");
 	init_anim_player_idle(g);
 	init_anim_player_run(g);
 	init_anim_player_jump(g);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 16:46:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:12:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_node_bubble	*create_list_bubble(t_game *game)
 	{
 		rand_x = rand() % (game->map_width * 4);
 		rand_y = rand() % (game->map_height * 4);
+		// TODO: can replace rand funct by Xorshift
 		new_node = create_node_bubble(rand_x, rand_y, 0);
 		add_node_back_bubble(&list, new_node);
 		i++;

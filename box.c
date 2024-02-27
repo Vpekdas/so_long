@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:18:56 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/20 15:19:46 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:32:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_box	bomb_box(t_game *game)
 	t_box	box;
 
 	box.pos_x = game->bomb.pos_x + game->bomb.speed;
-	box.pos_y = game->bomb.pos_y + game->player.offset_y;
+	box.pos_y = game->bomb.pos_y;
 	box.width = game->bomb.width;
 	box.height = game->bomb.height;
 	return (box);

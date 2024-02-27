@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/26 18:43:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:38:44 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	update(t_game *game)
 	if (game->player.health == 0)
 		close_game(game);
 	game->player.velocity_x = 0;
-	game->enemy.velocity_x = 0;
 	detect_key(game);
 	player_box = player_box_x_y_off_below(game);
 	if (!collide_with_map(player_box, game))
@@ -27,7 +26,7 @@ int	update(t_game *game)
 	player_box = player_box_y_off(game, game->player.velocity_y);
 	collide_with_collectible(player_box, game);
 	collide_with_exit_chest(player_box, game);
-	clear_sprite(game->screen, 0x13120e);
+	// clear_sprite(game->screen, 0x13120e);
 	move_player(game, game->player.velocity_x, game->player.velocity_y);
 	move_enemy(game);
 	draw_background(game);
