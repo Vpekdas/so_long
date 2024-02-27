@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/26 19:35:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:01:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,12 +167,14 @@ typedef struct s_map_copy
 }				t_map_copy;
 
 
-typedef struct s_bubble
+typedef struct s_node_bubble
 {
-	int	x;
-	int	y;
-	float	velocity_y;
-}				t_bubble;
+	int				pos_x;
+	int				pos_y;
+	float			velocity_y;
+	struct s_node_bubble	*next;
+}				t_node_bubble;
+
 
 typedef struct s_game
 {
@@ -183,7 +185,7 @@ typedef struct s_game
 	t_player		player;
 	t_enemy			enemy;
 	t_bomb			bomb;
-	t_bubble		bubble;
+	t_node_bubble	*bubble_list;
 	t_anim			anim_player_idle;
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
@@ -279,4 +281,8 @@ void	free_map(t_game *game);
 bool	check_map_character_overall(t_game *game);
 void	free_copy_map(t_game *game);
 void	update_anim_bubble(t_game *game);
+t_node	*create_list_collectible(t_game *game);
+t_node	*create_node(int x, int y);
+void	add_node_back(t_node **lst, t_node *new);
+t_node_bubble	*create_list_bubble(t_game *game);
 #endif
