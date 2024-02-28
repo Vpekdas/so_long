@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 17:40:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:35:22 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,25 @@ void	detect_key(t_game *game)
 	{
 		game->player.velocity_y = -10;
 		game->player.already_jumped = true;
+		game->is_trail_drawn = false;
 	}
 	else if (!game->key_w)
 		game->player.already_jumped = false;
 	if (game->key_s && !collide_with_map(box, game))
+	{
 		game->player.velocity_y += SPEED;
+		game->is_trail_drawn = false;	
+	}
 	if (game->key_a)
+	{
 		game->player.velocity_x -= SPEED;
+		game->is_trail_drawn = false;	
+	}
 	if (game->key_d)
+	{
 		game->player.velocity_x += SPEED;
+		game->is_trail_drawn = false;
+	}
 	if (game->key_space)
 		shoot_bomb(game);
 }

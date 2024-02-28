@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 17:40:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:22:27 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ typedef struct s_game
 	t_anim			anim_bomb_on;
 	t_anim			collectible;
 	t_anim			anim_bubble;
+	t_anim			anim_trail;
+	bool			is_trail_drawn;
 	t_draw_info		draw_info;
 	t_draw_info		draw_info_enemy;
 	t_draw_info		draw_info_bomb;
@@ -286,4 +288,5 @@ t_node	*create_node(int x, int y);
 void	add_node_back(t_node **lst, t_node *new);
 t_node_bubble	*create_list_bubble(t_game *game);
 void	free_list_bubble(t_node_bubble *list);
+void	update_anim_trail(t_game *game);
 #endif

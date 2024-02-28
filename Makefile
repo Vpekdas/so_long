@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/26 18:42:12 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/02/28 13:47:54 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS = animation.c\
 		player.c\
 		pathfinding.c\
 		print_tile.c\
+		trail.c\
 		update_game.c\
 
 OBJS = $(SRCS:.c=.o)

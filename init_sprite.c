@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 17:22:07 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:47:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,16 @@ void	init_anim_bubble(t_game *game)
 	game->anim_bubble.img[6] = load_sprite(game->mlx, "textures/Bubbles/7.xpm");
 }
 
+void	init_anim_trail(t_game *game)
+{
+	game->anim_trail.frame_count = 4;
+	game->anim_trail.img = malloc(sizeof(t_img *) * 4);
+	game->anim_trail.img[0] = load_sprite(game->mlx, "textures/Trail/1.xpm");
+	game->anim_trail.img[1] = load_sprite(game->mlx, "textures/Trail/2.xpm");
+	game->anim_trail.img[2] = load_sprite(game->mlx, "textures/Trail/3.xpm");
+	game->anim_trail.img[3] = load_sprite(game->mlx, "textures/Trail/4.xpm");
+}
+
 void	init_sprite(t_game *g)
 {
 	g->sprite.tl = load_sprite(g->mlx, "textures/Tiles/tl.xpm");
@@ -216,4 +226,5 @@ void	init_sprite(t_game *g)
 	init_anim_enemy_idle(g);
 	init_anim_enemy_attack(g);
 	init_anim_bubble(g);
+	init_anim_trail(g);
 }
