@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 17:49:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:56:42 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	free_all_sprites(t_game *game)
 	free_anim_sprite(&game->anim_player_run, game);
 	free_anim_sprite(&game->anim_player_jump, game);
 	free_anim_sprite(&game->anim_player_fall, game);
-	free_anim_sprite(&game->collectible, game);
 	free_anim_sprite(&game->anim_player_hit, game);
+	free_anim_sprite(&game->collectible, game);
 	free_anim_sprite(&game->anim_enemy_idle, game);
 	free_anim_sprite(&game->anim_enemy_attack, game);
 	free_anim_sprite(&game->anim_bubble, game);

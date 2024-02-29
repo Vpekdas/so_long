@@ -6,10 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 18:30:14 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:03:16 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Libft/libft.h"
 #include "so_long.h"
 
 t_img	*load_sprite(void *img, char *filename)
@@ -27,9 +28,9 @@ bool	check_init_successfull(t_anim *anim)
 	int	i;
 
 	i = 0;
-	while (i < anim->frame)
+	while (i < anim->frame_count)
 	{
-		if (anim->img[i] == NULL)
+		if (!anim->img[i])
 			return (false);
 		else
 			i++;
@@ -37,28 +38,34 @@ bool	check_init_successfull(t_anim *anim)
 	return (true);
 }
 
+bool	print_error_sprite_load(char *str)
+{
+	ft_putstr_fd(str, 2);
+	return (false);
+}
+
 bool	check_all_sprite_load(t_game *game)
 {
 	if (check_init_successfull(&game->anim_player_idle) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim player idle failed to load"));
 	if (check_init_successfull(&game->anim_player_run) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim player run failed to load"));
 	if (check_init_successfull(&game->anim_player_jump) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim player jump failed to load"));
 	if (check_init_successfull(&game->anim_player_fall) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim player fall failed to load"));
 	if (check_init_successfull(&game->anim_player_hit) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim player hit failed to load"));
 	if (check_init_successfull(&game->collectible) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nCollectible failed to load"));
 	if (check_init_successfull(&game->anim_enemy_idle) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim enemy idle failed to load"));
 	if (check_init_successfull(&game->anim_enemy_attack) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim enemy attack failed to load"));
 	if (check_init_successfull(&game->anim_bubble) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim bubble failed to load"));
 	if (check_init_successfull(&game->anim_trail) == false)
-		return (false);
+		return (print_error_sprite_load("Error\nAnim trail failed to load"));
 	return (true);
 }
 
@@ -257,7 +264,7 @@ void	init_anim_trail(t_game *game)
 	game->anim_trail.img[0] = load_sprite(game->mlx, "textures/Trail/1.xpm");
 	game->anim_trail.img[1] = load_sprite(game->mlx, "textures/Trail/2.xpm");
 	game->anim_trail.img[2] = load_sprite(game->mlx, "textures/Trail/3.xpm");
-	game->anim_trail.img[3] = load_sprite(game->mlx, "textures/Trail/4.xpm");
+	game->anim_trail.img[3] = load_sprite(game->mlx, "textures/Trail/42.xpm");
 }
 
 void	init_sprite(t_game *g)

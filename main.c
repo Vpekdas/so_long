@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 18:31:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:59:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Libft/libft.h"
-#include "ft_printf/include/ft_printf.h"
 #include "so_long.h"
 
 int	close_game(t_game *game)
@@ -69,12 +68,13 @@ int	main(int ac, char **av)
 	{
 		free_map(&game);
 		free_copy_map(&game);
+		free_all_sprites(&game);
+		free_list_bubble(game.bubble_list);
+		free_list_collectible(game.collectible_list);
 		mlx_destroy_window(game.mlx, game.win);
 		mlx_destroy_image(game.mlx, game.screen);
 		mlx_destroy_display(game.mlx);
 		free(game.mlx);
-		free_list_bubble(game.bubble_list);
-		free_list_collectible(game.collectible_list);
 		return (1);
 	}
 	mlx_loop_hook(game.mlx, update, &game);
