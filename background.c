@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:31:21 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 16:03:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:09:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	draw_background_sprite(t_game *game, t_img *img, int scroll)
 	unsigned int	color;
 
 	i = 0;
+	if (!img)
+		return ;
 	while (i < WINDOWS_WIDTH)
 	{
 		j = -1;

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 14:47:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:11:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_anim_sprite(t_anim *anim, t_game *game)
 {
 	int	i;
 
+	if (!anim)
+		return ;
 	i = 0;
 	while (i < anim->frame_count)
 	{
@@ -61,6 +63,8 @@ void	free_map(t_game *game)
 {
 	int	i;
 
+	if (!game)
+		return ;
 	i = 0;
 	while (i < game->map_height)
 	{
@@ -74,6 +78,8 @@ void	free_copy_map(t_game *game)
 {
 	int	i;
 
+	if (!game)
+		return ;
 	i = 0;
 	while (i < game->map_copy.map_height)
 	{
@@ -87,6 +93,8 @@ void	free_list_bubble(t_node_bubble *list)
 {
 	t_node_bubble	*tmp;
 
+	if (!list)
+		return ;
 	while (list)
 	{
 		tmp = list;
@@ -99,6 +107,8 @@ void	free_list_collectible(t_node *collectible)
 {
 	t_node	*tmp;
 
+	if (!collectible)
+		return ;
 	while (collectible)
 	{
 		tmp = collectible;

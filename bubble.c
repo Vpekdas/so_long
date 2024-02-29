@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 17:12:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:10:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y)
 {
 	int	anim_cooldown;
 
+	if (!anim)
+		return ;
 	anim_cooldown = 100;
 	if (getms() - anim->last_frame >= anim_cooldown)
 	{

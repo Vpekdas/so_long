@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/22 18:53:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:10:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	find_collectible_numbers(t_game *game, char **map)
 	int	y;
 	int	collectibles_numbers;
 
+	if (!map || !*map)
+		return (-1);
 	y = 0;
 	collectibles_numbers = 0;
 	while (y < game->map_height)
@@ -61,6 +63,8 @@ void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y)
 {
 	int	anim_cooldown;
 
+	if (!anim)
+		return ;
 	anim_cooldown = 100;
 	if (getms() - anim->last_frame >= anim_cooldown)
 	{
@@ -82,6 +86,8 @@ void	update_anim_collectible(char **map, t_game *game)
 	int	y;
 
 	y = 0;
+	if (!map || !*map)
+		return ;
 	while (y < game->map_height)
 	{
 		x = 0;

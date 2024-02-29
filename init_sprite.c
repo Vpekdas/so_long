@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/28 13:47:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:12:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ t_img	*load_sprite(void *img, char *filename)
 	int	width;
 	int	height;
 
+	if (!img || !filename)
+		return (NULL);
 	return (mlx_xpm_file_to_image(img, filename, &width, &height));
 }
 void	init_anim_player_idle(t_game *game)
 {
 	game->anim_player_idle.frame_count = 26;
 	game->anim_player_idle.img = malloc(sizeof(t_img *) * 26);
+	if (!game->anim_player_idle.img)
+		return ;
 	game->anim_player_idle.img[0] = load_sprite(game->mlx, "textures/Player/Idle/1.xpm");
 	game->anim_player_idle.img[1] = load_sprite(game->mlx, "textures/Player/Idle/2.xpm");
 	game->anim_player_idle.img[2] = load_sprite(game->mlx, "textures/Player/Idle/3.xpm");
@@ -55,6 +59,8 @@ void	init_anim_player_run(t_game *game)
 {
 	game->anim_player_run.frame_count = 14;
 	game->anim_player_run.img = malloc(sizeof(t_img *) * 14);
+	if (!game->anim_player_run.img)
+		return ;
 	game->anim_player_run.img[0] = load_sprite(game->mlx, "textures/Player/Run/1.xpm");
 	game->anim_player_run.img[1] = load_sprite(game->mlx, "textures/Player/Run/2.xpm");
 	game->anim_player_run.img[2] = load_sprite(game->mlx, "textures/Player/Run/3.xpm");
@@ -75,6 +81,8 @@ void	init_anim_player_jump(t_game *game)
 {
 	game->anim_player_jump.frame_count = 4;
 	game->anim_player_jump.img = malloc(sizeof(t_img *) * 4);
+	if (!game->anim_player_jump.img)
+		return ;
 	game->anim_player_jump.img[0] = load_sprite(game->mlx, "textures/Player/Jump/1.xpm");
 	game->anim_player_jump.img[1] = load_sprite(game->mlx, "textures/Player/Jump/2.xpm");
 	game->anim_player_jump.img[2] = load_sprite(game->mlx, "textures/Player/Jump/3.xpm");
@@ -85,6 +93,8 @@ void	init_anim_player_fall(t_game *game)
 {
 	game->anim_player_fall.frame_count = 2;
 	game->anim_player_fall.img = malloc(sizeof(t_img *) * 2);
+	if (!game->anim_player_fall.img)
+		return ;
 	game->anim_player_fall.img[0] = load_sprite(game->mlx, "textures/Player/Fall/1.xpm");
 	game->anim_player_fall.img[1] = load_sprite(game->mlx, "textures/Player/Fall/2.xpm");
 }
@@ -93,6 +103,8 @@ void	init_anim_collectible(t_game *game)
 {
 	game->collectible.frame_count = 14;
 	game->collectible.img = malloc(sizeof(t_img *) * 14);
+	if (!game->collectible.img)
+		return ;
 	game->collectible.img[0] = load_sprite(game->mlx, "textures/Collectibles/1.xpm");
 	game->collectible.img[1] = load_sprite(game->mlx, "textures/Collectibles/2.xpm");
 	game->collectible.img[2] = load_sprite(game->mlx, "textures/Collectibles/3.xpm");
@@ -113,6 +125,8 @@ void	init_anim_player_hit(t_game *game)
 {
 	game->anim_player_hit.frame_count = 8;
 	game->anim_player_hit.img = malloc(sizeof(t_img *) * 8);
+	if(!game->anim_player_hit.img)
+		return ;
 	game->anim_player_hit.img[0] = load_sprite(game->mlx, "textures/Player/Hit/1.xpm");
 	game->anim_player_hit.img[1] = load_sprite(game->mlx, "textures/Player/Hit/2.xpm");
 	game->anim_player_hit.img[2] = load_sprite(game->mlx, "textures/Player/Hit/3.xpm");
@@ -127,6 +141,8 @@ void	init_anim_enemy_idle(t_game *game)
 {
 	game->anim_enemy_idle.frame_count = 32;
 	game->anim_enemy_idle.img = malloc(sizeof(t_img *) * 32);
+	if (!game->anim_enemy_idle.img)
+		return ;
 	game->anim_enemy_idle.img[0] = load_sprite(game->mlx, "textures/Enemy/Idle/1.xpm");
 	game->anim_enemy_idle.img[1] = load_sprite(game->mlx, "textures/Enemy/Idle/2.xpm");
 	game->anim_enemy_idle.img[2] = load_sprite(game->mlx, "textures/Enemy/Idle/3.xpm");
@@ -165,6 +181,8 @@ void	init_anim_enemy_attack(t_game *game)
 {
 	game->anim_enemy_attack.frame_count = 7; 
 	game->anim_enemy_attack.img = malloc(sizeof(t_img *) * 7);
+	if (!game->anim_enemy_attack.img)
+		return ;
 	game->anim_enemy_attack.img[0] = load_sprite(game->mlx, "textures/Enemy/Attack/1.xpm");
 	game->anim_enemy_attack.img[1] = load_sprite(game->mlx, "textures/Enemy/Attack/2.xpm");
 	game->anim_enemy_attack.img[2] = load_sprite(game->mlx, "textures/Enemy/Attack/3.xpm");
@@ -178,6 +196,8 @@ void	init_anim_bubble(t_game *game)
 {
 	game->anim_bubble.frame_count = 7;
 	game->anim_bubble.img = malloc(sizeof(t_img *) * 7);
+	if (!game->anim_bubble.img)
+		return ;
 	game->anim_bubble.img[0] = load_sprite(game->mlx, "textures/Bubbles/1.xpm");
 	game->anim_bubble.img[1] = load_sprite(game->mlx, "textures/Bubbles/2.xpm");
 	game->anim_bubble.img[2] = load_sprite(game->mlx, "textures/Bubbles/3.xpm");
@@ -191,6 +211,8 @@ void	init_anim_trail(t_game *game)
 {
 	game->anim_trail.frame_count = 4;
 	game->anim_trail.img = malloc(sizeof(t_img *) * 4);
+	if (!game->anim_trail.img)
+		return ;
 	game->anim_trail.img[0] = load_sprite(game->mlx, "textures/Trail/1.xpm");
 	game->anim_trail.img[1] = load_sprite(game->mlx, "textures/Trail/2.xpm");
 	game->anim_trail.img[2] = load_sprite(game->mlx, "textures/Trail/3.xpm");
@@ -199,6 +221,8 @@ void	init_anim_trail(t_game *game)
 
 void	init_sprite(t_game *g)
 {
+	if (!g)
+		return ;
 	g->sprite.tl = load_sprite(g->mlx, "textures/Tiles/tl.xpm");
 	g->sprite.top = load_sprite(g->mlx, "textures/Tiles/top.xpm");
 	g->sprite.top_right = load_sprite(g->mlx, "textures/Tiles/top_right.xpm");

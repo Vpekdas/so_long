@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_sprite.c                                     :+:      :+:    :+:   */
+/*   draw_sprite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/17 16:16:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:10:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	clear_sprite(t_img *img, unsigned int color)
 {
 	int	i;
 
+	if (!img)
+		return ;
 	i = 0;
 	while (i < img->width * img->height)
 	{
@@ -32,6 +34,8 @@ void	draw_sprite(t_game *game, t_img *img, int x, int y)
 	int				j;
 	unsigned int	color;
 
+	if (!img)
+		return ;
 	i = 0;
 	while (i < img->width * SCALE)
 	{
@@ -61,7 +65,7 @@ void	draw_vignette(t_game *game)
 	float 	ri;
 	float 	rj;
 	t_trgb	color;
-	
+
 	i = -1;
 	while (++i < WINDOWS_WIDTH)
 	{

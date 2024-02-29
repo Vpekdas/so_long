@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 17:45:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:11:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	find_enemy_position(t_game *game, char **map)
 	int	x;
 	int	y;
 
+	if (!map || !*map)
+		return ;
 	y = 0;
 	while (map[y])
 	{
@@ -53,6 +55,8 @@ void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 	int				j;
 	t_trgb			color;
 
+	if (!img)
+		return ;
 	i = 0;
 	while (i < img->width * SCALE)
 	{
@@ -81,6 +85,8 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 {
 	int			anim_cooldown;
 
+	if (!anim)
+		return ;
 	anim_cooldown = 100;
 	if (getms() - anim->last_frame >= anim_cooldown)
 	{
