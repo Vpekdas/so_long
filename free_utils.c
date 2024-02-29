@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 14:23:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:47:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	free_all_sprites(t_game *game)
 	free_anim_sprite(&game->anim_enemy_idle, game);
 	free_anim_sprite(&game->anim_enemy_attack, game);
 	free_anim_sprite(&game->anim_bubble, game);
+	free_anim_sprite(&game->anim_trail, game);
 	mlx_destroy_image(game->mlx, game->sprite.tl);
 	mlx_destroy_image(game->mlx, game->sprite.top);
 	mlx_destroy_image(game->mlx, game->sprite.top_right);

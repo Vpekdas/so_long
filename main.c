@@ -6,10 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 14:26:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:40:05 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Libft/libft.h"
+#include "ft_printf/include/ft_printf.h"
 #include "so_long.h"
 
 int	close_game(t_game *game)
@@ -23,7 +25,7 @@ char	**copy_map(t_game *game)
 	char	**copy_map;
 	int		i;
 
-	copy_map = malloc(sizeof(char *) * (count_map_height("maps/map.ber") + 1));
+	copy_map = malloc(sizeof(char *) * (count_map_height(game->map_path) + 1));
 	if (!copy_map)
 		return (NULL);
 	i = 0;
@@ -35,16 +37,21 @@ char	**copy_map(t_game *game)
 	return (copy_map);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game		game;
 
+	if (ac != 2)
+	{
+		ft_putstr_fd("You need to give one map\n", 2);
+		return (1);
+	}
 	game = (t_game){0};
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT, "so_long");
 	game.screen = mlx_new_image(game.mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
+	game.map_path = av[1];
 	init_player_and_map(&game);
-	game.map_copy.map = copy_map(&game);
 	if (check_map_character_overall(&game) == false)
 	{
 		free_map(&game);
@@ -63,8 +70,8 @@ int	main(void)
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_released, &game);
 	mlx_hook(game.win, DestroyNotify, 0, close_game, &game);
 	mlx_loop(game.mlx);
-	free_map(&game);
 	free_copy_map(&game);
+	free_map(&game);
 	free_all_sprites(&game);
 	free_list_bubble(game.bubble_list);
 	free_list_collectible(game.collectible_list);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 14:24:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:28:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ typedef struct s_game
 	void			*win;
 	t_img			*screen;
 	t_sprite		sprite;
+	char			*map_path;
 	t_player		player;
 	t_enemy			enemy;
 	t_bomb			bomb;
