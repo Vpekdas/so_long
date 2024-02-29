@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 14:28:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:30:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,4 +293,5 @@ void	update_anim_trail(t_game *game);
 char	**copy_map(t_game *game);
 bool	is_map_finishable(t_game *game);
 void	free_list_collectible(t_node *collectible);
+bool	check_all_sprite_load(t_game *game);
 #endif

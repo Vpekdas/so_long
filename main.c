@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 14:40:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:31:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_sprite(&game);
+	if (check_all_sprite_load(&game) == false)
+	{
+		free_map(&game);
+		free_copy_map(&game);
+		mlx_destroy_window(game.mlx, game.win);
+		mlx_destroy_image(game.mlx, game.screen);
+		mlx_destroy_display(game.mlx);
+		free(game.mlx);
+		free_list_bubble(game.bubble_list);
+		free_list_collectible(game.collectible_list);
+		return (1);
+	}
 	mlx_loop_hook(game.mlx, update, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, key_pressed, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_released, &game);

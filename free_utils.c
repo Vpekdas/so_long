@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 16:11:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:49:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void	free_anim_sprite(t_anim *anim, t_game *game)
 	i = 0;
 	while (i < anim->frame_count)
 	{
-		mlx_destroy_image(game->mlx, anim->img[i]);
-		anim->img[i] = NULL;
+		if (anim->img[i])
+		{
+			mlx_destroy_image(game->mlx, anim->img[i]);
+			anim->img[i] = NULL;
+		}
 		i++;
 	}
 	free(anim->img);
@@ -68,7 +71,11 @@ void	free_map(t_game *game)
 	i = 0;
 	while (i < game->map_height)
 	{
-		free(game->map[i]);
+		if (game->map[i])
+		{
+			free(game->map[i]);
+			game->map[i] = NULL;
+		}
 		i++;
 	}
 	free(game->map);
@@ -83,7 +90,11 @@ void	free_copy_map(t_game *game)
 	i = 0;
 	while (i < game->map_copy.map_height)
 	{
-		free(game->map_copy.map[i]);
+		if (game->map_copy.map[i])
+		{
+			free(game->map_copy.map[i]);
+			game->map_copy.map[i] = NULL;
+		}
 		i++;
 	}
 	free(game->map_copy.map);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 16:12:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:30:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,47 @@ t_img	*load_sprite(void *img, char *filename)
 		return (NULL);
 	return (mlx_xpm_file_to_image(img, filename, &width, &height));
 }
+
+bool	check_init_successfull(t_anim *anim)
+{
+	int	i;
+
+	i = 0;
+	while (i < anim->frame)
+	{
+		if (anim->img[i] == NULL)
+			return (false);
+		else
+			i++;
+	}
+	return (true);
+}
+
+bool	check_all_sprite_load(t_game *game)
+{
+	if (check_init_successfull(&game->anim_player_idle) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_player_run) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_player_jump) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_player_fall) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_player_hit) == false)
+		return (false);
+	if (check_init_successfull(&game->collectible) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_enemy_idle) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_enemy_attack) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_bubble) == false)
+		return (false);
+	if (check_init_successfull(&game->anim_trail) == false)
+		return (false);
+	return (true);
+}
+
 void	init_anim_player_idle(t_game *game)
 {
 	game->anim_player_idle.frame_count = 26;
@@ -221,8 +262,6 @@ void	init_anim_trail(t_game *game)
 
 void	init_sprite(t_game *g)
 {
-	if (!g)
-		return ;
 	g->sprite.tl = load_sprite(g->mlx, "textures/Tiles/tl.xpm");
 	g->sprite.top = load_sprite(g->mlx, "textures/Tiles/top.xpm");
 	g->sprite.top_right = load_sprite(g->mlx, "textures/Tiles/top_right.xpm");
