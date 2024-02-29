@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 16:57:50 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:23:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,18 @@ void	free_list_bubble(t_node_bubble *list)
 	{
 		tmp = list;
 		list = list->next;
+		free(tmp);
+	}
+}
+
+void	free_list_collectible(t_node *collectible)
+{
+	t_node	*tmp;
+
+	while (collectible)
+	{
+		tmp = collectible;
+		collectible = collectible->next;
 		free(tmp);
 	}
 }

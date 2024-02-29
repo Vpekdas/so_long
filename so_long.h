@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/28 16:22:27 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:24:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct s_game
 	t_enemy			enemy;
 	t_bomb			bomb;
 	t_node_bubble	*bubble_list;
+	t_node			*collectible_list;
 	t_anim			anim_player_idle;
 	t_anim			anim_player_run;
 	t_anim			anim_player_jump;
@@ -274,7 +275,6 @@ void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
 void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
-t_node	*create_list_collectible(t_game *game);
 bool	is_map_rectangular(t_game *game);
 bool	is_map_surrounder_walls(t_game *game);
 void	free_all_sprites(t_game *game);
@@ -289,4 +289,7 @@ void	add_node_back(t_node **lst, t_node *new);
 t_node_bubble	*create_list_bubble(t_game *game);
 void	free_list_bubble(t_node_bubble *list);
 void	update_anim_trail(t_game *game);
+char	**copy_map(t_game *game);
+bool	is_map_finishable(t_game *game);
+void	free_list_collectible(t_node *collectible);
 #endif

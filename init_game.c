@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/27 15:01:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:25:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	init_player_and_map(t_game *game)
 	find_enemy_position(game, game->map);
 	game->collectibles_numbers = find_collectible_numbers(game, game->map);
 	game->bubble_list = create_list_bubble(game);
+	game->collectible_list = create_list_collectible(game);
 }
 
