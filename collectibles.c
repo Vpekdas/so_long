@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:35:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:43:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,26 @@ int	find_collectible_numbers(t_game *game, char **map)
 	return (collectibles_numbers);
 }
 
+void	update_anim_collectible(char **map, t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	if (!map || !*map)
+		return ;
+	while (y < game->map_height)
+	{
+		x = 0;
+		while (x < game->map_width)
+		{
+			if (map[y][x] == 'C')
+				draw_anim_collectible(game, &game->collectible, x, y);
+			x++;
+		}
+		y++;
+	}
+}
 void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y)
 {
 	int	anim_cooldown;
@@ -59,25 +79,4 @@ void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y)
 		}
 	}
 	draw_sprite(game, anim->img[anim->anim_index], x_scale, y_scale);
-}
-
-void	update_anim_collectible(char **map, t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	if (!map || !*map)
-		return ;
-	while (y < game->map_height)
-	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			if (map[y][x] == 'C')
-				draw_anim_collectible(game, &game->collectible, x, y);
-			x++;
-		}
-		y++;
-	}
 }

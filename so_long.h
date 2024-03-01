@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:36:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:42:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,4 +308,5 @@ void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y);
 void	draw_anim_enemy(t_game *game, t_anim *anim);
 unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio);
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info);
+void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:37:22 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:42:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,37 +36,6 @@ void	find_enemy_position(t_game *game, char **map)
 		y++;
 	}
 }
-void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
-{
-	const int		offx = -game->player.pos_x + WIN_W / 2 - 70;
-	const int		offy = -game->player.pos_y + WIN_H / 2 - 90;
-	int				i;
-	int				j;
-	t_trgb			color;
-
-	i = 0;
-	while (i < img->width * SCALE)
-	{
-		j = -1;
-		while (++j < img->height * SCALE)
-		{
-			if (j + draw_info.y + offy < 0 || j + draw_info.y + offy >= game->screen->height
-				|| i + draw_info.x + offx < 0 || i + draw_info.x + offx >= game->screen->width)
-				continue ;
-			if (!draw_info.flipped)
-				color = ((t_trgb *)img->data)[(int)(j / SCALE) * img->width + (int)(i / SCALE)];
-			else
-			 	color = ((t_trgb *)img->data)[(int)(j / SCALE) * img->width + (int)((img->width * SCALE - (i + 1)) / SCALE)];
-			if (color.t == 0xFF)
-				continue ;
-			color.t = 0xFF;
-			int pixel = ((int *)game->screen->data)[(draw_info.y + j + offy) * game->screen->width + (draw_info.x + i + offx)];
-			((int *)game->screen->data)[(draw_info.y + j + offy) * game->screen->width + (draw_info.x + i + offx)] =
-				blend_colors(pixel, *((unsigned int *) &color), 0.5);
-		}
-		i++;
-	}
-}
 
 void	draw_anim_enemy(t_game *game, t_anim *anim)
 {
@@ -87,17 +56,6 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 		}
 	}
 	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info_enemy);
-}
-
-t_box	enemy_box_y_off(t_game *game, float velocity_y)
-{
-	t_box	box;
-
-	box.pos_x = game->enemy.pos_x + game->enemy.offset_x;
-	box.pos_y = game->enemy.pos_y + game->enemy.offset_y + velocity_y;
-	box.width = game->enemy.width;
-	box.height = game->enemy.height - 30;
-	return (box);
 }
 
 int	calcul_distance(t_enemy enemy, t_bomb bomb)

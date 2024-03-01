@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:03:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:37:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:38:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	shoot_bomb(t_game *game)
 			game->bomb.direction = 1;
 	}
 }
+
 void	update_bomb(t_game *game)
 {
 	t_box	box;

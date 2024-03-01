@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/01 18:34:34 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/01 18:40:59 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,13 @@ MINILIBX_PATH = minilibx-linux
 SRCS = animation.c\
 		background.c\
 		bomb.c\
-		box.c\
 		bubble.c\
 		collectibles.c\
 		collectible_list.c\
 		collision.c\
 		colors.c\
 		draw_sprite.c\
+		enemy_box.c\
 		enemy.c\
 		exit_chest.c\
 		free_utils.c\
@@ -52,6 +52,7 @@ SRCS = animation.c\
 		map.c\
 		player.c\
 		pathfinding.c\
+		player_box.c\
 		print_tile.c\
 		rand.c\
 		trail.c\
