@@ -6,10 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 18:56:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:56:50 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minilibx-linux/mlx.h"
 #include "so_long.h"
 
 void	free_anim_sprite(t_anim *anim, t_game *game)
@@ -33,6 +34,9 @@ void	free_anim_sprite(t_anim *anim, t_game *game)
 
 void	free_all_sprites(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	free_anim_sprite(&game->anim_player_idle, game);
 	free_anim_sprite(&game->anim_player_run, game);
 	free_anim_sprite(&game->anim_player_jump, game);
@@ -43,24 +47,12 @@ void	free_all_sprites(t_game *game)
 	free_anim_sprite(&game->anim_enemy_attack, game);
 	free_anim_sprite(&game->anim_bubble, game);
 	free_anim_sprite(&game->anim_trail, game);
-	mlx_destroy_image(game->mlx, game->sprite.tl);
-	mlx_destroy_image(game->mlx, game->sprite.top);
-	mlx_destroy_image(game->mlx, game->sprite.top_right);
-	mlx_destroy_image(game->mlx, game->sprite.left);
-	mlx_destroy_image(game->mlx, game->sprite.mid);
-	mlx_destroy_image(game->mlx, game->sprite.right);
-	mlx_destroy_image(game->mlx, game->sprite.bot_left);
-	mlx_destroy_image(game->mlx, game->sprite.bot);
-	mlx_destroy_image(game->mlx, game->sprite.bot_right);
-	mlx_destroy_image(game->mlx, game->sprite.mid_tl);
-	mlx_destroy_image(game->mlx, game->sprite.bot_tl);
-	mlx_destroy_image(game->mlx, game->sprite.background);
-	mlx_destroy_image(game->mlx, game->sprite.background2);
-	mlx_destroy_image(game->mlx, game->sprite.water);
-	mlx_destroy_image(game->mlx, game->sprite.foreground);
-	mlx_destroy_image(game->mlx, game->sprite.door);
-	mlx_destroy_image(game->mlx, game->sprite.door_open);
-	mlx_destroy_image(game->mlx, game->sprite.bomb);
+	while (i < NUM_SPRITES)
+	{
+		mlx_destroy_image(game->mlx, game->sprites[i]);
+		i++;
+	}
+	free(game->sprites);
 }
 void	free_map(t_game *game)
 {

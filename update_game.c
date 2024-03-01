@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/28 16:31:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:45:56 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	update(t_game *game)
 	update_anim_enemy(game);
 	update_anim_collectible(game->map, game);
 	update_bomb(game);
-	draw_background_sprite(game, game->sprite.foreground, game->fg_scroll);
+	draw_background_sprite(game, game->sprites[FOREGROUND], game->fg_scroll);
 	update_anim_bubble(game);
 	update_anim_trail(game);
 	draw_vignette(game);

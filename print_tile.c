@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:27:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 16:03:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:45:38 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_tile(t_game *g, char **m, int x, int y)
 		return ;
 	if (is_wall(g, m, x - 1, y) && is_wall(g, m, x + 1, y)
 		&& is_wall(g, m, x, y + 1))
-		draw_sprite(g, g->sprite.top, x * 32 * SCALE, y * 32 * SCALE);
+		draw_sprite(g, g->sprites[TOP], x * 32 * SCALE, y * 32 * SCALE);
 	else
-	 	draw_sprite(g, g->sprite.top, x * 32 * SCALE, y * 32 * SCALE);
+	 	draw_sprite(g, g->sprites[TOP], x * 32 * SCALE, y * 32 * SCALE);
 }

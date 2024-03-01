@@ -6,12 +6,33 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 19:03:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:19:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
+
 #include "so_long.h"
+
+const char	*g_sprite_paths[NUM_SPRITES] = {
+	"textures/Tiles/tl.xpm",
+	"textures/Tiles/top.xpm",
+	"textures/Tiles/top_right.xpm",
+	"textures/Tiles/left.xpm",
+	"textures/Tiles/mid.xpm",
+	"textures/Tiles/right.xpm",
+	"textures/Tiles/bot_left.xpm",
+	"textures/Tiles/bot.xpm",
+	"textures/Tiles/bot_right.xpm",
+	"textures/Tiles/mid_tl.xpm",
+	"textures/Tiles/bot_tl.xpm",
+	"textures/Tiles/png/rocksfront.xpm",
+	"textures/Tiles/png/rocksback.xpm",
+	"textures/Tiles/png/water.xpm",
+	"textures/Tiles/png/foreground.xpm",
+	"textures/Chest/chest.xpm",
+	"textures/Chest/chest_open.xpm",
+	"textures/Bomb/1.xpm"
+};
 
 t_img	*load_sprite(void *img, char *filename)
 {
@@ -38,34 +59,28 @@ bool	check_init_successfull(t_anim *anim)
 	return (true);
 }
 
-bool	print_error_sprite_load(char *str)
-{
-	ft_putstr_fd(str, 2);
-	return (false);
-}
-
 bool	check_all_sprite_load(t_game *game)
 {
 	if (check_init_successfull(&game->anim_player_idle) == false)
-		return (print_error_sprite_load("Error\nAnim player idle failed to load"));
+		return (print_error("Error\nAnim player idle failed to load"));
 	if (check_init_successfull(&game->anim_player_run) == false)
-		return (print_error_sprite_load("Error\nAnim player run failed to load"));
+		return (print_error("Error\nAnim player run failed to load"));
 	if (check_init_successfull(&game->anim_player_jump) == false)
-		return (print_error_sprite_load("Error\nAnim player jump failed to load"));
+		return (print_error("Error\nAnim player jump failed to load"));
 	if (check_init_successfull(&game->anim_player_fall) == false)
-		return (print_error_sprite_load("Error\nAnim player fall failed to load"));
+		return (print_error("Error\nAnim player fall failed to load"));
 	if (check_init_successfull(&game->anim_player_hit) == false)
-		return (print_error_sprite_load("Error\nAnim player hit failed to load"));
+		return (print_error("Error\nAnim player hit failed to load"));
 	if (check_init_successfull(&game->collectible) == false)
-		return (print_error_sprite_load("Error\nCollectible failed to load"));
+		return (print_error("Error\nCollectible failed to load"));
 	if (check_init_successfull(&game->anim_enemy_idle) == false)
-		return (print_error_sprite_load("Error\nAnim enemy idle failed to load"));
+		return (print_error("Error\nAnim enemy idle failed to load"));
 	if (check_init_successfull(&game->anim_enemy_attack) == false)
-		return (print_error_sprite_load("Error\nAnim enemy attack failed to load"));
+		return (print_error("Error\nAnim enemy attack failed to load"));
 	if (check_init_successfull(&game->anim_bubble) == false)
-		return (print_error_sprite_load("Error\nAnim bubble failed to load"));
+		return (print_error("Error\nAnim bubble failed to load"));
 	if (check_init_successfull(&game->anim_trail) == false)
-		return (print_error_sprite_load("Error\nAnim trail failed to load"));
+		return (print_error("Error\nAnim trail failed to load"));
 	return (true);
 }
 
@@ -264,29 +279,27 @@ void	init_anim_trail(t_game *game)
 	game->anim_trail.img[0] = load_sprite(game->mlx, "textures/Trail/1.xpm");
 	game->anim_trail.img[1] = load_sprite(game->mlx, "textures/Trail/2.xpm");
 	game->anim_trail.img[2] = load_sprite(game->mlx, "textures/Trail/3.xpm");
-	game->anim_trail.img[3] = load_sprite(game->mlx, "textures/Trail/42.xpm");
+	game->anim_trail.img[3] = load_sprite(game->mlx, "textures/Trail/4.xpm");
+}
+
+void	init_tiles(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	game->sprites = malloc(sizeof(t_img *) * NUM_SPRITES);
+	if (!game->sprites)
+		return ;
+	while (i < NUM_SPRITES)
+	{
+		game->sprites[i] = load_sprite(game->mlx, (char *)g_sprite_paths[i]);
+		i++;
+	}
 }
 
 void	init_sprite(t_game *g)
 {
-	g->sprite.tl = load_sprite(g->mlx, "textures/Tiles/tl.xpm");
-	g->sprite.top = load_sprite(g->mlx, "textures/Tiles/top.xpm");
-	g->sprite.top_right = load_sprite(g->mlx, "textures/Tiles/top_right.xpm");
-	g->sprite.left = load_sprite(g->mlx, "textures/Tiles/left.xpm");
-	g->sprite.mid = load_sprite(g->mlx, "textures/Tiles/mid.xpm");
-	g->sprite.right = load_sprite(g->mlx, "textures/Tiles/right.xpm");
-	g->sprite.bot_left = load_sprite(g->mlx, "textures/Tiles/bot_left.xpm");
-	g->sprite.bot = load_sprite(g->mlx, "textures/Tiles/bot.xpm");
-	g->sprite.bot_right = load_sprite(g->mlx, "textures/Tiles/bot_right.xpm");
-	g->sprite.mid_tl = load_sprite(g->mlx, "textures/Tiles/mid_tl.xpm");
-	g->sprite.bot_tl = load_sprite(g->mlx, "textures/Tiles/bot_tl.xpm");
-	g->sprite.background = load_sprite(g->mlx, "textures/Tiles/png/rocksfront.xpm");
-	g->sprite.background2 = load_sprite(g->mlx, "textures/Tiles/png/rocksback.xpm");
-	g->sprite.water = load_sprite(g->mlx, "textures/Tiles/png/water.xpm");
-	g->sprite.foreground = load_sprite(g->mlx, "textures/Tiles/png/foreground.xpm");
-	g->sprite.door = load_sprite(g->mlx, "textures/Chest/chest.xpm");
-	g->sprite.door_open = load_sprite(g->mlx, "textures/Chest/chest_open.xpm");
-	g->sprite.bomb = load_sprite(g->mlx, "textures/Bomb/1.xpm");
+	init_tiles(g);
 	init_anim_player_idle(g);
 	init_anim_player_run(g);
 	init_anim_player_jump(g);

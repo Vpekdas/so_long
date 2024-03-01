@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 13:53:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:19:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ bool	check_character_number(t_game *game)
 	return (true);
 }
 
-bool	print_error_map(char *str)
+bool	print_error(char *str)
 {
 	ft_putstr_fd(str, 2);
 	return (false);
@@ -204,14 +204,14 @@ bool	check_map_character_overall(t_game *game)
 		return (false);
 	check_character_number(game);
 	if (game->character_map.collectible_nb == 0)
-		return (print_error_map("Error\nPlace atleast 1 collectible\n"));
+		return (print_error("Error\nPlace atleast 1 collectible\n"));
 	if (game->character_map.exit_nb != 1)
-		return (print_error_map("Error\nYou need to place only 1 exit\n"));
+		return (print_error("Error\nYou need to place only 1 exit\n"));
 	if (game->character_map.player_nb != 1)
-		return (print_error_map("Error\nYou need to place only 1 player\n"));
+		return (print_error("Error\nYou need to place only 1 player\n"));
 	if (game->character_map.enemy_nb > 1 && BONUS)
-		return (print_error_map("Error\nYou can only place 1 enemy maximum\n"));
+		return (print_error("Error\nYou can only place 1 enemy maximum\n"));
 	if (is_map_finishable(game) == false)
-		return (print_error_map("Error\nYou can't finish the map\n"));
+		return (print_error("Error\nYou can't finish the map\n"));
 	return (true);
 }

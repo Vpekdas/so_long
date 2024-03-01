@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 18:30:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:19:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,29 @@
 # define WINDOWS_HEIGHT 480
 
 
-typedef struct s_sprite
+typedef enum e_sprite
 {
-	t_img	*bomb;
-	t_img	*door;
-	t_img	*door_open;
-	t_img	*background;
-	t_img	*background2;
-	t_img	*water;
-	t_img	*foreground;
-	t_img	*bot_left;
-	t_img	*bot_right;
-	t_img	*bot_tl;
-	t_img	*bot;
-	t_img	*br_left;
-	t_img	*br_mid;
-	t_img	*br_right;
-	t_img	*left;
-	t_img	*mid_tl;
-	t_img	*mid;
-	t_img	*right;
-	t_img	*tl;
-	t_img	*top_left;
-	t_img	*top_right;
-	t_img	*top;
+	TL,
+	TOP,
+	TOP_RIGHT,
+	LEFT,
+	MID,
+	RIGHT,
+	BOT_LEFT,
+	BOT,
+	BOT_RIGHT,
+	MID_TL,
+	BOT_TL,
+	BACKGROUND,
+	BACKGROUND2,
+	WATER,
+	FOREGROUND,
+	DOOR,
+	DOOR_OPEN,
+	BOMB,
+	NUM_SPRITES
 }			t_sprite;
+
 
 typedef struct s_anim
 {
@@ -181,7 +179,7 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	t_img			*screen;
-	t_sprite		sprite;
+	t_img			**sprites;
 	char			*map_path;
 	t_player		player;
 	t_enemy			enemy;
@@ -294,4 +292,5 @@ char	**copy_map(t_game *game);
 bool	is_map_finishable(t_game *game);
 void	free_list_collectible(t_node *collectible);
 bool	check_all_sprite_load(t_game *game);
+bool	print_error(char *str);
 #endif
