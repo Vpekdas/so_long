@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:43:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:44:57 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	update_anim_bubble(t_game *game)
 		current = current->next;
 	}
 }
+
 void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y)
 {
 	int	anim_cooldown;

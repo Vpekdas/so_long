@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/01 18:40:59 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/01 18:51:24 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS = animation.c\
 		collectible_list.c\
 		collision.c\
 		colors.c\
+		distance.c\
 		draw_sprite.c\
 		enemy_box.c\
 		enemy.c\

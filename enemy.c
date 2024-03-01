@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:42:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:51:46 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,18 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info_enemy);
 }
 
-int	calcul_distance(t_enemy enemy, t_bomb bomb)
+void	adjust_enemy_pos(t_game *game)
 {
-	return (sqrt((enemy.pos_x - bomb.pos_x) * (enemy.pos_x - bomb.pos_x)
-			+ (enemy.pos_y - bomb.pos_y) * (enemy.pos_y - bomb.pos_y)));
+	if (game->enemy.pos_x > game->player.pos_x)
+		game->enemy.pos_x -= SPEED / 2;
+	else if (game->enemy.pos_x < game->player.pos_x)
+		game->enemy.pos_x += SPEED / 2;
+	if (game->enemy.pos_y + 48 > game->player.pos_y)
+		game->enemy.pos_y -= SPEED / 2;
+	else if (game->enemy.pos_y < game->player.pos_y)
+		game->enemy.pos_y += SPEED / 2;
+	if (game->enemy.pos_y < 0)
+		game->enemy.pos_y = game->player.pos_y;
 }
 
 void	move_enemy(t_game *game)
@@ -79,19 +87,11 @@ void	move_enemy(t_game *game)
 		game->enemy.pos_y = 1000;
 		return ;
 	}
-	if (game->enemy.pos_x > game->player.pos_x)
-		game->enemy.pos_x -= SPEED / 2;
-	else if (game->enemy.pos_x < game->player.pos_x)
-		game->enemy.pos_x += SPEED / 2;
-	if (game->enemy.pos_y + 48 > game->player.pos_y)
-		game->enemy.pos_y -= SPEED / 2;
-	else if (game->enemy.pos_y < game->player.pos_y)
-		game->enemy.pos_y += SPEED / 2;
-	if (game->enemy.pos_y < 0)
-		game->enemy.pos_y = game->player.pos_y;
+	adjust_enemy_pos(game);
 	if (getms() - game->enemy.last_frame > 1500)
 		game->enemy.invulnerable = false;
-	if (calcul_distance(game->enemy, game->bomb) <= 200 && game->bomb.bomb_number == 1)
+	if (calcul_distance(game->enemy, game->bomb) <= 200
+		&& game->bomb.bomb_number == 1)
 		game->enemy.pos_y = 1;
 	if (collide(enemy, bomb) && !game->enemy.invulnerable)
 	{

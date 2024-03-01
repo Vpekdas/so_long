@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:10:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:53:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_enemy(t_game *game)
 {
-
 	game->enemy.width = 28 * SCALE;
 	game->enemy.height = 80 * SCALE;
 	game->enemy.offset_x = 32 * SCALE;
@@ -41,4 +40,3 @@ void	init_player_and_map(t_game *game)
 	game->collectible_list = create_list_collectible(game);
 	game->map_copy.map = copy_map(game);
 }
-

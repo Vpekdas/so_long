@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:43:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:45:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	update_anim_collectible(char **map, t_game *game)
 		y++;
 	}
 }
+
 void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y)
 {
 	int	anim_cooldown;

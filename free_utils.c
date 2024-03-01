@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 16:56:50 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:52:17 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
 #include "so_long.h"
 
 void	free_anim_sprite(t_anim *anim, t_game *game)
@@ -54,6 +53,7 @@ void	free_all_sprites(t_game *game)
 	}
 	free(game->sprites);
 }
+
 void	free_map(t_game *game)
 {
 	int	i;
@@ -102,20 +102,6 @@ void	free_list_bubble(t_node_bubble *list)
 	{
 		tmp = list;
 		list = list->next;
-		free(tmp);
-	}
-}
-
-void	free_list_collectible(t_node *collectible)
-{
-	t_node	*tmp;
-
-	if (!collectible)
-		return ;
-	while (collectible)
-	{
-		tmp = collectible;
-		collectible = collectible->next;
 		free(tmp);
 	}
 }

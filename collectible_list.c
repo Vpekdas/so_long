@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:22:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:22:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:52:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,18 @@ t_node	*create_list_collectible(t_game *game)
 		y++;
 	}
 	return (list);
+}
+
+void	free_list_collectible(t_node *collectible)
+{
+	t_node	*tmp;
+
+	if (!collectible)
+		return ;
+	while (collectible)
+	{
+		tmp = collectible;
+		collectible = collectible->next;
+		free(tmp);
+	}
 }
