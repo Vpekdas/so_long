@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animation.c                                        :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 17:20:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:35:03 by vopekdas         ###   ########.fr       */
+/*   Created: 2024/03/01 18:34:13 by vopekdas          #+#    #+#             */
+/*   Updated: 2024/03/01 18:34:23 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-suseconds_t	getms(void)
+unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio)
 {
-	struct timeval	tv;
+	const unsigned char	c1[] = {(a >> 16) & 0xFF, (a >> 8) & 0xFF, a & 0xFF};
+	const unsigned char	c2[] = {(b >> 16) & 0xFF, (b >> 8) & 0xFF, b & 0xFF};
 
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return (((unsigned int)(c1[0] * (1 - ratio) + c2[0] * ratio) << 16)
+	| ((unsigned int)(c1[1] * (1 - ratio) + c2[1] * ratio) << 8)
+	| ((unsigned int)(c1[2] * (1 - ratio) + c2[2] * ratio)));
 }

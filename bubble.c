@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 16:10:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:37:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y)
 {
 	int	anim_cooldown;
+	int	x_scale;
+	int	y_scale;
 
 	if (!anim)
 		return ;
+	x_scale = x * 32 * SCALE;
+	y_scale = y * 32 * SCALE;
 	anim_cooldown = 100;
 	if (getms() - anim->last_frame >= anim_cooldown)
 	{
@@ -30,8 +34,9 @@ void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y)
 			anim->frame = 0;
 		}
 	}
-	draw_sprite(game, anim->img[anim->anim_index], x * 32 * SCALE, y * 32 * SCALE);
+	draw_sprite(game, anim->img[anim->anim_index], x_scale, y_scale);
 }
+
 t_node_bubble	*create_node_bubble(int x, int y, float velocity_y)
 {
 	t_node_bubble	*new_node;
@@ -71,27 +76,32 @@ t_node_bubble	*create_list_bubble(t_game *game)
 {
 	t_node_bubble	*new_node;
 	t_node_bubble	*list;
-	int		i;
-	int		rand_x;
-	int		rand_y;
+	int				i;
+	uint32_t		rand_x;
+	uint32_t		rand_y;
 
 	list = NULL;
 	i = 0;
-	while (i < 50)
+	game->state = malloc(sizeof(t_xorshift32_state));
+	if (!game->state)
+		return (NULL);
+	game->state->a = getms();
+	while (i < 100)
 	{
-		rand_x = rand() % (game->map_width * 4);
-		rand_y = rand() % (game->map_height * 4);
-		// TODO: can replace rand funct by Xorshift
+		rand_x = xorshift32(game->state) % (game->map_width * 4);
+		rand_y = xorshift32(game->state) % (game->map_height * 4);
 		new_node = create_node_bubble(rand_x, rand_y, 0);
 		add_node_back_bubble(&list, new_node);
 		i++;
 	}
+	free(game->state);
 	return (list);
 }
-
 void	update_anim_bubble(t_game *game)
 {
 	t_node_bubble	*current;
+	int				pos_x;
+	int				pos_y;
 
 	current = game->bubble_list;
 	while (current)
@@ -102,7 +112,9 @@ void	update_anim_bubble(t_game *game)
 			current->pos_y = game->map_height + 10;
 			current->velocity_y = 0.08;
 		}
-		draw_anim_bubble(game, &game->anim_bubble, current->pos_x, current->pos_y - current->velocity_y - 5);
+		pos_x = current->pos_x;
+		pos_y = current->pos_y - current->velocity_y - 5;
+		draw_anim_bubble(game, &game->anim_bubble, pos_x, pos_y);
 		current = current->next;
 	}
 }

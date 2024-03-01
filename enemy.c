@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 16:11:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:37:22 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,14 @@ void	find_enemy_position(t_game *game, char **map)
 		y++;
 	}
 }
-
-unsigned int    blend_colors(unsigned int a, unsigned int b, float ratio)
-{
-    const unsigned char    c1[] = {(a >> 16) & 0xFF, (a >> 8) & 0xFF, a & 0xFF};
-    const unsigned char    c2[] = {(b >> 16) & 0xFF, (b >> 8) & 0xFF, b & 0xFF};
-
-    return (((unsigned int)(c1[0] * (1 - ratio) + c2[0] * ratio) << 16)
-        | ((unsigned int)(c1[1] * (1 - ratio) + c2[1] * ratio) << 8)
-        | ((unsigned int)(c1[2] * (1 - ratio) + c2[2] * ratio)));
-}
-
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 {
-	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - 70;
-	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 - 90;
+	const int		offx = -game->player.pos_x + WIN_W / 2 - 70;
+	const int		offy = -game->player.pos_y + WIN_H / 2 - 90;
 	int				i;
 	int				j;
 	t_trgb			color;
 
-	if (!img)
-		return ;
 	i = 0;
 	while (i < img->width * SCALE)
 	{
@@ -101,6 +88,7 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 	}
 	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info_enemy);
 }
+
 t_box	enemy_box_y_off(t_game *game, float velocity_y)
 {
 	t_box	box;
@@ -112,31 +100,10 @@ t_box	enemy_box_y_off(t_game *game, float velocity_y)
 	return (box);
 }
 
-void	update_anim_enemy(t_game *game)
-{
-	t_box	player;
-	t_box	enemy;
-
-	if (game->enemy.health > 0)
-	{
-		player = player_box_y_off(game, game->player.velocity_y);
-		enemy = enemy_box_y_off(game, game->enemy.velocity_y);
-		game->draw_info_enemy.x = game->enemy.pos_x;
-		game->draw_info_enemy.y = game->enemy.pos_y;
-		if (game->player.pos_x < game->enemy.pos_x)
-			game->draw_info_enemy.flipped = true;
-		else
-			game->draw_info_enemy.flipped = false;
-		if (collide(player, enemy))
-			draw_anim_enemy(game, &game->anim_enemy_attack);
-		else
-			draw_anim_enemy(game, &game->anim_enemy_idle);
-	}
-}
 int	calcul_distance(t_enemy enemy, t_bomb bomb)
 {
 	return (sqrt((enemy.pos_x - bomb.pos_x) * (enemy.pos_x - bomb.pos_x)
-		+ (enemy.pos_y - bomb.pos_y) * (enemy.pos_y - bomb.pos_y)));
+			+ (enemy.pos_y - bomb.pos_y) * (enemy.pos_y - bomb.pos_y)));
 }
 
 void	move_enemy(t_game *game)
@@ -173,5 +140,27 @@ void	move_enemy(t_game *game)
 		game->enemy.health--;
 		game->enemy.invulnerable = true;
 		game->enemy.last_frame = getms();
+	}
+}
+
+void	update_anim_enemy(t_game *game)
+{
+	t_box	player;
+	t_box	enemy;
+
+	if (game->enemy.health > 0)
+	{
+		player = player_box_y_off(game, game->player.velocity_y);
+		enemy = enemy_box_y_off(game, game->enemy.velocity_y);
+		game->draw_info_enemy.x = game->enemy.pos_x;
+		game->draw_info_enemy.y = game->enemy.pos_y;
+		if (game->player.pos_x < game->enemy.pos_x)
+			game->draw_info_enemy.flipped = true;
+		else
+			game->draw_info_enemy.flipped = false;
+		if (collide(player, enemy))
+			draw_anim_enemy(game, &game->anim_enemy_attack);
+		else
+			draw_anim_enemy(game, &game->anim_enemy_idle);
 	}
 }

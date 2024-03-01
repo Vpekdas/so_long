@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 16:31:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:28:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,8 @@ void	find_player_position(t_game *game, char **map)
 }
 void	draw_sprite_player(t_game *game, t_img *img, t_draw_info draw_info)
 {
-	const int		offx = -game->player.pos_x + WINDOWS_WIDTH / 2 - !draw_info.flipped * 12 * SCALE;
-	const int		offy = -game->player.pos_y + WINDOWS_HEIGHT / 2 - (120) * SCALE / 2;
+	const int		offx = -game->player.pos_x + WIN_W / 2 - !draw_info.flipped * 12 * SCALE;
+	const int		offy = -game->player.pos_y + WIN_H / 2 - (120) * SCALE / 2;
 	int				i;
 	int				j;
 	unsigned int	color;

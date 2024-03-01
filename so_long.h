@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 17:19:08 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:36:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <sys/time.h>
 # include <stdbool.h>
 # include <stdio.h>
+// TODO: remove stdio
+# include <stdint.h>
 
 # ifndef BONUS
 #  define BONUS 0
@@ -31,9 +33,14 @@
 # define SCALE 2
 # define SPEED 8
 # define FRAME_INTERVAL 16
-# define WINDOWS_WIDTH 1920
-# define WINDOWS_HEIGHT 480
+# define WIN_W 1920
+# define WIN_H 480
 
+
+typedef struct s_xorshift32_state
+{
+	uint32_t	a;
+}		t_xorshift32_state;
 
 typedef enum e_sprite
 {
@@ -176,53 +183,54 @@ typedef struct s_node_bubble
 
 typedef struct s_game
 {
-	void			*mlx;
-	void			*win;
-	t_img			*screen;
-	t_img			**sprites;
-	char			*map_path;
-	t_player		player;
-	t_enemy			enemy;
-	t_bomb			bomb;
-	t_node_bubble	*bubble_list;
-	t_node			*collectible_list;
-	t_anim			anim_player_idle;
-	t_anim			anim_player_run;
-	t_anim			anim_player_jump;
-	t_anim			anim_player_fall;
-	t_anim			anim_player_hit;
-	t_anim			anim_enemy_idle;
-	t_anim			anim_enemy_attack;
-	t_anim			anim_bomb_on;
-	t_anim			collectible;
-	t_anim			anim_bubble;
-	t_anim			anim_trail;
-	bool			is_trail_drawn;
-	t_draw_info		draw_info;
-	t_draw_info		draw_info_enemy;
-	t_draw_info		draw_info_bomb;
-	t_pathfinding	**collectible_pos;
-	t_pathfinding	pathfinding;
-	t_character_map character_map;
-	t_map_copy		map_copy;
-	int				key_a;
-	int				key_w;
-	int				key_s;
-	int				key_d;
-	int				key_space;
-	int				key_esc;
-	char			**map;
-	int				map_width;
-	int				map_height;
-	int				collectibles_numbers;
-	int				bg1_scroll;
-	int				bg2_scroll;
-	int				water_scroll;
-	int				fg_scroll;
-	int				accessible_collectibles;
-	int				accessible_door;
-	int				max_jump;
-}					t_game;
+	void				*mlx;
+	void				*win;
+	t_img				*screen;
+	t_img				**sprites;
+	char				*map_path;
+	t_xorshift32_state *state;
+	t_player			player;
+	t_enemy				enemy;
+	t_bomb				bomb;
+	t_node_bubble		*bubble_list;
+	t_node				*collectible_list;
+	t_anim				anim_player_idle;
+	t_anim				anim_player_run;
+	t_anim				anim_player_jump;
+	t_anim				anim_player_fall;
+	t_anim				anim_player_hit;
+	t_anim				anim_enemy_idle;
+	t_anim				anim_enemy_attack;
+	t_anim				anim_bomb_on;
+	t_anim				collectible;
+	t_anim				anim_bubble;
+	t_anim				anim_trail;
+	bool				is_trail_drawn;
+	t_draw_info			draw_info;
+	t_draw_info			draw_info_enemy;
+	t_draw_info			draw_info_bomb;
+	t_pathfinding		**collectible_pos;
+	t_pathfinding		pathfinding;
+	t_character_map 	character_map;
+	t_map_copy			map_copy;
+	int					key_a;
+	int					key_w;
+	int					key_s;
+	int					key_d;
+	int					key_space;
+	int					key_esc;
+	char				**map;
+	int					map_width;
+	int					map_height;
+	int					collectibles_numbers;
+	int					bg1_scroll;
+	int					bg2_scroll;
+	int					water_scroll;
+	int					fg_scroll;
+	int					accessible_collectibles;
+	int					accessible_door;
+	int					max_jump;
+}						t_game;
 
 t_box		player_box_x_off(t_game *game, float vx);
 t_box		player_box_y_off(t_game *game, float vy);
@@ -293,4 +301,11 @@ bool	is_map_finishable(t_game *game);
 void	free_list_collectible(t_node *collectible);
 bool	check_all_sprite_load(t_game *game);
 bool	print_error(char *str);
+uint32_t	xorshift32(struct s_xorshift32_state *state);
+void	add_node_back_bubble(t_node_bubble **lst, t_node_bubble *new);
+t_node_bubble	*create_node_bubble(int x, int y, float velocity_y);
+void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y);
+void	draw_anim_enemy(t_game *game, t_anim *anim);
+unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio);
+void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info);
 #endif

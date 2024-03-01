@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animation.c                                        :+:      :+:    :+:   */
+/*   rand.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 17:20:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:35:03 by vopekdas         ###   ########.fr       */
+/*   Created: 2024/03/01 17:45:42 by vopekdas          #+#    #+#             */
+/*   Updated: 2024/03/01 17:55:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-suseconds_t	getms(void)
+uint32_t	xorshift32(t_xorshift32_state *state)
 {
-	struct timeval	tv;
+	uint32_t	x;
 
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	x = state->a;
+	x ^= x << 13;
+	x ^= x >> 17;
+	x ^= x << 5;
+	return (state->a = x);
 }

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:31:21 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 16:32:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:35:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	draw_background_sprite(t_game *game, t_img *img, int scroll)
 	unsigned int	color;
 
 	i = 0;
-	if (!img)
-		return ;
-	while (i < WINDOWS_WIDTH)
+	while (i < WIN_W)
 	{
 		j = -1;
 		while (++j < img->height * 3)
@@ -29,7 +27,7 @@ void	draw_background_sprite(t_game *game, t_img *img, int scroll)
 			if (j < 0 || j >= game->screen->height || i + scroll + 4000 < 0
 				|| i >= game->screen->width)
 				continue ;
-			color = ((int *)img->data)[(int)(j / 3) * img->width
+			color = ((int *)img->data)[(int)(j / 3) *img->width
 				+ (int)(((i + scroll + 4000) % (img->width * 3)) / 3)];
 			if (color == 0xFF000000)
 				continue ;

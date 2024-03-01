@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/02/28 13:47:54 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/01 18:34:34 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ SRCS = animation.c\
 		box.c\
 		bubble.c\
 		collectibles.c\
+		collectible_list.c\
 		collision.c\
+		colors.c\
 		draw_sprite.c\
 		enemy.c\
 		exit_chest.c\
@@ -51,8 +53,10 @@ SRCS = animation.c\
 		player.c\
 		pathfinding.c\
 		print_tile.c\
+		rand.c\
 		trail.c\
 		update_game.c\
+		vignette.c\
 
 OBJS = $(SRCS:.c=.o)
 
