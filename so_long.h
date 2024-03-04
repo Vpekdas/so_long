@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:51:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:42:28 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define FRAME_INTERVAL 16
 # define WIN_W 1920
 # define WIN_H 480
-
 
 typedef struct s_xorshift32_state
 {
@@ -128,13 +127,6 @@ typedef struct s_box
 	int	height;
 }		t_box;
 
-typedef struct s_draw_info
-{
-	int		x;
-	int		y;
-	bool	flipped;
-}			t_draw_info;
-
 typedef struct s_trgb
 {
 	unsigned char	b;
@@ -142,6 +134,15 @@ typedef struct s_trgb
 	unsigned char	r;
 	unsigned char	t;
 }	t_trgb;
+
+typedef struct s_draw_info
+{
+	int		x;
+	int		y;
+	bool	flipped;
+	t_trgb	color;
+}			t_draw_info;
+
 
 typedef struct s_pathfinding
 {
@@ -194,17 +195,17 @@ typedef struct s_game
 	t_bomb				bomb;
 	t_node_bubble		*bubble_list;
 	t_node				*collectible_list;
-	t_anim				anim_player_idle;
-	t_anim				anim_player_run;
-	t_anim				anim_player_jump;
-	t_anim				anim_player_fall;
-	t_anim				anim_player_hit;
-	t_anim				anim_enemy_idle;
-	t_anim				anim_enemy_attack;
-	t_anim				anim_bomb_on;
+	t_anim				player_idle;
+	t_anim				player_run;
+	t_anim				player_jump;
+	t_anim				player_fall;
+	t_anim				player_hit;
+	t_anim				enemy_idle;
+	t_anim				enemy_attack;
+	t_anim				bomb_on;
 	t_anim				collectible;
-	t_anim				anim_bubble;
-	t_anim				anim_trail;
+	t_anim				bubble;
+	t_anim				trail;
 	bool				is_trail_drawn;
 	t_draw_info			draw_info;
 	t_draw_info			draw_info_enemy;
@@ -310,4 +311,23 @@ unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio);
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info);
 void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y);
 int	calcul_distance(t_enemy enemy, t_bomb bomb);
+bool	check_over_scale(t_game *game, t_draw_info draw_info, int i, int j);
+t_trgb	draw_not_flip(t_img *img, int i, int j);
+t_trgb	draw_flip(t_img *img, int i, int j);
+int	blended_color_enemy(t_game *game, t_draw_info draw_info, int i, int j);
+t_img	*load_sprite(void *img, char *filename);
+bool	check_init_successfull(t_anim *anim);
+bool	check_all_sprite_load(t_game *game);
+void	init_collectible(t_game *g);
+void	init_enemy_idle_two(t_game *g);
+void	init_enemy_idle(t_game *g);
+void	init_enemy_attack(t_game *g);
+void	init_bubble(t_game *g);
+void	init_trail(t_game *g);
+void	init_player_idle_two(t_game *g);
+void	init_player_idle(t_game *g);
+void	init_player_run(t_game *g);
+void	init_player_jump(t_game *g);
+void	init_player_fall(t_game *g);
+void	init_player_hit(t_game *g);
 #endif

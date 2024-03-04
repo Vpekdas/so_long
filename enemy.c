@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:51:46 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:22:17 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ void	update_anim_enemy(t_game *game)
 		else
 			game->draw_info_enemy.flipped = false;
 		if (collide(player, enemy))
-			draw_anim_enemy(game, &game->anim_enemy_attack);
+			draw_anim_enemy(game, &game->enemy_attack);
 		else
-			draw_anim_enemy(game, &game->anim_enemy_idle);
+			draw_anim_enemy(game, &game->enemy_idle);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:09:25 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:36:55 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:26:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	update_anim_trail(t_game *game)
 	game->draw_info.y += 48;
 	if (collide_with_map(player, game) && !game->is_trail_drawn)
 	{
-		draw_anim_trail(game, &game->anim_trail);
+		draw_anim_trail(game, &game->trail);
 		game->is_trail_drawn = true;
 	}
 }

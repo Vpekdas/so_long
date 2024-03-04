@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:52:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:20:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void	free_all_sprites(t_game *game)
 	int	i;
 
 	i = 0;
-	free_anim_sprite(&game->anim_player_idle, game);
-	free_anim_sprite(&game->anim_player_run, game);
-	free_anim_sprite(&game->anim_player_jump, game);
-	free_anim_sprite(&game->anim_player_fall, game);
-	free_anim_sprite(&game->anim_player_hit, game);
+	free_anim_sprite(&game->player_idle, game);
+	free_anim_sprite(&game->player_run, game);
+	free_anim_sprite(&game->player_jump, game);
+	free_anim_sprite(&game->player_fall, game);
+	free_anim_sprite(&game->player_hit, game);
 	free_anim_sprite(&game->collectible, game);
-	free_anim_sprite(&game->anim_enemy_idle, game);
-	free_anim_sprite(&game->anim_enemy_attack, game);
-	free_anim_sprite(&game->anim_bubble, game);
-	free_anim_sprite(&game->anim_trail, game);
+	free_anim_sprite(&game->enemy_idle, game);
+	free_anim_sprite(&game->enemy_attack, game);
+	free_anim_sprite(&game->bubble, game);
+	free_anim_sprite(&game->trail, game);
 	while (i < NUM_SPRITES)
 	{
 		mlx_destroy_image(game->mlx, game->sprites[i]);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:43:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:21:38 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,21 @@ void	update_anim_player(t_game *game)
 	if (game->key_d)
 	{
 		game->draw_info.flipped = false;
-		draw_anim_player(game, &game->anim_player_run);
+		draw_anim_player(game, &game->player_run);
 	}
 	else if (game->key_a)
 	{
 		game->draw_info.flipped = true;
-		draw_anim_player(game, &game->anim_player_run);
+		draw_anim_player(game, &game->player_run);
 	}
 	else if (game->key_w && !collide_with_map(player, game))
-		draw_anim_player(game, &game->anim_player_jump);
+		draw_anim_player(game, &game->player_jump);
 	else if (game->key_s && !collide_with_map(player, game))
-		draw_anim_player(game, &game->anim_player_fall);
+		draw_anim_player(game, &game->player_fall);
 	else if (collide(enemy, player))
-		draw_anim_player(game, &game->anim_player_hit);
+		draw_anim_player(game, &game->player_hit);
 	else
-		draw_anim_player(game, &game->anim_player_idle);
+		draw_anim_player(game, &game->player_idle);
 }
 
 void	adjust_velocity_x(t_game *game, float vx)

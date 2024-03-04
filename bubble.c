@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:44:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:22:47 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	update_anim_bubble(t_game *game)
 		}
 		pos_x = current->pos_x;
 		pos_y = current->pos_y - current->velocity_y - 5;
-		draw_anim_bubble(game, &game->anim_bubble, pos_x, pos_y);
+		draw_anim_bubble(game, &game->bubble, pos_x, pos_y);
 		current = current->next;
 	}
 }
