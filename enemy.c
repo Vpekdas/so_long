@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:22:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:32:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 
 void	adjust_enemy_pos(t_game *game)
 {
-	if (game->enemy.pos_x > game->player.pos_x)
+	if (game->enemy.pos_x > game->play.x)
 		game->enemy.pos_x -= SPEED / 2;
-	else if (game->enemy.pos_x < game->player.pos_x)
+	else if (game->enemy.pos_x < game->play.x)
 		game->enemy.pos_x += SPEED / 2;
-	if (game->enemy.pos_y + 48 > game->player.pos_y)
+	if (game->enemy.pos_y + 48 > game->play.y)
 		game->enemy.pos_y -= SPEED / 2;
-	else if (game->enemy.pos_y < game->player.pos_y)
+	else if (game->enemy.pos_y < game->play.y)
 		game->enemy.pos_y += SPEED / 2;
 	if (game->enemy.pos_y < 0)
-		game->enemy.pos_y = game->player.pos_y;
+		game->enemy.pos_y = game->play.y;
 }
 
 void	move_enemy(t_game *game)
@@ -79,7 +79,7 @@ void	move_enemy(t_game *game)
 	t_box	player;
 
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
-	player = player_box_y_off(game, game->player.velocity_y);
+	player = player_box_y_off(game, game->play.velocity_y);
 	bomb = bomb_box(game);
 	if (game->enemy.health == 0 || game->enemy.number == 0)
 	{
@@ -108,14 +108,14 @@ void	update_anim_enemy(t_game *game)
 
 	if (game->enemy.health > 0)
 	{
-		player = player_box_y_off(game, game->player.velocity_y);
+		player = player_box_y_off(game, game->play.velocity_y);
 		enemy = enemy_box_y_off(game, game->enemy.velocity_y);
 		game->draw_info_enemy.x = game->enemy.pos_x;
 		game->draw_info_enemy.y = game->enemy.pos_y;
-		if (game->player.pos_x < game->enemy.pos_x)
-			game->draw_info_enemy.flipped = true;
+		if (game->play.x < game->enemy.pos_x)
+			game->draw_info_enemy.flip = true;
 		else
-			game->draw_info_enemy.flipped = false;
+			game->draw_info_enemy.flip = false;
 		if (collide(player, enemy))
 			draw_anim_enemy(game, &game->enemy_attack);
 		else

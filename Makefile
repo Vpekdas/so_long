@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/04 15:26:43 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/04 17:46:06 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS = animation.c\
 	colors.c\
 	distance.c\
 	draw_sprite.c\
-	draw_sprite_utils.c\
+	draw_sprite_enemy_utils.c\
+	draw_sprite_player_utils.c\
 	enemy_box.c\
 	enemy.c\
 	exit_chest.c\
@@ -62,6 +63,7 @@ SRCS = animation.c\
 	overall_free_functions.c\
 	pathfinding.c\
 	player_box.c\
+	player_utils.c\
 	player.c\
 	print_tile.c\
 	rand.c\

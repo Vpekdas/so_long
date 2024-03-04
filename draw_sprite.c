@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:09:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:44:50 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_sprite(t_game *game, t_img *img, int x, int y)
 {
-	const int		offx = -game->player.pos_x + WIN_W / 2 - 64 * SCALE / 2;
-	const int		offy = -game->player.pos_y + WIN_H / 2 - 64 * SCALE / 2;
+	const int		offx = -game->play.x + WIN_W / 2 - 64 * SCALE / 2;
+	const int		offy = -game->play.y + WIN_H / 2 - 64 * SCALE / 2;
 	int				i;
 	int				j;
 	unsigned int	color;
@@ -67,8 +67,8 @@ void	draw_background_sprite(t_game *game, t_img *img, int scroll)
 
 void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 {
-	const int		offx = -game->player.pos_x + WIN_W / 2 - 70;
-	const int		offy = -game->player.pos_y + WIN_H / 2 - 90;
+	const int		offx = -game->play.x + WIN_W / 2 - 70;
+	const int		offy = -game->play.y + WIN_H / 2 - 90;
 	int				i;
 	int				j;
 
@@ -80,7 +80,7 @@ void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 		{
 			if (check_over_scale(game, draw_info, i, j))
 				continue ;
-			if (!draw_info.flipped)
+			if (!draw_info.flip)
 				game->draw_info.color = draw_not_flip(img, i, j);
 			else
 				game->draw_info.color = draw_flip(img, i, j);
@@ -90,6 +90,35 @@ void	draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw_info)
 				*game->screen->width + (draw_info.x + i + offx)]
 				= blended_color_enemy(game, draw_info, i, j);
 		}
+	}
+}
+
+void	draw_sprite_player(t_game *game, t_img *img, t_draw_info draw_info)
+{
+	const int		offx = -game->play.x + WIN_W / 2 - !draw_info.flip * 12 * 2;
+	const int		offy = -game->play.y + WIN_H / 2 - (120) * SCALE / 2;
+	int				i;
+	int				j;
+	unsigned int	color;
+
+	i = 0;
+	while (i < img->width * SCALE)
+	{
+		j = -1;
+		while (++j < img->height * SCALE)
+		{
+			if (check_over_scale(game, draw_info, i, j))
+				continue ;
+			if (!draw_info.flip)
+				color = draw_not_flip_player(img, i, j);
+			else
+				color = draw_flip_player(img, i, j);
+			if (color == 0xFF000000)
+				continue ;
+			((int *)game->screen->data)[(draw_info.y + j + offy)
+				* game->screen->width + (draw_info.x + i + offx)] = color;
+		}
+		i++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:21:40 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:00:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_anim
 
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	int		x;
+	int		y;
 	int		width;
 	int		height;
 	int		offset_x;
@@ -135,11 +135,19 @@ typedef struct s_trgb
 	unsigned char	t;
 }	t_trgb;
 
+typedef struct s_vignette
+{
+	int 	si;
+	int 	sj;
+	float 	ri;
+	float 	rj;
+}			t_vignette;
+
 typedef struct s_draw_info
 {
 	int		x;
 	int		y;
-	bool	flipped;
+	bool	flip;
 	t_trgb	color;
 }			t_draw_info;
 
@@ -190,7 +198,8 @@ typedef struct s_game
 	t_img				**sprites;
 	char				*map_path;
 	t_xorshift32_state *state;
-	t_player			player;
+	t_vignette			vignette;
+	t_player			play;
 	t_enemy				enemy;
 	t_bomb				bomb;
 	t_node_bubble		*bubble_list;
@@ -339,4 +348,7 @@ bool	check_first_column(t_game *game);
 bool	check_last_column(t_game *game);
 bool	print_error(char *str);
 bool	is_valid_character(char character);
+unsigned int	draw_not_flip_player(t_img *img, int i, int j);
+unsigned int	draw_flip_player(t_img *img, int i, int j);
+void	find_player_position(t_game *game, char **map);
 #endif
