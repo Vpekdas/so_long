@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 18:28:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:33:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	close_game(t_game *game)
 {
@@ -36,6 +35,17 @@ char	**copy_map(t_game *game)
 	return (copy_map);
 }
 
+int	init_mlx_settings(t_game *game, char **av)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (-1);
+	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "so_long");
+	game->screen = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	game->map_path = av[1];
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game		game;
@@ -46,51 +56,18 @@ int	main(int ac, char **av)
 		return (-1);
 	}
 	game = (t_game){0};
-	game.mlx = mlx_init();
-	if (!game.mlx)
+	if (init_mlx_settings(&game, av) == -1)
 		return (-1);
-	game.win = mlx_new_window(game.mlx, WIN_W, WIN_H, "so_long");
-	game.screen = mlx_new_image(game.mlx, WIN_W, WIN_H);
-	game.map_path = av[1];
 	init_player_and_map(&game);
 	if (check_map_character_overall(&game) == false)
-	{
-		free_map(&game);
-		free_copy_map(&game);
-		mlx_destroy_window(game.mlx, game.win);
-		mlx_destroy_image(game.mlx, game.screen);
-		mlx_destroy_display(game.mlx);
-		free(game.mlx);
-		free_list_bubble(game.bubble_list);
-		free_list_collectible(game.collectible_list);
-		return (1);
-	}
+		return (free_if_error_map(&game));
 	init_sprite(&game);
 	if (check_all_sprite_load(&game) == false)
-	{
-		free_map(&game);
-		free_copy_map(&game);
-		free_all_sprites(&game);
-		free_list_bubble(game.bubble_list);
-		free_list_collectible(game.collectible_list);
-		mlx_destroy_window(game.mlx, game.win);
-		mlx_destroy_image(game.mlx, game.screen);
-		mlx_destroy_display(game.mlx);
-		free(game.mlx);
-		return (1);
-	}
+		return (free_if_error_sprites(&game));
 	mlx_loop_hook(game.mlx, update, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, key_pressed, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_released, &game);
 	mlx_hook(game.win, DestroyNotify, 0, close_game, &game);
 	mlx_loop(game.mlx);
-	free_copy_map(&game);
-	free_map(&game);
-	free_all_sprites(&game);
-	free_list_bubble(game.bubble_list);
-	free_list_collectible(game.collectible_list);
-	mlx_destroy_window(game.mlx, game.win);
-	mlx_destroy_image(game.mlx, game.screen);
-	mlx_destroy_display(game.mlx);
-	free(game.mlx);
+	free_if_no_error(&game);
 }

@@ -6,10 +6,9 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:41:03 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "so_long.h"
 
@@ -33,7 +32,6 @@ const char	*g_sprite_paths[NUM_SPRITES] = {
 	"textures/Chest/chest_open.xpm",
 	"textures/Bomb/1.xpm"
 };
-
 
 void	init_tiles(t_game *game)
 {

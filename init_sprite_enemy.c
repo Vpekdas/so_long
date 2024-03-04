@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:38:15 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:38:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:03:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_enemy_idle_two(t_game *g)
 	g->enemy_idle.img[31] = load_sprite(g->mlx, "textures/Enemy/Idle/32.xpm");
 }
 
-
 void	init_enemy_idle(t_game *g)
 {
 	g->enemy_idle.frame_count = 32;
@@ -60,7 +59,7 @@ void	init_enemy_idle(t_game *g)
 
 void	init_enemy_attack(t_game *g)
 {
-	g->enemy_attack.frame_count = 7; 
+	g->enemy_attack.frame_count = 7;
 	g->enemy_attack.img = malloc(sizeof(t_img *) * 7);
 	if (!g->enemy_attack.img)
 		return ;

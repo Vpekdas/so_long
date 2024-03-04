@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/04 14:43:33 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/04 15:26:43 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,39 +32,44 @@ FT_PRINTF_PATH = ft_printf
 MINILIBX_PATH = minilibx-linux
 
 SRCS = animation.c\
-		background.c\
-		bomb.c\
-		bubble.c\
-		collectible_list.c\
-		collectibles.c\
-		collision.c\
-		colors.c\
-		distance.c\
-		draw_sprite.c\
-		draw_sprite_utils.c\
-		enemy_box.c\
-		enemy.c\
-		exit_chest.c\
-		free_utils.c\
-		init_game.c\
-		init_sprite_collectible.c\
-		init_sprite_enemy.c\
-		init_sprite_particles.c\
-		init_sprite_player.c\
-		init_sprite_tiles.c\
-		keys.c\
-		main.c\
-		map.c\
-		map_errors.c\
-		pathfinding.c\
-		player_box.c\
-		player.c\
-		print_tile.c\
-		rand.c\
-		sprites_check.c\
-		trail.c\
-		update_game.c\
-		vignette.c\
+	background.c\
+	bomb.c\
+	bubble.c\
+	check_line_map.c\
+	collectible_list.c\
+	collectibles.c\
+	collision.c\
+	colors.c\
+	distance.c\
+	draw_sprite.c\
+	draw_sprite_utils.c\
+	enemy_box.c\
+	enemy.c\
+	exit_chest.c\
+	free_utils.c\
+	init_game.c\
+	init_sprite_collectible.c\
+	init_sprite_enemy.c\
+	init_sprite_particles.c\
+	init_sprite_player.c\
+	init_sprite_player_two.c\
+	init_sprite_tiles.c\
+	keys.c\
+	main.c\
+	map.c\
+	map_errors.c\
+	map_errors_utils.c\
+	overall_free_functions.c\
+	pathfinding.c\
+	player_box.c\
+	player.c\
+	print_tile.c\
+	rand.c\
+	sprites_check.c\
+	trail.c\
+	update_game.c\
+	vignette.c\
+
 
 OBJS = $(SRCS:.c=.o)
 

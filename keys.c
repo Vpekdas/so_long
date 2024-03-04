@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/29 16:13:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:07:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,22 @@ int	key_released(int keycode, t_game *game)
 	return (0);
 }
 
+void	detect_key_two(t_game *game)
+{
+	if (game->key_a)
+	{
+		game->player.velocity_x -= SPEED;
+		game->is_trail_drawn = false;
+	}
+	if (game->key_d)
+	{
+		game->player.velocity_x += SPEED;
+		game->is_trail_drawn = false;
+	}
+	if (game->key_space)
+		shoot_bomb(game);
+}
+
 void	detect_key(t_game *game)
 {
 	t_box	box;
@@ -64,18 +80,7 @@ void	detect_key(t_game *game)
 	if (game->key_s && !collide_with_map(box, game))
 	{
 		game->player.velocity_y += SPEED;
-		game->is_trail_drawn = false;	
-	}
-	if (game->key_a)
-	{
-		game->player.velocity_x -= SPEED;
-		game->is_trail_drawn = false;	
-	}
-	if (game->key_d)
-	{
-		game->player.velocity_x += SPEED;
 		game->is_trail_drawn = false;
 	}
-	if (game->key_space)
-		shoot_bomb(game);
+	detect_key_two(game);
 }

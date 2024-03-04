@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/01 17:19:29 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:21:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,66 +29,6 @@ bool	is_map_rectangular(t_game *game)
 			ft_putstr_fd("Error\n the map is not rectangular\n", 2);
 			return (false);
 		}
-	}
-	return (true);
-}
-
-bool	check_first_line(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->map_copy.map_width)
-	{
-		if (game->map_copy.map[0][i] != '1')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	check_last_line(t_game *game)
-{
-	int	i;
-	int	map_height;
-
-	i = 0;
-	map_height = game->map_copy.map_height;
-	while (i < game->map_copy.map_width)
-	{
-		if (game->map_copy.map[map_height - 1][i] != '1')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	check_first_column(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->map_copy.map_height)
-	{
-		if (game->map_copy.map[i][0] != '1')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	check_last_column(t_game *game)
-{
-	int	i;
-	int	map_width;
-
-	i = 0;
-	map_width = game->map_copy.map_width;
-	while (i < game->map_copy.map_height)
-	{
-		if (game->map_copy.map[i][map_width - 1] != '1')
-			return (false);
-		i++;
 	}
 	return (true);
 }
@@ -117,24 +57,6 @@ bool	is_map_surrounder_walls(t_game *game)
 	}
 	else
 		return (true);
-}
-
-bool	is_valid_character(char character)
-{
-	if (character == '0')
-		return (true);
-	else if (character == '1')
-		return (true);
-	else if (character == 'C')
-		return (true);
-	else if (character == 'E')
-		return (true);
-	else if (character == 'P')
-		return (true);
-	else if (character == 'G' && BONUS)
-		return (true);
-	else
-		return (false);
 }
 
 bool	check_map_character(t_game *game)
@@ -188,12 +110,6 @@ bool	check_character_number(t_game *game)
 		i++;
 	}
 	return (true);
-}
-
-bool	print_error(char *str)
-{
-	ft_putstr_fd(str, 2);
-	return (false);
 }
 
 bool	check_map_character_overall(t_game *game)

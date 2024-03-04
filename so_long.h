@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:42:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:21:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ void	update_anim_enemy(t_game *game);
 void	move_enemy(t_game *game);
 t_box	enemy_box_y_off(t_game *game, float velocity_y);
 int	count_map_height(char *path);
-void	pathfinding(int x, int y, char **map, int max_jump, t_game *game, int depth);
+void	pathfinding(int x, int y, int max_jump, t_game *game);
 bool	is_map_rectangular(t_game *game);
 bool	is_map_surrounder_walls(t_game *game);
 void	free_all_sprites(t_game *game);
@@ -330,4 +330,13 @@ void	init_player_run(t_game *g);
 void	init_player_jump(t_game *g);
 void	init_player_fall(t_game *g);
 void	init_player_hit(t_game *g);
+int	free_if_error_map(t_game *game);
+int	free_if_error_sprites(t_game *game);
+void	free_if_no_error(t_game *game);
+bool	check_first_line(t_game *game);
+bool	check_last_line(t_game *game);
+bool	check_first_column(t_game *game);
+bool	check_last_column(t_game *game);
+bool	print_error(char *str);
+bool	is_valid_character(char character);
 #endif
