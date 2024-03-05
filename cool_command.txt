@@ -1,2 +1,0 @@
-for file in *.png; do convert $file ${file%.png}.xpm; done
-ls | grep '\.c$'
