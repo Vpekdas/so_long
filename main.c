@@ -6,10 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:46:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:49:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Libft/libft.h"
 #include "so_long.h"
 
 int	close_game(t_game *game)
@@ -66,7 +67,7 @@ int	main(int ac, char **av)
 	if (init_mlx_settings(&game, av) == -1)
 		return (-1);
 	if (init_player_and_map(&game) == -1)
-		return (-1);
+		return (free_if_error_init_map_player(&game));
 	if (check_map_character_overall(&game) == false)
 		return (free_if_error_map(&game));
 	init_sprite(&game);

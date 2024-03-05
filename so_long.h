@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:41:15 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:49:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,4 +353,6 @@ unsigned int	draw_not_flip_player(t_img *img, int i, int j);
 unsigned int	draw_flip_player(t_img *img, int i, int j);
 void	find_player_position(t_game *game, char **map);
 void	display_hud(t_game *g);
+int	free_if_error_init_map_player(t_game *game);
+bool	is_map_ber(char *str);
 #endif

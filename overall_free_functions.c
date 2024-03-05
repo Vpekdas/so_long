@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:16:37 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 15:22:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:42:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ void	free_if_no_error(t_game *game)
 	mlx_destroy_image(game->mlx, game->screen);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
+}
+
+int	free_if_error_init_map_player(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->screen);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	ft_putstr_fd("Error\nthere is a problem  when init player/map\n", 2);
+	return (-1);
 }

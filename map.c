@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:55:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:50:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	**parse_map(t_game *game, char *path)
 	int		i;
 
 	i = 0;
+	if (is_map_ber(path) == false)
+		return (NULL);
 	fd = open(path, O_RDONLY | O_DIRECTORY);
 	if (fd == -1)
 		fd = open(path, O_RDONLY);
