@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 14:49:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:52:48 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
 #include "so_long.h"
 
 int	close_game(t_game *game)

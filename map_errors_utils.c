@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 15:08:06 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:53:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
 #include "so_long.h"
 
 bool	print_error(char *str)

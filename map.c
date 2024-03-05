@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 15:08:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:53:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdbool.h>
 
 char	*gnl(char **line, int fd)
 {
