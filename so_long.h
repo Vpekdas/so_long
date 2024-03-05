@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 15:12:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:03:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef enum e_sprite
 {
 	TL,
 	TOP,
+	TOP_LEFT,
 	TOP_RIGHT,
 	LEFT,
 	MID,
@@ -351,4 +352,5 @@ void			find_player_position(t_game *game, char **map);
 void			display_hud(t_game *g);
 int				free_if_error_init_map_player(t_game *game);
 bool			is_map_ber(char *str);
+t_box			player_box_x_y_off_below(t_game	*game);
 #endif

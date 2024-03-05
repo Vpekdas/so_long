@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:18:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:03:03 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static const char	*g_sprite_paths[NUM_SPRITES] = {
 	"textures/Tiles/tl.xpm",
 	"textures/Tiles/top.xpm",
+	"textures/Tiles/top_left.xpm",
 	"textures/Tiles/top_right.xpm",
 	"textures/Tiles/left.xpm",
 	"textures/Tiles/mid.xpm",

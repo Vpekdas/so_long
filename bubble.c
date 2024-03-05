@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:22:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:47:07 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_node_bubble	*create_list_bubble(t_game *game)
 	if (!game->state)
 		return (NULL);
 	game->state->a = getms();
-	while (i < 100)
+	while (i < game->map_width * 5)
 	{
 		rand_x = xorshift32(game->state) % (game->map_width * 4);
 		rand_y = xorshift32(game->state) % (game->map_height * 4);
