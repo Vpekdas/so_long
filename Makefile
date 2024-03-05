@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/04 17:46:06 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/05 13:26:58 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS = animation.c\
 	enemy.c\
 	exit_chest.c\
 	free_utils.c\
+	hud.c\
 	init_game.c\
 	init_sprite_collectible.c\
 	init_sprite_enemy.c\

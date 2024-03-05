@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 15:15:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:18:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-const char	*g_sprite_paths[NUM_SPRITES] = {
+static const char	*g_sprite_paths[NUM_SPRITES] = {
 	"textures/Tiles/tl.xpm",
 	"textures/Tiles/top.xpm",
 	"textures/Tiles/top_right.xpm",
@@ -24,10 +24,10 @@ const char	*g_sprite_paths[NUM_SPRITES] = {
 	"textures/Tiles/bot_right.xpm",
 	"textures/Tiles/mid_tl.xpm",
 	"textures/Tiles/bot_tl.xpm",
-	"textures/Tiles/png/rocksfront.xpm",
-	"textures/Tiles/png/rocksback.xpm",
-	"textures/Tiles/png/water.xpm",
-	"textures/Tiles/png/foreground.xpm",
+	"textures/Tiles/back/rocksfront.xpm",
+	"textures/Tiles/back/rocksback.xpm",
+	"textures/Tiles/back/water.xpm",
+	"textures/Tiles/back/foreground.xpm",
 	"textures/Chest/chest.xpm",
 	"textures/Chest/chest_open.xpm",
 	"textures/Bomb/1.xpm"

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:00:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:30:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ typedef struct s_game
 	t_player			play;
 	t_enemy				enemy;
 	t_bomb				bomb;
+	int					move_count;
 	t_node_bubble		*bubble_list;
 	t_node				*collectible_list;
 	t_anim				player_idle;
@@ -351,4 +352,5 @@ bool	is_valid_character(char character);
 unsigned int	draw_not_flip_player(t_img *img, int i, int j);
 unsigned int	draw_flip_player(t_img *img, int i, int j);
 void	find_player_position(t_game *game, char **map);
+void	display_hud(t_game *g);
 #endif

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:51:50 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:30:50 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int	update(t_game *game)
 	update_animation(game);
 	update_particle_and_background(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
+	display_hud(game);
 	return (0);
 }
