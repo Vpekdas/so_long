@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 19:17:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:22:35 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	jmp(int x, int y, int jump, t_game *game)
 	pathfinding(x + 1, y, jump - 1, game);
 	pathfinding(x - 1, y - 1, jump - 1, game);
 	pathfinding(x - 1, y, jump - 1, game);
-
 }
 
 void	fall(int x, int y, int jump, t_game *game)
@@ -44,7 +43,8 @@ void	fall(int x, int y, int jump, t_game *game)
 	}
 	else
 	{
-		if (game->map_copy.map[y][x - 2] != '1' && game->map_copy.map[y][x + 2] != '1')
+		if (game->map_copy.map[y][x - 2] != '1'
+			&& game->map_copy.map[y][x + 2] != '1')
 		{
 			pathfinding(x + 2, y + 1, 0, game);
 			pathfinding(x - 2, y + 1, 0, game);
