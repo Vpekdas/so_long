@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 15:33:24 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:46:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,16 @@ int	close_game(t_game *game)
 char	**copy_map(t_game *game)
 {
 	char	**copy_map;
+	int		map_height;
 	int		i;
 
-	copy_map = malloc(sizeof(char *) * (count_map_height(game->map_path) + 1));
+	map_height = count_map_height(game->map_path);
+	if (map_height == -1)
+	{
+		ft_putstr_fd("Error\nthere was a problem when loading the map", 2);
+		return (NULL);
+	}
+	copy_map = malloc(sizeof(char *) * (map_height + 1));
 	if (!copy_map)
 		return (NULL);
 	i = 0;
@@ -58,7 +65,8 @@ int	main(int ac, char **av)
 	game = (t_game){0};
 	if (init_mlx_settings(&game, av) == -1)
 		return (-1);
-	init_player_and_map(&game);
+	if (init_player_and_map(&game) == -1)
+		return (-1);
 	if (check_map_character_overall(&game) == false)
 		return (free_if_error_map(&game));
 	init_sprite(&game);

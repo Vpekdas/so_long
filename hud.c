@@ -6,11 +6,10 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:20:06 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:35:55 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:38:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
 #include "so_long.h"
 
 void	display_hud(t_game *g)

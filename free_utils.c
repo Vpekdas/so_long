@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 14:20:30 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:45:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	free_copy_map(t_game *game)
 {
 	int	i;
 
-	if (!game)
-		return ;
 	i = 0;
 	while (i < game->map_copy.map_height)
 	{

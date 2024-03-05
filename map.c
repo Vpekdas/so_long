@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/04 15:18:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:55:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ int	count_map_height(char *path)
 	int		map_height;
 
 	map_height = 0;
-	fd = open(path, O_RDONLY);
+	fd = open(path, O_RDONLY | O_DIRECTORY);
+	if (fd == -1)
+		fd = open(path, O_RDONLY);
+	else
+		return (-1);
+	if (fd == -1)
+		return (-1);
 	while (gnl(&line, fd))
 	{
 		map_height++;
@@ -43,10 +49,16 @@ char	**parse_map(t_game *game, char *path)
 	int		i;
 
 	i = 0;
+	fd = open(path, O_RDONLY | O_DIRECTORY);
+	if (fd == -1)
+		fd = open(path, O_RDONLY);
+	else
+		return (NULL);
+	if (fd == -1)
+		return (NULL);
 	map = malloc(sizeof(char *) * (count_map_height(path) + 1));
 	if (!map)
 		return (NULL);
-	fd = open(path, O_RDONLY);
 	while (gnl(&line, fd))
 	{
 		map[i] = line;

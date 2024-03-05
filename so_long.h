@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:30:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:41:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ int			key_pressed(int keycode, t_game *game);
 int			key_released(int keycode, t_game *game);
 void		detect_key(t_game *game);
 int			close_game(t_game *game);
-void		init_player_and_map(t_game *game);
+int		init_player_and_map(t_game *game);
 char		*gnl(char **line, int fd);
 char		**parse_map(t_game *game, char *path);
 int			print_map(char **map, t_game *game);
