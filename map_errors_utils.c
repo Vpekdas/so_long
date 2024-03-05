@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 14:51:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:08:06 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool	is_valid_character(char character)
 	else
 		return (false);
 }
+
 bool	is_map_ber(char *str)
 {
 	int	len;

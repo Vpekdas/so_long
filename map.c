@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 14:50:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:08:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdbool.h>
 
 char	*gnl(char **line, int fd)
 {
@@ -41,6 +42,23 @@ int	count_map_height(char *path)
 	return (map_height);
 }
 
+bool	check_fd(char *path, int *fd)
+{
+	*fd = open(path, O_RDONLY | O_DIRECTORY);
+	if (*fd == -1)
+	{
+		*fd = open(path, O_RDONLY);
+		if (*fd == -1)
+			return (false);
+		return (true);
+	}
+	else
+	{
+		close(*fd);
+		return (false);
+	}
+}
+
 char	**parse_map(t_game *game, char *path)
 {
 	char	**map;
@@ -51,12 +69,7 @@ char	**parse_map(t_game *game, char *path)
 	i = 0;
 	if (is_map_ber(path) == false)
 		return (NULL);
-	fd = open(path, O_RDONLY | O_DIRECTORY);
-	if (fd == -1)
-		fd = open(path, O_RDONLY);
-	else
-		return (NULL);
-	if (fd == -1)
+	if (check_fd(path, &fd) == false)
 		return (NULL);
 	map = malloc(sizeof(char *) * (count_map_height(path) + 1));
 	if (!map)
