@@ -6,11 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
 bool	print_error(char *str)
 {
 	ft_putstr_fd(str, 2);

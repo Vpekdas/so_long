@@ -6,11 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:06:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
 
 t_node_bubble	*create_node_bubble(int x, int y, float velocity_y)
 {

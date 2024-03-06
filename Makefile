@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/06 16:23:55 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/06 18:09:55 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,16 +24,16 @@ LIGHT_PURPLE=\033[1;35m
 NAME = so_long
 
 CC=cc
-CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin
+CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin -I include/
 RM = rm -f
 
 LIBFT_PATH = Libft
 FT_PRINTF_PATH = ft_printf
 MINILIBX_PATH = minilibx-linux
 SRCS_PATH = src/
-DEPS_PATH = deps/
+OBJS_PATH = obj/
 
-SRCS = $(addprefix $(SRCS_PATH), \
+SRCS =	$(addprefix $(SRCS_PATH), \
 	animation.c\
 	background.c\
 	bomb.c\
@@ -79,14 +79,14 @@ SRCS = $(addprefix $(SRCS_PATH), \
 
 -include $(SRCS:.c=.d)
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(addprefix $(OBJS_PATH), $(notdir $(SRCS:.c=.o)))
 
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 	@echo "$(LIGHT_CYAN)"
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
-
 
 $(NAME): libft ft_printf minilibx $(OBJS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"

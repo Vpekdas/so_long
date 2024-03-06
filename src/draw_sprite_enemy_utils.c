@@ -6,11 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:08:55 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
 bool	check_over_scale(t_game *game, t_draw_info draw_info, int i, int j)
 {
 	const int		offx = -game->play.x + WIN_W / 2 - 70;

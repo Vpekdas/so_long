@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:18:49 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:06:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
+
 bool	check_first_line(t_game *game)
 {
 	int	i;

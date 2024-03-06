@@ -6,11 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:22:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../include/so_long.h"
 void	collide_with_exit_chest(t_box player, t_game *game)
 {
 	int		x;
