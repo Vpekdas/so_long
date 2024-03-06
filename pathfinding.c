@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/05 19:22:35 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:25:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	jmp(int x, int y, int jump, t_game *game)
 	if (game->map_copy.map[y - 1][x] == '1')
 	{
 		pathfinding(x, y + 1, 0, game);
-		pathfinding(x + 1, y + 1, 0, game);
+		if (game->map_copy.map[y - 1][x] != '1')
+			pathfinding(x + 1, y + 1, 0, game);
 		pathfinding(x - 1, y + 1, 0, game);
 	}
 	pathfinding(x, y - 1, jump - 1, game);
@@ -36,23 +37,20 @@ void	fall(int x, int y, int jump, t_game *game)
 	if (game->map_copy.map[y + 1][x] == '1')
 	{
 		pathfinding(x, y - 1, max_jump, game);
-		pathfinding(x + 1, y - 1, max_jump, game);
-		pathfinding(x - 1, y - 1, max_jump, game);
+		if (game->map_copy.map[y - 1][x] != '1' && game->map_copy.map[y][x + 1] != '1')
+		{
+			pathfinding(x + 1, y - 1, max_jump, game);
+			pathfinding(x - 1, y - 1, max_jump, game);
+		}
 		pathfinding(x + 1, y, 0, game);
 		pathfinding(x - 1, y, 0, game);
 	}
-	else
-	{
-		if (game->map_copy.map[y][x - 2] != '1'
-			&& game->map_copy.map[y][x + 2] != '1')
-		{
-			pathfinding(x + 2, y + 1, 0, game);
-			pathfinding(x - 2, y + 1, 0, game);
-		}
-		pathfinding(x, y + 1, 0, game);
-		pathfinding(x + 1, y + 1, 0, game);
-		pathfinding(x - 1, y + 1, 0, game);
-	}
+	if (game->map_copy.map[y - 1][x] != '1' && game->map_copy.map[y][x + 1] != '1')
+		pathfinding(x + 2, y + 1, 0, game);
+	pathfinding(x - 2, y + 1, 0, game);
+	pathfinding(x, y + 1, 0, game);
+	pathfinding(x + 1, y + 1, 0, game);
+	pathfinding(x - 1, y + 1, 0, game);
 }
 
 void	pathfinding(int x, int y, int jump, t_game *game)
