@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/05 16:57:25 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/06 16:23:55 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,11 @@ RM = rm -f
 LIBFT_PATH = Libft
 FT_PRINTF_PATH = ft_printf
 MINILIBX_PATH = minilibx-linux
+SRCS_PATH = src/
+DEPS_PATH = deps/
 
-SRCS = animation.c\
+SRCS = $(addprefix $(SRCS_PATH), \
+	animation.c\
 	background.c\
 	bomb.c\
 	bubble.c\
@@ -72,7 +75,9 @@ SRCS = animation.c\
 	trail.c\
 	update_game.c\
 	vignette.c\
+)
 
+-include $(SRCS:.c=.d)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -82,7 +87,6 @@ all: $(NAME)
 	@echo "$(LIGHT_CYAN)"
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
--include $(SRCS:.c=.d)
 
 $(NAME): libft ft_printf minilibx $(OBJS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
@@ -134,6 +138,7 @@ clean:
 	cd $(LIBFT_PATH) && make clean
 	cd $(FT_PRINTF_PATH) && make clean
 	cd $(MINILIBX_PATH) && make clean
+	$(RM) $(OBJS) $(SRCS:.c=.d)
 	@printf "$(LIGHT_RED)Cleaned all object files.\n"
 
 fclean: clean
