@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/06 18:09:55 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/06 18:13:26 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME = so_long
 
 CC=cc
 CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin -I include/
-RM = rm -f
+RM = rm -rf
 
 LIBFT_PATH = Libft
 FT_PRINTF_PATH = ft_printf
@@ -82,6 +82,7 @@ SRCS =	$(addprefix $(SRCS_PATH), \
 OBJS = $(addprefix $(OBJS_PATH), $(notdir $(SRCS:.c=.o)))
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+	@mkdir -p $(OBJS_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
@@ -138,7 +139,7 @@ clean:
 	cd $(LIBFT_PATH) && make clean
 	cd $(FT_PRINTF_PATH) && make clean
 	cd $(MINILIBX_PATH) && make clean
-	$(RM) $(OBJS) $(SRCS:.c=.d)
+	$(RM) $(OBJS_PATH) $(SRCS:.c=.d)
 	@printf "$(LIGHT_RED)Cleaned all object files.\n"
 
 fclean: clean
