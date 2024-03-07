@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:06:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:27:31 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_node_bubble	*create_list_bubble(t_game *game)
 	game->state = malloc(sizeof(t_xorshift32_state));
 	if (!game->state)
 		return (NULL);
-	game->state->a = getms();
+	game->state->a = 42;
 	while (i < game->map_width * 5)
 	{
 		rand_x = xorshift32(game->state) % (game->map_width * 4);
@@ -73,6 +73,20 @@ t_node_bubble	*create_list_bubble(t_game *game)
 	return (list);
 }
 
+void	update_frame_bubble(t_game *game, t_anim *anim)
+{
+	if (game->frame_count % PROPS_FRAME_INTER == 0)
+	{
+		anim->anim_index++;
+		anim->frame++;
+		if (anim->frame >= anim->frame_count)
+		{
+			anim->anim_index = 0;
+			anim->frame = 0;
+		}
+	}
+}
+
 void	update_anim_bubble(t_game *game)
 {
 	t_node_bubble	*current;
@@ -80,6 +94,7 @@ void	update_anim_bubble(t_game *game)
 	int				pos_y;
 
 	current = game->bubble_list;
+	update_frame_bubble(game, &game->bubble);
 	while (current)
 	{
 		current->velocity_y += 0.08;
@@ -95,27 +110,13 @@ void	update_anim_bubble(t_game *game)
 	}
 }
 
+
 void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y)
 {
-	int	anim_cooldown;
 	int	x_scale;
 	int	y_scale;
 
-	if (!anim)
-		return ;
 	x_scale = x * 32 * SCALE;
 	y_scale = y * 32 * SCALE;
-	anim_cooldown = 100;
-	if (getms() - anim->last_frame >= anim_cooldown)
-	{
-		anim->anim_index++;
-		anim->frame++;
-		anim->last_frame = getms();
-		if (anim->frame >= anim->frame_count)
-		{
-			anim->anim_index = 0;
-			anim->frame = 0;
-		}
-	}
 	draw_sprite(game, anim->img[anim->anim_index], x_scale, y_scale);
 }

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:06:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:34:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,10 @@ void	find_enemy_position(t_game *game, char **map)
 
 void	draw_anim_enemy(t_game *game, t_anim *anim)
 {
-	int			anim_cooldown;
-
-	if (!anim)
-		return ;
-	anim_cooldown = 100;
-	if (getms() - anim->last_frame >= anim_cooldown)
+	if (game->frame_count % FRAME_INTER == 0)
 	{
 		anim->anim_index++;
 		anim->frame++;
-		anim->last_frame = getms();
 		if (anim->frame >= anim->frame_count)
 		{
 			anim->anim_index = 0;
@@ -88,7 +82,7 @@ void	move_enemy(t_game *game)
 		return ;
 	}
 	adjust_enemy_pos(game);
-	if (getms() - game->enemy.last_frame > 1500)
+	if (game->frame_count - game->enemy.last_frame >= 60)
 		game->enemy.invulnerable = false;
 	if (calcul_distance(game->enemy, game->bomb) <= 200
 		&& game->bomb.bomb_number == 1)
@@ -97,7 +91,7 @@ void	move_enemy(t_game *game)
 	{
 		game->enemy.health--;
 		game->enemy.invulnerable = true;
-		game->enemy.last_frame = getms();
+		game->enemy.last_frame = game->frame_count;
 	}
 }
 

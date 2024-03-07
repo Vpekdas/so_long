@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:30:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:52:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:14:06 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	draw_vignette(t_game *game)
 		while (++j < WIN_H)
 		{
 			game->vignette.sj = j;
-			game->vignette.ri = game->vignette.si / (float)WIN_W;
+			// game->vignette.ri = game->vignette.si / (float)WIN_W;
 			game->vignette.rj = game->vignette.sj / (float)WIN_H;
 			color = (((t_trgb *)game->screen->data)[game->vignette.sj
 					*game->screen->width + game->vignette.si]);
-			draw_left_to_right(&color, game->vignette.ri);
+			// draw_left_to_right(&color, game->vignette.ri);
 			draw_top_to_bot(&color, game->vignette.rj);
 			((int *)game->screen->data)[game->vignette.sj * game->screen->width
 				+ game->vignette.si] = *((int *)&color);

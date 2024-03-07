@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/06 18:13:26 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/07 17:28:11 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS_PATH = src/
 OBJS_PATH = obj/
 
 SRCS =	$(addprefix $(SRCS_PATH), \
-	animation.c\
 	background.c\
 	bomb.c\
 	bubble.c\

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 15:05:36 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:28:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 #  define BONUS 0
 # endif
 
+# define FRAME_INTER 6
+# define PROPS_FRAME_INTER 6
 # define SCALE 2
 # define SPEED 8
 # define WIN_W 1920
@@ -224,7 +226,8 @@ typedef struct s_game
 	void				*win;
 	char				*map_path;
 	char				**map;
-	int					move_count;
+	float				move_count;
+	int					step_count;
 	int					key_a;
 	int					key_w;
 	int					key_s;
@@ -241,6 +244,7 @@ typedef struct s_game
 	int					accessible_collectibles;
 	int					accessible_door;
 	int					max_jump;
+	int					frame_count;
 	bool				is_trail_drawn;
 	t_img				*screen;
 	t_img				**sprites;
@@ -368,8 +372,6 @@ void			display_hud(t_game *g);
 int				close_game(t_game *game);
 // DODGE
 int				calcul_distance(t_enemy enemy, t_bomb bomb);
-// MS
-suseconds_t		getms(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 								// LINKED LIST //

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:07:36 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:06:57 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,21 @@ void	detect_key_two(t_game *game)
 	{
 		game->play.velocity_x -= SPEED;
 		game->is_trail_drawn = false;
-		game->move_count++;
+		if (game->move_count >= 32 * SCALE)
+		{
+			game->move_count = 0;
+			game->step_count++;
+		}
 	}
 	if (game->key_d)
 	{
 		game->play.velocity_x += SPEED;
 		game->is_trail_drawn = false;
-		game->move_count++;
+		if (game->move_count >= 32 * SCALE)
+		{
+			game->move_count = 0;
+			game->step_count++;
+		}
 	}
 	if (game->key_space)
 		shoot_bomb(game);
@@ -76,7 +84,7 @@ void	detect_key(t_game *game)
 		game->play.velocity_y = -10;
 		game->play.already_jumped = true;
 		game->is_trail_drawn = false;
-		game->move_count++;
+		game->step_count++;
 	}
 	else if (!game->key_w)
 		game->play.already_jumped = false;
@@ -84,7 +92,7 @@ void	detect_key(t_game *game)
 	{
 		game->play.velocity_y += 2;
 		game->is_trail_drawn = false;
-		game->move_count++;
+		game->step_count++;
 	}
 	detect_key_two(game);
 }

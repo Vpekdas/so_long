@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:19:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:08:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:17:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ int	find_collectible_numbers(t_game *game, char **map)
 	return (collectibles_numbers);
 }
 
+void	update_frame_collectible(t_game *game, t_anim *anim)
+{
+	if (game->frame_count % PROPS_FRAME_INTER == 0)
+	{
+		anim->anim_index++;
+		anim->frame++;
+		if (anim->frame >= anim->frame_count)
+		{
+			anim->anim_index = 0;
+			anim->frame = 0;
+		}
+	}
+}
+
 void	update_anim_collectible(char **map, t_game *game)
 {
 	int	x;
@@ -44,6 +58,7 @@ void	update_anim_collectible(char **map, t_game *game)
 	y = 0;
 	if (!map || !*map)
 		return ;
+	update_frame_collectible(game, &game->collectible);
 	while (y < game->map_height)
 	{
 		x = 0;
@@ -57,27 +72,13 @@ void	update_anim_collectible(char **map, t_game *game)
 	}
 }
 
+
 void	draw_anim_collectible(t_game *game, t_anim *anim, int x, int y)
 {
-	int	anim_cooldown;
 	int	x_scale;
 	int	y_scale;
 
-	if (!anim)
-		return ;
 	x_scale = x * 32 * SCALE;
 	y_scale = y * 32 * SCALE;
-	anim_cooldown = 100;
-	if (getms() - anim->last_frame >= anim_cooldown)
-	{
-		anim->anim_index++;
-		anim->frame++;
-		anim->last_frame = getms();
-		if (anim->frame >= anim->frame_count)
-		{
-			anim->anim_index = 0;
-			anim->frame = 0;
-		}
-	}
 	draw_sprite(game, anim->img[anim->anim_index], x_scale, y_scale);
 }

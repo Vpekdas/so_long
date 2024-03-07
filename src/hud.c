@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:20:06 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 15:30:22 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:52:44 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	display_hud(t_game *g)
 	char	*enemy_health;
 	char	*remaining_collec;
 
-	count_move = ft_itoa(g->move_count);
+	count_move = ft_itoa(g->step_count);
 	player_health = ft_itoa(g->play.health);
 	remaining_collec = ft_itoa(g->collectibles_numbers);
 	mlx_string_put(g->mlx, g->win, 30, 10, 0xFFFFFF, "count_move :");

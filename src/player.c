@@ -6,22 +6,19 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:13:09 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:08:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:36:20 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include <math.h>
 
 void	draw_anim_player(t_game *game, t_anim *anim)
 {
-	int			anim_cooldown;
-
-	anim_cooldown = 100;
-	if (getms() - anim->last_frame >= anim_cooldown)
+	if (game->frame_count % FRAME_INTER == 0)
 	{
 		anim->anim_index++;
 		anim->frame++;
-		anim->last_frame = getms();
 		if (anim->frame >= anim->frame_count)
 		{
 			anim->anim_index = 0;
@@ -76,6 +73,7 @@ void	adjust_velocity_x(t_game *game, float vx)
 	}
 	if ((vx_positive && vx < 0) || (!vx_positive && vx > 0))
 		vx = 0;
+	game->play.velocity_x = vx;
 	game->play.x += vx;
 }
 
@@ -109,15 +107,16 @@ void	move_player(t_game *game, float velocity_x, float velocity_y)
 
 	adjust_velocity_x(game, velocity_x);
 	adjust_velocity_y(game, velocity_y);
+	game->move_count += fabs(game->play.velocity_x);
 	player = player_box_x_off(game, game->play.velocity_x);
-	if (getms() - game->play.last_frame > 1500)
+	if (game->frame_count - game->play.last_frame >= 60)
 		game->play.invulnerable = false;
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
 	if (collide(player, enemy) && !game->play.invulnerable)
 	{
 		game->play.health--;
 		game->play.invulnerable = true;
-		game->play.last_frame = getms();
+		game->play.last_frame = game->frame_count;
 	}
 	if (game->play.velocity_y >= 100)
 		game->play.velocity_y = 100;
