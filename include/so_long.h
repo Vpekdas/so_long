@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 15:02:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:05:36 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,17 +222,28 @@ typedef struct s_game
 {
 	void				*mlx;
 	void				*win;
+	char				*map_path;
+	char				**map;
+	int					move_count;
+	int					key_a;
+	int					key_w;
+	int					key_s;
+	int					key_d;
+	int					key_space;
+	int					key_esc;
+	int					map_width;
+	int					map_height;
+	int					collectibles_numbers;
+	int					bg1_scroll;
+	int					bg2_scroll;
+	int					water_scroll;
+	int					fg_scroll;
+	int					accessible_collectibles;
+	int					accessible_door;
+	int					max_jump;
+	bool				is_trail_drawn;
 	t_img				*screen;
 	t_img				**sprites;
-	char				*map_path;
-	t_xorshift32_state	*state;
-	t_vignette			vignette;
-	t_player			play;
-	t_enemy				enemy;
-	t_bomb				bomb;
-	int					move_count;
-	t_node_bubble		*bubble_list;
-	t_node				*collectible_list;
 	t_anim				player_idle;
 	t_anim				player_run;
 	t_anim				player_jump;
@@ -244,31 +255,20 @@ typedef struct s_game
 	t_anim				collectible;
 	t_anim				bubble;
 	t_anim				trail;
-	bool				is_trail_drawn;
 	t_draw_info			draw_info;
 	t_draw_info			draw_info_enemy;
 	t_draw_info			draw_info_bomb;
+	t_node				*collectible_list;
+	t_node_bubble		*bubble_list;
 	t_pathfinding		**collectible_pos;
 	t_pathfinding		pathfinding;
-	t_character_map		character_map;
+	t_player			play;
+	t_enemy				enemy;
+	t_bomb				bomb;
+	t_vignette			vignette;
 	t_map_copy			map_copy;
-	int					key_a;
-	int					key_w;
-	int					key_s;
-	int					key_d;
-	int					key_space;
-	int					key_esc;
-	char				**map;
-	int					map_width;
-	int					map_height;
-	int					collectibles_numbers;
-	int					bg1_scroll;
-	int					bg2_scroll;
-	int					water_scroll;
-	int					fg_scroll;
-	int					accessible_collectibles;
-	int					accessible_door;
-	int					max_jump;
+	t_character_map		character_map;
+	t_xorshift32_state	*state;
 }						t_game;
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
 
