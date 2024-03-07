@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:34:13 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:06:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio)
 {
 	const unsigned char	c1[] = {(a >> 16) & 0xFF, (a >> 8) & 0xFF, a & 0xFF};

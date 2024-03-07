@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:09:28 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 void	init_enemy(t_game *game)
 {
 	game->enemy.width = 28 * SCALE;
@@ -29,8 +30,8 @@ int	init_player_and_map(t_game *game)
 	game->play.health = 3;
 	init_enemy(game);
 	game->bomb.speed = 15;
-	game->bomb.height = 16;
-	game->bomb.width = 16;
+	game->bomb.height = 32;
+	game->bomb.width = 32;
 	game->map = parse_map(game, game->map_path);
 	if (!game->map)
 		return (-1);

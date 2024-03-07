@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:28:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 char	*gnl(char **line, int fd)
 {
 	*line = get_next_line(fd);
@@ -86,7 +87,7 @@ char	**parse_map(t_game *game, char *path)
 	return (map);
 }
 
-int	print_map(char **map, t_game *game)
+void	draw_map(char **map, t_game *game)
 {
 	int	x;
 	int	y;
@@ -105,5 +106,4 @@ int	print_map(char **map, t_game *game)
 		}
 		y++;
 	}
-	return (0);
 }

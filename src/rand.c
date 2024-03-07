@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:45:42 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:08:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 uint32_t	xorshift32(t_xorshift32_state *state)
 {
 	uint32_t	x;

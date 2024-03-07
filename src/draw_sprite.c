@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:36:53 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:05:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 void	draw_sprite(t_game *game, t_img *img, int x, int y)
 {
 	const int		offx = -game->play.x + WIN_W / 2 - 64 * SCALE / 2;
@@ -39,7 +40,7 @@ void	draw_sprite(t_game *game, t_img *img, int x, int y)
 	}
 }
 
-void	draw_background_sprite(t_game *game, t_img *img, int scroll)
+void	draw_sprite_background(t_game *game, t_img *img, int scroll)
 {
 	int				i;
 	int				j;

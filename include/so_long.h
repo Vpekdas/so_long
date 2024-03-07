@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 17:57:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:02:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 # include <sys/select.h>
 # include <sys/time.h>
 # include <stdbool.h>
-# include <stdio.h>
-// TODO: remove stdio
 # include <stdint.h>
 
 # ifndef BONUS
@@ -32,15 +30,65 @@
 
 # define SCALE 2
 # define SPEED 8
-# define FRAME_INTERVAL 16
 # define WIN_W 1920
 # define WIN_H 480
 
-typedef struct s_xorshift32_state
-{
-	uint32_t	a;
-}		t_xorshift32_state;
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// STRUCTURES //	+	+	+	+	+	+	+ //
+// ---------------------------------------------------------------------------//
 
+//############################################################################//
+								// PLAYER / ENEMY / BOMB //
+//############################################################################//
+// #PLAYER#
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	int			width;
+	int			height;
+	int			offset_x;
+	int			offset_y;
+	float		velocity_x;
+	float		velocity_y;
+	bool		already_jumped;
+	int			health;
+	bool		invulnerable;
+	suseconds_t	last_frame;
+}			t_player;
+// #ENEMY#
+typedef struct s_enemy
+{
+	int			pos_x;
+	int			pos_y;
+	int			width;
+	int			height;
+	int			offset_x;
+	int			offset_y;
+	float		velocity_x;
+	float		velocity_y;
+	bool		already_jumped;
+	int			health;
+	bool		invulnerable;
+	suseconds_t	last_frame;
+	int			number;
+}				t_enemy;
+// #BOMB#
+typedef struct bomb
+{
+	int		speed;
+	int		pos_x;
+	int		pos_y;
+	int		height;
+	int		width;
+	int		bomb_number;
+	bool	direction;
+}				t_bomb;
+
+//############################################################################//
+					// SPRITE / ANIM / DRAW / COLOR / VIGNETTE //
+//############################################################################//
+// #SPRITE#
 typedef enum e_sprite
 {
 	TL,
@@ -64,7 +112,7 @@ typedef enum e_sprite
 	BOMB,
 	NUM_SPRITES
 }			t_sprite;
-
+// #ANIM#
 typedef struct s_anim
 {
 	t_img		**img;
@@ -74,59 +122,7 @@ typedef struct s_anim
 	int			frame;
 	int			frame_count;
 }				t_anim;
-
-typedef struct s_player
-{
-	int			x;
-	int			y;
-	int			width;
-	int			height;
-	int			offset_x;
-	int			offset_y;
-	float		velocity_x;
-	float		velocity_y;
-	bool		already_jumped;
-	int			health;
-	bool		invulnerable;
-	suseconds_t	last_frame;
-}			t_player;
-
-typedef struct s_enemy
-{
-	int			pos_x;
-	int			pos_y;
-	int			width;
-	int			height;
-	int			offset_x;
-	int			offset_y;
-	float		velocity_x;
-	float		velocity_y;
-	bool		already_jumped;
-	int			health;
-	bool		invulnerable;
-	suseconds_t	last_frame;
-	int			number;
-}				t_enemy;
-
-typedef struct bomb
-{
-	int		speed;
-	int		pos_x;
-	int		pos_y;
-	int		height;
-	int		width;
-	int		bomb_number;
-	bool	direction;
-}				t_bomb;
-
-typedef struct s_box
-{
-	int	pos_x;
-	int	pos_y;
-	int	width;
-	int	height;
-}		t_box;
-
+// #COLOR#
 typedef struct s_trgb
 {
 	unsigned char	b;
@@ -134,7 +130,15 @@ typedef struct s_trgb
 	unsigned char	r;
 	unsigned char	t;
 }	t_trgb;
-
+// #DRAW#
+typedef struct s_draw_info
+{
+	int		x;
+	int		y;
+	bool	flip;
+	t_trgb	color;
+}			t_draw_info;
+// #VIGNETTE#
 typedef struct s_vignette
 {
 	int		si;
@@ -143,42 +147,29 @@ typedef struct s_vignette
 	float	rj;
 }			t_vignette;
 
-typedef struct s_draw_info
-{
-	int		x;
-	int		y;
-	bool	flip;
-	t_trgb	color;
-}			t_draw_info;
-
-typedef struct s_pathfinding
+//############################################################################//
+								// HITBOX //
+//############################################################################//
+// #BOX#
+typedef struct s_box
 {
 	int	pos_x;
 	int	pos_y;
-}				t_pathfinding;
+	int	width;
+	int	height;
+}		t_box;
 
+//############################################################################//
+								// LINKED LIST //
+//############################################################################//
+// #COLLECTIBLE#
 typedef struct s_node
 {
 	int				pos_x;
 	int				pos_y;
 	struct s_node	*next;
 }				t_node;
-
-typedef struct s_character_map
-{
-	int	collectible_nb;
-	int	exit_nb;
-	int	player_nb;
-	int	enemy_nb;
-}				t_character_map;
-
-typedef struct s_map_copy
-{
-	char	**map;
-	int		map_width;
-	int		map_height;
-}				t_map_copy;
-
+// #BUBBLE#
 typedef struct s_node_bubble
 {
 	int						pos_x;
@@ -187,6 +178,46 @@ typedef struct s_node_bubble
 	struct s_node_bubble	*next;
 }				t_node_bubble;
 
+//############################################################################//
+								// MAP CHARACTER//
+//############################################################################//
+// CHARACTER
+typedef struct s_character_map
+{
+	int	collectible_nb;
+	int	exit_nb;
+	int	player_nb;
+	int	enemy_nb;
+}				t_character_map;
+
+//############################################################################//
+								// PATHFINDING //
+//############################################################################//
+// #MAP COPY#
+typedef struct s_map_copy
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+}				t_map_copy;
+// #POS#
+typedef struct s_pathfinding
+{
+	int	pos_x;
+	int	pos_y;
+}				t_pathfinding;
+
+//############################################################################//
+								// RANDOM GENERATOR //
+//############################################################################//
+// XORSHIFT
+typedef struct s_xorshift32_state
+{
+	uint32_t	a;
+}		t_xorshift32_state;
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
+									// GAME //
 typedef struct s_game
 {
 	void				*mlx;
@@ -239,118 +270,216 @@ typedef struct s_game
 	int					accessible_door;
 	int					max_jump;
 }						t_game;
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
 
-t_box			player_box_x_off(t_game *game, float vx);
-t_box			player_box_y_off(t_game *game, float vy);
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// FUNCTIONS //	+	+	+	+	+	+	+	+ //
+// ---------------------------------------------------------------------------//
+
+////////////////////////////////////////////////////////////////////////////////
+								// DRAW //
+////////////////////////////////////////////////////////////////////////////////
+// SPRITE
+void			draw_sprite(t_game *game, t_img *img, int x, int y);
+void			draw_sprite_enemy(t_game *game, t_img *img, t_draw_info draw);
+void			draw_sprite_player(t_game *game, t_img *img, t_draw_info draw);
+void			draw_sprite_background(t_game *game, t_img *img, int scroll);
+void			draw_chest(t_game *game, int x, int y);
+void			draw_tile(t_game *g, char **m, int x, int y);
+void			draw_map(char **map, t_game *game);
+// ANIM
+void			draw_anim_collectible(t_game *game, t_anim *anim, int x, int y);
+void			draw_anim_bubble(t_game *game, t_anim *anim, int x, int y);
+void			draw_anim_enemy(t_game *game, t_anim *anim);
+void			draw_anim_player(t_game *game, t_anim *anim);
+void			draw_anim_trail(t_game *game, t_anim *anim);
+// BACKGROUND
+void			draw_background(t_game *game);
+// FLIP
+t_trgb			draw_not_flip(t_img *img, int i, int j);
+t_trgb			draw_flip(t_img *img, int i, int j);
+unsigned int	draw_not_flip_player(t_img *img, int i, int j);
+unsigned int	draw_flip_player(t_img *img, int i, int j);
+// VIGNETTE
+void			draw_vignette(t_game *game);
+void			draw_left_to_right(t_trgb *color, float ri);
+void			draw_top_to_bot(t_trgb *color, float rj);
+// UTILS
+bool			check_over_scale(t_game *game, t_draw_info draw, int i, int j);
+unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio);
+int				blended_color_enemy(t_game *g, t_draw_info draw, int i, int j);
+bool			is_wall(t_game *game, char **map, int x, int y);
+
+////////////////////////////////////////////////////////////////////////////////
+								// HITBOX //
+////////////////////////////////////////////////////////////////////////////////
+// PLAYER
+t_box			player_box_x_off(t_game *game, float velocity_x);
+t_box			player_box_y_off(t_game *game, float velocity_y);
+t_box			player_box_x_y(t_game *game);
+t_box			player_box_x_y_off(t_game *g, float vx, float vy);
+t_box			player_box_x_y_off_below(t_game	*game);
+// ENEMY
+t_box			enemy_box_y_off(t_game *game, float velocity_y);
+// BOMB
+t_box			bomb_box(t_game *game);
+// MAP
 t_box			map_box_scale(int x, int y);
-bool			collide(t_box player, t_box object);
-bool			collide_with_map(t_box a, t_game *game);
-void			move_player(t_game *game, float vx, float vy);
-suseconds_t		getms(void);
+
+////////////////////////////////////////////////////////////////////////////////
+								// UPDATE //
+////////////////////////////////////////////////////////////////////////////////
+// GAME
+int				update(t_game *game);
+// ANIM
+void			update_animation(t_game *game);
+void			update_anim_player(t_game *game);
+void			update_anim_enemy(t_game *game);
+void			update_anim_collectible(char **map, t_game *game);
+void			update_anim_bubble(t_game *game);
+void			update_particle_and_background(t_game *game);
+void			update_anim_trail(t_game *game);
+// MOVE
+// // PLAYER
+void			move_player(t_game *game, float velocity_x, float velocity_y);
+void			adjust_velocity_x(t_game *game, float vx);
+void			adjust_velocity_y(t_game *game, float vy);
+void			update_move(t_game *game);
+// // ENEMY
+void			adjust_enemy_pos(t_game *game);
+void			move_enemy(t_game *game);
+// BOMB
+void			update_bomb(t_game *game);
+void			shoot_bomb(t_game *game);
+// KEY
 int				key_pressed(int keycode, t_game *game);
 int				key_released(int keycode, t_game *game);
 void			detect_key(t_game *game);
-int				close_game(t_game *game);
-int				init_player_and_map(t_game *game);
-char			*gnl(char **line, int fd);
-char			**parse_map(t_game *game, char *path);
-int				print_map(char **map, t_game *game);
-void			clear_sprite(t_img *img, unsigned int color);
-void			draw_sprite(t_game *game, t_img *img, int x, int y);
-void			init_sprite(t_game *g);
-bool			isg(t_game *game, char **map, int x, int y);
-int				update(t_game *game);
-bool			isg(t_game *game, char **map, int x, int y);
-void			draw_tile(t_game *g, char **m, int x, int y);
-t_box			player_box_x_y_off(t_game *game, float vx, float vy);
-t_box			layer_box_x_y_off_below(t_game	*game);
+void			detect_key_two(t_game *game);
+// COLLIDE
+bool			collide(t_box player, t_box object);
+bool			collide_with_map(t_box player, t_game *game);
 void			collide_with_collectible(t_box player, t_game *game);
-int				find_collectible_numbers(t_game *game, char **map);
 void			collide_with_exit_chest(t_box player, t_game *game);
-void			draw_collectible(t_game *g, int x, int y);
-void			draw_door(t_game *g, int x, int y);
-void			draw_background(t_game *game);
-t_box			player_box_x_y(t_game *game);
-t_box			player_box_stop_scrolling_left(t_game	*game);
-t_box			player_box_stop_scrolling_right(t_game	*game);
-void			draw_background_sprite(t_game *game, t_img *img, int scroll);
-void			draw_vignette(t_game *game);
-void			draw_anim_player(t_game *game, t_anim *anim);
-void			draw_sprite_player(t_game *g, t_img *img, t_draw_info draw);
-void			update_anim_player(t_game *game);
-void			update_anim_collectible(char **map, t_game *game);
-void			shoot_bomb(t_game *game);
-void			update_bomb(t_game *game);
-t_box			bomb_box(t_game *game);
-void			draw_chest(t_game *game, int x, int y);
-void			find_player_position(t_game *game, char **map);
-void			find_enemy_position(t_game *game, char **map);
-void			update_anim_enemy(t_game *game);
-void			move_enemy(t_game *game);
-t_box			enemy_box_y_off(t_game *game, float velocity_y);
-int				count_map_height(char *path);
-void			pathfinding(int x, int y, int max_jump, t_game *game);
-bool			is_map_rectangular(t_game *game);
-bool			is_map_surrounder_walls(t_game *game);
-void			free_all_sprites(t_game *game);
+void			update_collide(t_game *game, t_box player_box);
+// HUD
+void			display_hud(t_game *g);
+// CLOSE
 int				close_game(t_game *game);
-void			free_map(t_game *game);
-bool			check_map_character_overall(t_game *game);
-void			free_copy_map(t_game *game);
-void			update_anim_bubble(t_game *game);
-t_node			*create_list_collectible(t_game *game);
-t_node			*create_node(int x, int y);
-void			add_node_back(t_node **lst, t_node *new);
-t_node_bubble	*create_list_bubble(t_game *game);
-void			free_list_bubble(t_node_bubble *list);
-void			update_anim_trail(t_game *game);
-char			**copy_map(t_game *game);
-bool			is_map_finishable(t_game *game);
-void			free_list_collectible(t_node *collectible);
-bool			check_all_sprite_load(t_game *game);
-bool			print_error(char *str);
-uint32_t		xorshift32(struct s_xorshift32_state *state);
-void			add_node_back_bubble(t_node_bubble **lst, t_node_bubble *new);
-t_node_bubble	*create_node_bubble(int x, int y, float velocity_y);
-void			draw_anim_bubble(t_game *game, t_anim *anim, int x, int y);
-void			draw_anim_enemy(t_game *game, t_anim *anim);
-unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio);
-void			draw_sprite_enemy(t_game *g, t_img *img, t_draw_info draw);
-void			draw_anim_collectible(t_game *game, t_anim *anim, int x, int y);
+// DODGE
 int				calcul_distance(t_enemy enemy, t_bomb bomb);
-bool			check_over_scale(t_game *g, t_draw_info draw, int i, int j);
-t_trgb			draw_not_flip(t_img *img, int i, int j);
-t_trgb			draw_flip(t_img *img, int i, int j);
-int				blended_color_enemy(t_game *g, t_draw_info draw, int i, int j);
+// MS
+suseconds_t		getms(void);
+
+////////////////////////////////////////////////////////////////////////////////
+								// LINKED LIST //
+////////////////////////////////////////////////////////////////////////////////
+// COLLECTIBLE
+t_node			*create_node_collectible(int x, int y);
+t_node			*create_list_collectible(t_game *game);
+void			add_node_back(t_node **lst, t_node *node);
+// BUBBLE
+t_node_bubble	*create_node_bubble(int x, int y, float velocity_y);
+t_node_bubble	*create_list_bubble(t_game *game);
+void			add_node_back_bubble(t_node_bubble **lst, t_node_bubble *node);
+
+////////////////////////////////////////////////////////////////////////////////
+								// INITIALIZE SPRITE //
+////////////////////////////////////////////////////////////////////////////////
+// OVERALL
 t_img			*load_sprite(void *img, char *filename);
-bool			check_init_successfull(t_anim *anim);
-bool			check_all_sprite_load(t_game *game);
-void			init_collectible(t_game *g);
-void			init_enemy_idle_two(t_game *g);
-void			init_enemy_idle(t_game *g);
-void			init_enemy_attack(t_game *g);
-void			init_bubble(t_game *g);
-void			init_trail(t_game *g);
-void			init_player_idle_two(t_game *g);
+void			init_sprite(t_game *g);
+// PLAYER
 void			init_player_idle(t_game *g);
+void			init_player_idle_two(t_game *g);
 void			init_player_run(t_game *g);
 void			init_player_jump(t_game *g);
 void			init_player_fall(t_game *g);
 void			init_player_hit(t_game *g);
-int				free_if_error_map(t_game *game);
-int				free_if_error_sprites(t_game *game);
-void			free_if_no_error(t_game *game);
+// ENEMY
+void			init_enemy_idle(t_game *g);
+void			init_enemy_attack(t_game *g);
+// PARTICLE
+void			init_bubble(t_game *g);
+void			init_trail(t_game *g);
+// TILES
+void			init_tiles(t_game *game);
+// COLLECTIBLE
+void			init_collectible(t_game *g);
+
+////////////////////////////////////////////////////////////////////////////////
+								// INITIALIZE SETTINGS //
+////////////////////////////////////////////////////////////////////////////////
+// PLAYER / MAP
+int				init_player_and_map(t_game *game);
+int				count_map_height(char *path);
+void			find_player_position(t_game *game, char **map);
+// ENEMY
+void			find_enemy_position(t_game *game, char **map);
+void			init_enemy(t_game *game);
+// COLLECTIBLE
+int				find_collectible_numbers(t_game *game, char **map);
+// MLX
+int				init_mlx_settings(t_game *game, char **av);
+// MAP
+char			**parse_map(t_game *game, char *path);
+char			*gnl(char **line, int fd);
+char			**copy_map(t_game *game);
+// RAND
+uint32_t		xorshift32(t_xorshift32_state *state);
+
+////////////////////////////////////////////////////////////////////////////////
+								// CHECKING //
+////////////////////////////////////////////////////////////////////////////////
+// RECTANGULAR
 bool			check_first_line(t_game *game);
 bool			check_last_line(t_game *game);
 bool			check_first_column(t_game *game);
 bool			check_last_column(t_game *game);
-bool			print_error(char *str);
+bool			is_map_rectangular(t_game *game);
+// SURROUNDED
+bool			is_map_surrounded_walls(t_game *game);
+// FORMAT
 bool			is_valid_character(char character);
-unsigned int	draw_not_flip_player(t_img *img, int i, int j);
-unsigned int	draw_flip_player(t_img *img, int i, int j);
-void			find_player_position(t_game *game, char **map);
-void			display_hud(t_game *g);
-int				free_if_error_init_map_player(t_game *game);
 bool			is_map_ber(char *str);
-t_box			player_box_x_y_off_below(t_game	*game);
+bool			check_fd(char *path, int *fd);
+// OVERALL
+bool			check_map_character(t_game *game);
+bool			check_character_number(t_game *game);
+bool			check_map_character_overall(t_game *game);
+// SPRITES
+bool			check_init_successfull(t_anim *anim);
+bool			check_all_sprite_load(t_game *game);
+// MESSAGE
+bool			print_error(char *str);
+
+////////////////////////////////////////////////////////////////////////////////
+								// PATHFINDING //
+////////////////////////////////////////////////////////////////////////////////
+// PATHFINDING
+void			jmp(int x, int y, int jump, t_game *game);
+void			fall(int x, int y, int jump, t_game *game);
+void			pathfinding(int x, int y, int jump, t_game *game);
+// CHECKING
+bool			is_map_finishable(t_game *game);
+
+////////////////////////////////////////////////////////////////////////////////
+								// FREE //
+////////////////////////////////////////////////////////////////////////////////
+// SPRITE
+void			free_anim_sprite(t_anim *anim, t_game *game);
+void			free_all_sprites(t_game *game);
+// MAP
+void			free_map(t_game *game);
+void			free_copy_map(t_game *game);
+// LINKED LIST
+void			free_list_bubble(t_node_bubble *list);
+void			free_list_collectible(t_node *collectible);
+// ERROR
+int				free_if_error_map(t_game *game);
+int				free_if_error_sprites(t_game *game);
+int				free_if_error_init_map_player(t_game *game);
+// FINE
+void			free_if_no_error(t_game *game);
+
 #endif

@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:56:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 bool	is_map_rectangular(t_game *game)
 {
 	int	i;
@@ -32,7 +33,7 @@ bool	is_map_rectangular(t_game *game)
 	return (true);
 }
 
-bool	is_map_surrounder_walls(t_game *game)
+bool	is_map_surrounded_walls(t_game *game)
 {
 	if (check_first_column(game) == false)
 	{
@@ -113,7 +114,7 @@ bool	check_character_number(t_game *game)
 
 bool	check_map_character_overall(t_game *game)
 {
-	if (is_map_surrounder_walls(game) == false)
+	if (is_map_surrounded_walls(game) == false)
 		return (false);
 	if (check_map_character(game) == false)
 		return (false);

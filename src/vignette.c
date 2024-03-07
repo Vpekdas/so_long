@@ -6,23 +6,24 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:30:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:52:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-void	draw_left_to_right(t_trgb *color, float ri)
+
+void	draw_left_to_right(t_trgb *color, float ratio_i)
 {
-	color->r = (int)(color->r * 4 * ri * (1 - ri));
-	color->g = (int)(color->g * 4 * ri * (1 - ri));
-	color->b = (int)(color->b * 4 * ri * (1 - ri));
+	color->r = (int)(color->r * 4 * ratio_i * (1 - ratio_i));
+	color->g = (int)(color->g * 4 * ratio_i * (1 - ratio_i));
+	color->b = (int)(color->b * 4 * ratio_i * (1 - ratio_i));
 }
 
-void	draw_top_to_bot(t_trgb *color, float rj)
+void	draw_top_to_bot(t_trgb *color, float ratio_j)
 {
-	color->r = (int)(color->r * 4 * rj * (1 - rj));
-	color->g = (int)(color->g * 4 * rj * (1 - rj));
-	color->b = (int)(color->b * 4 * rj * (1 - rj));
+	color->r = (int)(color->r * 4 * ratio_j * (1 - ratio_j));
+	color->g = (int)(color->g * 4 * ratio_j * (1 - ratio_j));
+	color->b = (int)(color->b * 4 * ratio_j * (1 - ratio_j));
 }
 
 void	draw_vignette(t_game *game)

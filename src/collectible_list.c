@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:22:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:19:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-t_node	*create_node(int x, int y)
+t_node	*create_node_collectible(int x, int y)
 {
 	t_node	*new_node;
 
@@ -62,7 +62,7 @@ t_node	*create_list_collectible(t_game *game)
 		{
 			if (game->map[y][x] == 'C')
 			{
-				new_node = create_node(x, y);
+				new_node = create_node_collectible(x, y);
 				add_node_back(&list, new_node);
 			}
 			x++;

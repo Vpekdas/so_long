@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:29:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
 void	update_collide(t_game *game, t_box player_box)
 {
 	collide_with_collectible(player_box, game);
@@ -33,7 +34,7 @@ void	update_animation(t_game *game)
 
 void	update_particle_and_background(t_game *game)
 {
-	draw_background_sprite(game, game->sprites[FOREGROUND], game->fg_scroll);
+	draw_sprite_background(game, game->sprites[FOREGROUND], game->fg_scroll);
 	update_anim_bubble(game);
 	update_anim_trail(game);
 	draw_vignette(game);
@@ -54,7 +55,7 @@ int	update(t_game *game)
 	update_collide(game, player_box);
 	update_move(game);
 	draw_background(game);
-	print_map(game->map, game);
+	draw_map(game->map, game);
 	update_animation(game);
 	update_particle_and_background(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
