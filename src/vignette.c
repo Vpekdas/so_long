@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:30:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 16:14:06 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:15:05 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	draw_top_to_bot(t_trgb *color, float ratio_j)
 	color->g = (int)(color->g * 4 * ratio_j * (1 - ratio_j));
 	color->b = (int)(color->b * 4 * ratio_j * (1 - ratio_j));
 }
+// IF YOU WANT TO ADD VIGNET FROM LEFT TO RIGHT
+// game->vignette.ri = game->vignette.si / (float)WIN_W;
+// draw_left_to_right(&color, game->vignette.ri);
 
 void	draw_vignette(t_game *game)
 {
@@ -40,11 +43,9 @@ void	draw_vignette(t_game *game)
 		while (++j < WIN_H)
 		{
 			game->vignette.sj = j;
-			// game->vignette.ri = game->vignette.si / (float)WIN_W;
 			game->vignette.rj = game->vignette.sj / (float)WIN_H;
 			color = (((t_trgb *)game->screen->data)[game->vignette.sj
 					*game->screen->width + game->vignette.si]);
-			// draw_left_to_right(&color, game->vignette.ri);
 			draw_top_to_bot(&color, game->vignette.rj);
 			((int *)game->screen->data)[game->vignette.sj * game->screen->width
 				+ game->vignette.si] = *((int *)&color);

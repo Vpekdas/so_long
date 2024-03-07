@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 17:28:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:12:37 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,6 +343,9 @@ void			update_anim_collectible(char **map, t_game *game);
 void			update_anim_bubble(t_game *game);
 void			update_particle_and_background(t_game *game);
 void			update_anim_trail(t_game *game);
+// FRAME
+void			update_frame_bubble(t_game *game, t_anim *anim);
+void			update_frame_collectible(t_game *game, t_anim *anim);
 // MOVE
 // // PLAYER
 void			move_player(t_game *game, float velocity_x, float velocity_y);

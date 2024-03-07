@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:20:06 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 16:52:44 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:14:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	display_hud(t_game *g)
 	mlx_string_put(g->mlx, g->win, 150, 10, 0xFFFFFF, count_move);
 	mlx_string_put(g->mlx, g->win, 30, 30, 0xFFFFFF, "player health :");
 	mlx_string_put(g->mlx, g->win, 150, 30, 0xFFFFFF, player_health);
-	mlx_string_put(g->mlx, g->win, 30, 50, 0xFFFFFF, "remaining collectibles :");
+	mlx_string_put(g->mlx, g->win, 30, 50, 0xFFFFFF,
+		"remaining collectibles :");
 	mlx_string_put(g->mlx, g->win, 180, 50, 0xFFFFFF, remaining_collec);
 	if (g->enemy.number == 1)
 	{

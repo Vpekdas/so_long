@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/07 17:28:11 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/07 18:11:29 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ OBJS_PATH = obj/
 SRCS =	$(addprefix $(SRCS_PATH), \
 	background.c\
 	bomb.c\
+	bubble_list.c\
 	bubble.c\
 	check_line_map.c\
 	collectible_list.c\
