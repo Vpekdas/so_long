@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:08:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:36:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	jmp(int x, int y, int jump, t_game *game)
 		pathfinding(x - 1, y + 1, 0, game);
 	}
 	pathfinding(x, y - 1, jump - 1, game);
-	pathfinding(x + 1, y - 1, jump - 1, game);
+	if (game->map_copy.map[y - 1][x] != '1'
+		&& game->map_copy.map[y][x + 1] != '1')
+		pathfinding(x + 1, y - 1, jump - 1, game);
 	pathfinding(x + 1, y, jump - 1, game);
 	pathfinding(x - 1, y - 1, jump - 1, game);
 	pathfinding(x - 1, y, jump - 1, game);
@@ -51,7 +53,9 @@ void	fall(int x, int y, int jump, t_game *game)
 		pathfinding(x + 2, y + 1, 0, game);
 	pathfinding(x - 2, y + 1, 0, game);
 	pathfinding(x, y + 1, 0, game);
-	pathfinding(x + 1, y + 1, 0, game);
+	if (game->map_copy.map[y + 1][x] != '1'
+		&& game->map_copy.map[y][x + 1] != '1')
+		pathfinding(x + 1, y + 1, 0, game);
 	pathfinding(x - 1, y + 1, 0, game);
 }
 
