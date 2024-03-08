@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/08 16:34:41 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/08 16:38:19 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIGHT_PURPLE=\033[1;35m
 NAME = so_long
 
 CC=cc
-CFLAGS=-Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin -I include/
+CFLAGS= -Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin -I include/
 RM = rm -rf
 
 LIBFT_PATH = Libft
@@ -92,7 +92,7 @@ all: $(NAME)
 $(NAME): libft ft_printf minilibx $(OBJS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
 	@echo "$(LIGHT_CYAN)"
-	$(CC) -g3 -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
 
 bonus: CFLAGS+=-DBONUS=1
 bonus: $(NAME)
@@ -131,7 +131,7 @@ bonus: $(NAME)
 	@printf "$(LIGHT_PURPLE)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 	@printf "$(LIGHT_PURPLE)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 	@printf "$(LIGHT_BLUE) You can now add a ghost by putting a 'G' character in the map\n"
-	@printf "$(LIGHT_RED) /!\/!\/!\BEWARE BEFORE LAUCHING THE GAME, HE KNOWS HOW TO DODGE /!\/!\/!\\"
+	@printf "$(LIGHT_RED) /!\/!\/!\BEWARE BEFORE LAUNCHING THE GAME, HE KNOWS HOW TO DODGE /!\/!\/!\\"
 	@printf "\n"
 
 libft: 
