@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:09:25 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 16:39:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:25:04 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	update_anim_trail(t_game *game)
 	t_box	player;
 
 	player = player_box_x_y_off_below(game);
-	game->draw_info.x += 32;
+	game->draw_info.x += SPRITE_SIZE;
 	game->draw_info.y += 48;
 	if (collide_with_map(player, game) && !game->is_trail_drawn)
 	{

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:09:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:24:16 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_enemy(t_game *game)
 {
 	game->enemy.width = 28 * SCALE;
 	game->enemy.height = 80 * SCALE;
-	game->enemy.offset_x = 32 * SCALE;
+	game->enemy.offset_x = SPRITE_SIZE * SCALE;
 	game->enemy.offset_y = 0;
 	game->enemy.health = 3;
 }
@@ -30,8 +30,9 @@ int	init_player_and_map(t_game *game)
 	game->play.health = 3;
 	init_enemy(game);
 	game->bomb.speed = 15;
-	game->bomb.height = 32;
-	game->bomb.width = 32;
+	game->bomb.height = SPRITE_SIZE;
+	game->bomb.width = SPRITE_SIZE;
+	game->bomb.offset_y = 48;
 	game->map = parse_map(game, game->map_path);
 	if (!game->map)
 		return (-1);

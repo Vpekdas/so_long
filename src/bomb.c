@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:03:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:23:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	update_bomb(t_game *game)
 	int		y;
 
 	x = game->bomb.pos_x;
-	y = game->bomb.pos_y - 48;
+	y = game->bomb.pos_y - game->bomb.offset_y;
 	box = bomb_box(game);
 	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
 	if (game->bomb.bomb_number == 1)
@@ -57,7 +57,7 @@ void	update_bomb(t_game *game)
 			game->bomb.pos_x -= game->bomb.speed;
 		if (collide_with_map(box, game) || collide(enemy, box)
 			|| game->bomb.pos_x < 0
-			|| game->bomb.pos_x > game->map_width * SCALE * 32)
+			|| game->bomb.pos_x > game->map_width * SCALE * SPRITE_SIZE)
 		{
 			game->bomb.bomb_number = 0;
 			return ;

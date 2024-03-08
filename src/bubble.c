@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:36:46 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 18:10:52 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:23:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_anim_bubble(t_game *game, t_anim *anim, int x, int y)
 	int	x_scale;
 	int	y_scale;
 
-	x_scale = x * 32 * SCALE;
-	y_scale = y * 32 * SCALE;
+	x_scale = x * SPRITE_SIZE * SCALE;
+	y_scale = y * SPRITE_SIZE * SCALE;
 	draw_sprite(game, anim->img[anim->anim_index], x_scale, y_scale);
 }

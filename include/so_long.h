@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 18:12:37 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:22:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #  define BONUS 0
 # endif
 
+# define SPRITE_SIZE 32
 # define FRAME_INTER 6
 # define PROPS_FRAME_INTER 6
 # define SCALE 2
@@ -81,6 +82,7 @@ typedef struct bomb
 	int		speed;
 	int		pos_x;
 	int		pos_y;
+	int		offset_y;
 	int		height;
 	int		width;
 	int		bomb_number;

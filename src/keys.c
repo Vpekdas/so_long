@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:10:20 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 17:06:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:24:31 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	detect_key_two(t_game *game)
 	{
 		game->play.velocity_x -= SPEED;
 		game->is_trail_drawn = false;
-		if (game->move_count >= 32 * SCALE)
+		if (game->move_count >= SPRITE_SIZE * SCALE)
 		{
 			game->move_count = 0;
 			game->step_count++;
@@ -60,7 +60,7 @@ void	detect_key_two(t_game *game)
 	{
 		game->play.velocity_x += SPEED;
 		game->is_trail_drawn = false;
-		if (game->move_count >= 32 * SCALE)
+		if (game->move_count >= SPRITE_SIZE * SCALE)
 		{
 			game->move_count = 0;
 			game->step_count++;

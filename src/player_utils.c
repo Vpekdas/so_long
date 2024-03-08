@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:45:32 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:08:14 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:24:56 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	find_player_position(t_game *game, char **map)
 		{
 			if (map[y][x] == 'P')
 			{
-				game->play.x = (x - 1) * 32 * SCALE;
-				game->play.y = y * 32 * SCALE;
+				game->play.x = (x - 1) * SPRITE_SIZE * SCALE;
+				game->play.y = y * SPRITE_SIZE * SCALE;
 				game->pathfinding.pos_x = x;
 				game->pathfinding.pos_y = y;
 				return ;
