@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/09 14:31:46 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/09 14:45:51 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,10 @@ $(NAME): libft minilibx $(OBJS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@echo "$(LIGHT_CYAN)"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
+	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
+	@printf "$(LIGHT_BLUE)----------------------------------------------------------\n"
+	@printf "$(LIGHT_BLUE)|You can execute './so_long' with a map in 'maps/' folder|\n"
+	@printf "$(LIGHT_BLUE)----------------------------------------------------------\n"
 
 bonus: CFLAGS+=-DBONUS=1
 bonus: $(NAME)
