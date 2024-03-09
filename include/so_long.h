@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:22:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:18:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 # define SO_LONG_H
 
 # include "../Libft/libft.h"
-# include "../ft_printf/include/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 # include <math.h>
-# include <sys/select.h>
-# include <sys/time.h>
 # include <stdbool.h>
 # include <stdint.h>
 
