@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:20:06 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:49:36 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:53:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	display_health(t_game *g)
 	char	*enemy_health;
 
 	player_health = ft_itoa(g->play.health);
-
 	mlx_string_put(g->mlx, g->win, 30, 30, 0xFFFFFF, "player health :");
 	mlx_string_put(g->mlx, g->win, 150, 30, 0xFFFFFF, player_health);
 	if (g->enemy.number == 1)
