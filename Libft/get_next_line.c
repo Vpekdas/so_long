@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 10:25:40 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/02/25 15:00:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:27:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*buffer;
-
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
