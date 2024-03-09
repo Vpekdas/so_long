@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/09 14:23:31 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/09 14:31:46 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,14 +82,13 @@ OBJS = $(addprefix $(OBJS_PATH), $(notdir $(SRCS:.c=.o)))
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH)
+	@echo "$(LIGHT_CYAN)"
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
-	@echo "$(LIGHT_CYAN)"
-	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
 $(NAME): libft minilibx $(OBJS)
-	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
+	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@echo "$(LIGHT_CYAN)"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
 
@@ -134,7 +133,7 @@ bonus: $(NAME)
 	@printf "\n"
 
 libft: 
-	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
+	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@echo "$(LIGHT_CYAN)"
 	@printf "$(LIGHT_CYAN)██╗     $(LIGHT_BLUE)██╗$(LIGHT_CYAN)██████╗ $(LIGHT_BLUE)███████╗$(LIGHT_CYAN)████████╗\n"
 	@printf "$(LIGHT_CYAN)██║     $(LIGHT_BLUE)██║$(LIGHT_CYAN)██╔══██╗$(LIGHT_BLUE)██╔════╝$(LIGHT_CYAN)╚══██╔══╝\n"
@@ -143,10 +142,10 @@ libft:
 	@printf "$(LIGHT_CYAN)███████╗$(LIGHT_BLUE)██║$(LIGHT_CYAN)██████╔╝$(LIGHT_BLUE)██║     $(LIGHT_CYAN)   ██║   \n"
 	@printf "$(LIGHT_CYAN)╚══════╝$(LIGHT_BLUE)╚═╝$(LIGHT_CYAN)╚═════╝ $(LIGHT_BLUE)╚═╝     $(LIGHT_CYAN)   ╚═╝   \n"
 	$(MAKE) -C $(LIBFT_PATH)
-	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n\033[0m"
+	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
 minilibx:
-	@printf "$(LIGHT_BLUE)Starting compilation...\n\033[0m"
+	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@printf "$(LIGHT_BLUE)███╗   ███╗$(LIGHT_CYAN)██╗$(LIGHT_BLUE)███╗   ██╗$(LIGHT_CYAN)██╗$(LIGHT_BLUE)██╗     $(LIGHT_CYAN)██╗$(LIGHT_BLUE)██████╗ $(LIGHT_CYAN)██╗  ██╗\n"
 	@printf "$(LIGHT_BLUE)████╗ ████║$(LIGHT_CYAN)██║$(LIGHT_BLUE)████╗  ██║$(LIGHT_CYAN)██║$(LIGHT_BLUE)██║     $(LIGHT_CYAN)██║$(LIGHT_BLUE)██╔══██╗$(LIGHT_CYAN)╚██╗██╔╝\n"
 	@printf "$(LIGHT_BLUE)██╔████╔██║$(LIGHT_CYAN)██║$(LIGHT_BLUE)██╔██╗ ██║$(LIGHT_CYAN)██║$(LIGHT_BLUE)██║     $(LIGHT_CYAN)██║$(LIGHT_BLUE)██████╔╝$(LIGHT_CYAN) ╚███╔╝ \n"
@@ -155,7 +154,7 @@ minilibx:
 	@printf "$(LIGHT_BLUE)╚═╝     ╚═╝$(LIGHT_CYAN)╚═╝$(LIGHT_BLUE)╚═╝  ╚═══╝$(LIGHT_CYAN)╚═╝$(LIGHT_BLUE)╚══════╝$(LIGHT_CYAN)╚═╝$(LIGHT_BLUE)╚═════╝ $(LIGHT_CYAN)╚═╝  ╚═╝\n"
 	@echo "$(LIGHT_CYAN)"
 	$(MAKE) -C $(MINILIBX_PATH)  
-	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n\033[0m"
+	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
 clean:
 	@echo "$(LIGHT_PURPLE)"
