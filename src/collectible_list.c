@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:22:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 14:19:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:49:52 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ t_node	*create_list_collectible(t_game *game)
 	while (y < game->map_height)
 	{
 		x = 0;
-		while (x < game->map_width)
+		while (game->map[y][x] && x < game->map_width)
 		{
-			if (game->map[y][x] == 'C')
+			if (game->map[y][x] && game->map[y][x] == 'C')
 			{
 				new_node = create_node_collectible(x, y);
 				add_node_back(&list, new_node);

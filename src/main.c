@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:07:38 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:13:20 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,6 @@
 int	close_game(t_game *game)
 {
 	mlx_loop_end(game->mlx);
-	return (0);
-}
-
-char	**copy_map(t_game *game)
-{
-	char	**copy_map;
-	int		map_height;
-	int		i;
-
-	map_height = count_map_height(game->map_path);
-	if (map_height == -1)
-	{
-		ft_putstr_fd("Error\nthere was a problem when loading the map", 2);
-		return (NULL);
-	}
-	copy_map = malloc(sizeof(char *) * (map_height + 1));
-	if (!copy_map)
-		return (NULL);
-	i = 0;
-	while (i < game->map_height)
-	{
-		copy_map[i] = ft_strdup(game->map[i]);
-		i++;
-	}
-	return (copy_map);
-}
-
-int	init_mlx_settings(t_game *game, char **av)
-{
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (-1);
-	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "so_long");
-	game->screen = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->map_path = av[1];
 	return (0);
 }
 

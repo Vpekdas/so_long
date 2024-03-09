@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 14:28:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:21:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,16 @@ bool	check_fd(char *path, int *fd)
 	{
 		*fd = open(path, O_RDONLY);
 		if (*fd == -1)
+		{
+			ft_putstr_fd("Error\nthe map does not exist\n", 2);
 			return (false);
+		}
 		return (true);
 	}
 	else
 	{
 		close(*fd);
+		ft_putstr_fd("Error\nthe map cannot be a directory\n", 2);
 		return (false);
 	}
 }

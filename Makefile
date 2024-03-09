@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/09 14:45:51 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/09 17:48:15 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ CFLAGS= -Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin -I include/
 RM = rm -rf
 
 LIBFT_PATH = Libft
+FT_PRINTF_PATH = ft_printf
 MINILIBX_PATH = minilibx-linux
 SRCS_PATH = src/
 OBJS_PATH = obj/
@@ -42,6 +43,7 @@ SRCS =	$(addprefix $(SRCS_PATH), \
 	collectibles.c\
 	collision.c\
 	colors.c\
+	copy_map.c\
 	distance.c\
 	draw_tile.c\
 	draw_sprite.c\
@@ -87,10 +89,10 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 
 all: $(NAME)
 
-$(NAME): libft minilibx $(OBJS)
+$(NAME): libft ft_printf minilibx $(OBJS)
 	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@echo "$(LIGHT_CYAN)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 	@printf "$(LIGHT_BLUE)----------------------------------------------------------\n"
 	@printf "$(LIGHT_BLUE)|You can execute './so_long' with a map in 'maps/' folder|\n"
@@ -148,6 +150,18 @@ libft:
 	$(MAKE) -C $(LIBFT_PATH)
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
 
+ft_printf: 
+	@printf "$(LIGHT_BLUE)Starting compilation...\n"
+	@printf "$(LIGHT_BLUE)███████╗$(LIGHT_CYAN)████████╗$(LIGHT_BLUE)     $(LIGHT_CYAN)██████╗ $(LIGHT_BLUE)██████╗ $(LIGHT_CYAN)██╗$(LIGHT_BLUE)███╗   ██╗$(LIGHT_CYAN)████████╗$(LIGHT_BLUE)███████╗\n"
+	@printf "$(LIGHT_BLUE)██╔════╝$(LIGHT_CYAN)╚══██╔══╝$(LIGHT_BLUE)     $(LIGHT_CYAN)██╔══██╗$(LIGHT_BLUE)██╔══██╗$(LIGHT_CYAN)██║$(LIGHT_BLUE)████╗  ██║$(LIGHT_CYAN)╚══██╔══╝$(LIGHT_BLUE)██╔════╝\n"
+	@printf "$(LIGHT_BLUE)█████╗  $(LIGHT_CYAN)   ██║   $(LIGHT_BLUE)     $(LIGHT_CYAN)██████╔╝$(LIGHT_BLUE)██████╔╝$(LIGHT_CYAN)██║$(LIGHT_BLUE)██╔██╗ ██║$(LIGHT_CYAN)   ██║   $(LIGHT_BLUE)█████╗  \n"
+	@printf "$(LIGHT_BLUE)██╔══╝  $(LIGHT_CYAN)   ██║   $(LIGHT_BLUE)     $(LIGHT_CYAN)██╔═══╝ $(LIGHT_BLUE)██╔══██╗$(LIGHT_CYAN)██║$(LIGHT_BLUE)██║╚██╗██║$(LIGHT_CYAN)   ██║   $(LIGHT_BLUE)██╔══╝  \n"
+	@printf "$(LIGHT_BLUE)██║     $(LIGHT_CYAN)   ██║███$(LIGHT_BLUE)████╗$(LIGHT_CYAN)██║     $(LIGHT_BLUE)██║  ██║$(LIGHT_CYAN)██║$(LIGHT_BLUE)██║ ╚████║$(LIGHT_CYAN)   ██║   $(LIGHT_BLUE)██║     \n"
+	@printf "$(LIGHT_BLUE)╚═╝     $(LIGHT_CYAN)   ╚═╝╚══$(LIGHT_BLUE)════╝$(LIGHT_CYAN)╚═╝     $(LIGHT_BLUE)╚═╝  ╚═╝$(LIGHT_CYAN)╚═╝$(LIGHT_BLUE)╚═╝  ╚═══╝$(LIGHT_CYAN)   ╚═╝   $(LIGHT_BLUE)╚═╝     \n"
+	@echo "$(LIGHT_CYAN)"
+	$(MAKE) -C $(FT_PRINTF_PATH)
+	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
+
 minilibx:
 	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@printf "$(LIGHT_BLUE)███╗   ███╗$(LIGHT_CYAN)██╗$(LIGHT_BLUE)███╗   ██╗$(LIGHT_CYAN)██╗$(LIGHT_BLUE)██╗     $(LIGHT_CYAN)██╗$(LIGHT_BLUE)██████╗ $(LIGHT_CYAN)██╗  ██╗\n"
@@ -164,6 +178,7 @@ clean:
 	@echo "$(LIGHT_PURPLE)"
 	$(RM) $(OBJS) $(BONUS_OBJS) *.d
 	cd $(LIBFT_PATH) && make clean
+	cd $(FT_PRINTF_PATH) && make clean
 	cd $(MINILIBX_PATH) && make clean
 	$(RM) $(OBJS_PATH) $(SRCS:.c=.d)
 	@printf "$(LIGHT_RED)Cleaned all object files.\n"
@@ -172,6 +187,7 @@ fclean: clean
 	@echo "$(LIGHT_PURPLE)"
 	$(RM) $(NAME)
 	cd $(LIBFT_PATH) && make fclean
+	cd $(FT_PRINTF_PATH) && make fclean
 	@printf "$(LIGHT_RED)Cleaned all object files.\n"
 
 re: fclean all

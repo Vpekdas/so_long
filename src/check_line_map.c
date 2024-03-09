@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:18:49 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/06 18:06:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:31:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	check_first_line(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->map_copy.map_width)
+	while (i < game->map_width)
 	{
-		if (game->map_copy.map[0][i] != '1')
+		if (game->map[0][i] && game->map[0][i] != '1')
 			return (false);
 		i++;
 	}
@@ -32,10 +32,10 @@ bool	check_last_line(t_game *game)
 	int	map_height;
 
 	i = 0;
-	map_height = game->map_copy.map_height;
-	while (i < game->map_copy.map_width)
+	map_height = game->map_height;
+	while (i < game->map_width)
 	{
-		if (game->map_copy.map[map_height - 1][i] != '1')
+		if (game->map[map_height - 1][i] && game->map[map_height - 1][i] != '1')
 			return (false);
 		i++;
 	}
@@ -47,9 +47,9 @@ bool	check_first_column(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->map_copy.map_height)
+	while (i < game->map_height)
 	{
-		if (game->map_copy.map[i][0] != '1')
+		if (game->map[i][0] && game->map[i][0] != '1')
 			return (false);
 		i++;
 	}
@@ -62,10 +62,11 @@ bool	check_last_column(t_game *game)
 	int	map_width;
 
 	i = 0;
-	map_width = game->map_copy.map_width;
-	while (i < game->map_copy.map_height)
+	map_width = game->map_width;
+	while (i < game->map_height)
 	{
-		if (game->map_copy.map[i][map_width - 1] != '1')
+		if (game->map[i][map_width - 1]
+			&& game->map[i][map_width - 1] != '1')
 			return (false);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:24:04 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:52:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	find_enemy_position(t_game *game, char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'G')
+			if (map[y][x] && map[y][x] == 'G')
 			{
 				game->enemy.pos_x = x * SPRITE_SIZE * SCALE;
 				game->enemy.pos_y = y * SPRITE_SIZE * SCALE;

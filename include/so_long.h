@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 14:18:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:43:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 # define SO_LONG_H
 
 # include "../Libft/libft.h"
+# include "../ft_printf/include/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 # include <math.h>
+# include <limits.h>
 # include <stdbool.h>
 # include <stdint.h>
 
@@ -370,6 +372,9 @@ void			collide_with_exit_chest(t_box player, t_game *game);
 void			update_collide(t_game *game, t_box player_box);
 // HUD
 void			display_hud(t_game *g);
+void			display_step_count(t_game *g);
+void			display_health(t_game *g);
+void			display_remaining_collectibles(t_game *g);
 // CLOSE
 int				close_game(t_game *game);
 // DODGE

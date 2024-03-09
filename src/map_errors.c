@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:56:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:33:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ bool	is_map_rectangular(t_game *game)
 	int	previous_line;
 
 	i = 0;
-	while (i < game->map_copy.map_height - 1)
+	while (i < game->map_height - 1)
 	{
-		previous_line = ft_strlen(game->map_copy.map[i]);
+		previous_line = ft_strlen(game->map[i]);
 		i++;
-		actual_line = ft_strlen(game->map_copy.map[i]);
+		actual_line = ft_strlen(game->map[i]);
 		if (actual_line != previous_line)
 		{
-			ft_putstr_fd("Error\n the map is not rectangular\n", 2);
+			ft_putstr_fd("Error\nthe map is not rectangular\n", 2);
 			return (false);
 		}
 	}
@@ -65,12 +65,12 @@ bool	check_map_character(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->map_copy.map_height)
+	while (i < game->map_height)
 	{
 		j = 0;
-		while (j < game->map_copy.map_width)
+		while (j < game->map_width)
 		{
-			if (is_valid_character(game->map_copy.map[i][j]) == false)
+			if (game->map[i][j] && is_valid_character(game->map[i][j]) == false)
 			{
 				ft_putstr_fd("Error\nThere is an unknown character\n", 2);
 				return (false);
@@ -89,12 +89,12 @@ bool	check_character_number(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->map_copy.map_height)
+	while (i < game->map_height)
 	{
 		j = 0;
-		while (j < game->map_copy.map_width)
+		while (j < game->map_width)
 		{
-			if (is_valid_character(game->map_copy.map[i][j]) == true)
+			if (game->map[i][j] && is_valid_character(game->map[i][j]) == true)
 			{
 				if (game->map_copy.map[i][j] == 'C')
 					game->character_map.collectible_nb++;
@@ -114,6 +114,8 @@ bool	check_character_number(t_game *game)
 
 bool	check_map_character_overall(t_game *game)
 {
+	if (is_map_rectangular(game) == false)
+		return (false);
 	if (is_map_surrounded_walls(game) == false)
 		return (false);
 	if (check_map_character(game) == false)

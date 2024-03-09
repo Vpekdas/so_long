@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_utils.c                                     :+:      :+:    :+:   */
+/*   copy_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:45:32 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:08:32 by vopekdas         ###   ########.fr       */
+/*   Created: 2024/03/09 17:04:31 by vopekdas          #+#    #+#             */
+/*   Updated: 2024/03/09 17:34:59 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	find_player_position(t_game *game, char **map)
+char	**copy_map(t_game *game)
 {
-	int	x;
-	int	y;
+	char	**copy_map;
+	int		map_height;
+	int		i;
 
-	y = 0;
-	while (y < game->map_height)
+	map_height = count_map_height(game->map_path);
+	if (map_height == -1)
 	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			if (map[y][x] && map[y][x] == 'P')
-			{
-				game->play.x = (x - 1) * SPRITE_SIZE * SCALE;
-				game->play.y = y * SPRITE_SIZE * SCALE;
-				game->pathfinding.pos_x = x;
-				game->pathfinding.pos_y = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
+		ft_putstr_fd("Error\nthere was a problem when loading the map", 2);
+		return (NULL);
 	}
+	copy_map = malloc(sizeof(char *) * (map_height + 1));
+	if (!copy_map)
+		return (NULL);
+	i = 0;
+	while (i < game->map_height)
+	{
+		copy_map[i] = ft_strdup(game->map[i]);
+		i++;
+	}
+	return (copy_map);
 }
