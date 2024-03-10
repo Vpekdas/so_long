@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:04:59 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:43:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,6 +337,11 @@ bool			check_over_scale(t_game *game, t_draw_info draw, int i, int j);
 unsigned int	blend_colors(unsigned int a, unsigned int b, float ratio);
 int				blended_color_enemy(t_game *g, t_draw_info draw, int i, int j);
 bool			is_wall(t_game *game, char **map, int x, int y);
+// MESSAGE
+void			display_teach(void);
+void			display_lose_message(void);
+void			display_win_message(void);
+void			display_end_message(t_game *game);
 
 ////////////////////////////////////////////////////////////////////////////////
 								// HITBOX //

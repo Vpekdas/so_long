@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:20:06 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 17:59:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:13:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	display_step_count(t_game *g)
 	mlx_string_put(g->mlx, g->win, 30, 10, 0xFFFFFF, "Step count :");
 	mlx_string_put(g->mlx, g->win, 150, 10, 0xFFFFFF, step_count);
 	free(step_count);
-	ft_printf(C_BLU "👣 Step count : %d\n", g->step_count);
+	ft_printf(BLU "👣 Step count : %d\n", g->step_count);
 }
 
 void	display_health(t_game *g)

@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/10 16:09:32 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/10 18:42:29 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS =	$(addprefix $(SRCS_PATH), \
 	collision.c\
 	colors.c\
 	copy_map.c\
+	display_msg.c\
 	distance.c\
 	draw_tile.c\
 	draw_sprite.c\
