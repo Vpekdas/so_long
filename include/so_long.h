@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 16:42:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:04:59 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@
 # ifndef BONUS
 #  define BONUS 0
 # endif
+
+# define BLK "\x1b[0;30m"
+# define RED "\x1b[0;31m"
+# define GRN "\x1b[0;32m"
+# define YEL "\x1b[0;33m"
+# define BLU "\x1b[0;34m"
+# define MAG "\x1b[0;35m"
+# define CYN "\x1b[0;36m"
+# define WHT "\x1b[0;37m"
+# define RST "\x1b[0m"
+# define BBLK "\x1b[1;30m"
+# define BRED "\x1b[1;31m"
+# define BGRN "\x1b[1;32m"
+# define BYEL "\x1b[1;33m"
+# define BBLU "\x1b[1;34m"
+# define BMAG "\x1b[1;35m"
+# define BCYN "\x1b[1;36m"
+# define BWHT "\x1b[1;37m"
 
 # define SPRITE_SIZE 32
 # define FRAME_INTER 4

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 16:52:29 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:08:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	init_mlx_settings(t_game *game, char **av)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		ft_putstr_fd("Error\nthe mlx pointer is NULL\n", 2);
+		ft_putstr_fd(RED"Error\n❌the mlx pointer is NULL❌\n", 2);
 		return (-1);
 	}
 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "so_long");

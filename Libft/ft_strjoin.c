@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:39:07 by vopekdas          #+#    #+#             */
-/*   Updated: 2023/11/09 16:19:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:52:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char	*ft_strcat(char *dest, char const *src)
 {

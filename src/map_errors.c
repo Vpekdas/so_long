@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:33:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:06:44 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_map_rectangular(t_game *game)
 		actual_line = ft_strlen(game->map[i]);
 		if (actual_line != previous_line)
 		{
-			ft_putstr_fd("Error\nthe map is not rectangular\n", 2);
+			ft_putstr_fd(RED"Error\n📐the map is not rectangular📐\n", 2);
 			return (false);
 		}
 	}
@@ -37,22 +37,22 @@ bool	is_map_surrounded_walls(t_game *game)
 {
 	if (check_first_column(game) == false)
 	{
-		ft_putstr_fd("Error\nThere is no wall somewhere in first column\n", 2);
+		ft_putstr_fd(RED"Error\n🧱There is no wallsomewhere in first column🧱\n", 2);
 		return (false);
 	}
 	if (check_last_column(game) == false)
 	{
-		ft_putstr_fd("Error\nThere is no wall somewhere in last column\n", 2);
+		ft_putstr_fd(RED"Error\n🧱There is no wall somewhere in last column🧱\n", 2);
 		return (false);
 	}
 	if (check_first_line(game) == false)
 	{
-		ft_putstr_fd("Error\nThere is no wall somewhere in first line\n", 2);
+		ft_putstr_fd(RED"Error\n🧱There is no wall somewhere in first line🧱\n", 2);
 		return (false);
 	}
 	if (check_last_line(game) == false)
 	{
-		ft_putstr_fd("Error\nThere is no wall somewhere in last line\n", 2);
+		ft_putstr_fd(RED"Error\n🧱There is no wall somewhere in last line🧱\n", 2);
 		return (false);
 	}
 	else
@@ -72,7 +72,7 @@ bool	check_map_character(t_game *game)
 		{
 			if (game->map[i][j] && is_valid_character(game->map[i][j]) == false)
 			{
-				ft_putstr_fd("Error\nThere is an unknown character\n", 2);
+				ft_putstr_fd(RED "Error\n❓There is an unknown character❓\n", 2);
 				return (false);
 			}
 			else
@@ -96,13 +96,13 @@ bool	check_character_number(t_game *game)
 		{
 			if (game->map[i][j] && is_valid_character(game->map[i][j]) == true)
 			{
-				if (game->map_copy.map[i][j] == 'C')
+				if (game->map[i][j] == 'C')
 					game->character_map.collectible_nb++;
-				else if (game->map_copy.map[i][j] == 'E')
+				else if (game->map[i][j] == 'E')
 					game->character_map.exit_nb++;
-				else if (game->map_copy.map[i][j] == 'P')
+				else if (game->map[i][j] == 'P')
 					game->character_map.player_nb++;
-				else if (game->map_copy.map[i][j] == 'G' && BONUS)
+				else if (game->map[i][j] == 'G' && BONUS)
 					game->character_map.enemy_nb++;
 			}
 			j++;

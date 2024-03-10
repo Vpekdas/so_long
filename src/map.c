@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:21:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:05:05 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	check_fd(char *path, int *fd)
 		*fd = open(path, O_RDONLY);
 		if (*fd == -1)
 		{
-			ft_putstr_fd("Error\nthe map does not exist\n", 2);
+			ft_putstr_fd(RED "Error\n❌the map does not exist❌\n", 2);
 			return (false);
 		}
 		return (true);
@@ -57,7 +57,7 @@ bool	check_fd(char *path, int *fd)
 	else
 	{
 		close(*fd);
-		ft_putstr_fd("Error\nthe map cannot be a directory\n", 2);
+		ft_putstr_fd(RED "Error\n📁the map cannot be a directory\n", 2);
 		return (false);
 	}
 }
@@ -85,9 +85,9 @@ char	**parse_map(t_game *game, char *path)
 	close(fd);
 	map[i] = NULL;
 	game->map_width = ft_strlen(map[0]) - 1;
-	game->map_copy.map_width = ft_strlen(map[0]) - 1;
+	game->map_copy.map_width = game->map_width;
 	game->map_height = count_map_height(path);
-	game->map_copy.map_height = count_map_height(path);
+	game->map_copy.map_height = game->map_height;
 	return (map);
 }
 

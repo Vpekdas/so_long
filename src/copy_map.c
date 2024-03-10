@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:04:31 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:34:59 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:09:39 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**copy_map(t_game *game)
 	map_height = count_map_height(game->map_path);
 	if (map_height == -1)
 	{
-		ft_putstr_fd("Error\nthere was a problem when loading the map", 2);
+		ft_putstr_fd(RED"Error\n⏳there was a problem when loading the map⏳", 2);
 		return (NULL);
 	}
 	copy_map = malloc(sizeof(char *) * (map_height + 1));

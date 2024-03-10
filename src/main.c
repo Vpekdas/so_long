@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:41:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:13:20 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:08:06 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putstr_fd("You need to give one map\n", 2);
+		ft_putstr_fd(RED"Error\n🗺️ You need to give one map🗺️\n", 2);
 		return (-1);
 	}
 	game = (t_game){0};
