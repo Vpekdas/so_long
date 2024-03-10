@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:06:44 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:11:31 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ bool	is_map_surrounded_walls(t_game *game)
 {
 	if (check_first_column(game) == false)
 	{
-		ft_putstr_fd(RED"Error\n🧱There is no wallsomewhere in first column🧱\n", 2);
+		ft_putstr_fd(RED"Error\n🧱There is no wallsomewhere in first col🧱\n", 2);
 		return (false);
 	}
 	if (check_last_column(game) == false)
 	{
-		ft_putstr_fd(RED"Error\n🧱There is no wall somewhere in last column🧱\n", 2);
+		ft_putstr_fd(RED"Error\n🧱There is no wall somewhere in last col🧱\n", 2);
 		return (false);
 	}
 	if (check_first_line(game) == false)
