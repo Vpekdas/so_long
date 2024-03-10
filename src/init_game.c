@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 15:47:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:52:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_enemy(t_game *game)
 {
-	game->enemy.width = 28 * SCALE;
+	game->enemy.width = 32 * SCALE;
 	game->enemy.height = 80 * SCALE;
 	game->enemy.offset_x = SPRITE_SIZE * SCALE;
 	game->enemy.offset_y = 0;

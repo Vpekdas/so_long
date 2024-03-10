@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:09:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:45:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	pathfinding(int x, int y, int jump, t_game *game)
 		game->accessible_door++;
 	game->map_copy.map[y][x] = '.';
 	if (jump <= 0)
-		fall(x, y, jump, game);
+		fall(x, y, max_jump, game);
 	else
-		jmp(x, y, jump, game);
+		jmp(x, y, max_jump, game);
 }
 
 bool	is_map_finishable(t_game *game)
