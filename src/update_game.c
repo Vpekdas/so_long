@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 16:38:44 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:38:29 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	update_animation(t_game *game)
 	update_anim_enemy(game);
 	update_anim_collectible(game->map, game);
 	update_bomb(game);
+	update_anim_explotion(game);
 }
 
 void	update_particle_and_background(t_game *game)
@@ -44,6 +45,7 @@ int	update(t_game *game)
 {
 	t_box		player_box;
 
+	game->frame_count++;
 	if (game->play.health == 0)
 		close_game(game);
 	game->play.velocity_x = 0;
@@ -60,6 +62,5 @@ int	update(t_game *game)
 	update_particle_and_background(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	display_hud(game);
-	game->frame_count++;
 	return (0);
 }

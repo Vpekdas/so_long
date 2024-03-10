@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 16:38:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/07 13:07:27 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:38:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	init_sprite(t_game *g)
 	init_enemy_attack(g);
 	init_bubble(g);
 	init_trail(g);
+	init_explotion(g);
 }

@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/09 17:48:15 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/10 16:09:32 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS =	$(addprefix $(SRCS_PATH), \
 	draw_sprite_player_utils.c\
 	enemy_box.c\
 	enemy.c\
+	explotion.c\
 	exit_chest.c\
 	free_utils.c\
 	hud.c\

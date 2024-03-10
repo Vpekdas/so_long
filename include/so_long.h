@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:43:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:42:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # endif
 
 # define SPRITE_SIZE 32
-# define FRAME_INTER 6
+# define FRAME_INTER 4
 # define PROPS_FRAME_INTER 6
 # define SCALE 2
 # define SPEED 8
@@ -81,11 +81,14 @@ typedef struct bomb
 	int		speed;
 	int		pos_x;
 	int		pos_y;
+	int		explo_x;
+	int		explo_y;
 	int		offset_y;
 	int		height;
 	int		width;
 	int		bomb_number;
 	bool	direction;
+	bool	is_exploding;
 }				t_bomb;
 
 //############################################################################//
@@ -257,6 +260,7 @@ typedef struct s_game
 	t_anim				enemy_idle;
 	t_anim				enemy_attack;
 	t_anim				bomb_on;
+	t_anim				explotion;
 	t_anim				collectible;
 	t_anim				bubble;
 	t_anim				trail;
@@ -298,6 +302,7 @@ void			draw_anim_bubble(t_game *game, t_anim *anim, int x, int y);
 void			draw_anim_enemy(t_game *game, t_anim *anim);
 void			draw_anim_player(t_game *game, t_anim *anim);
 void			draw_anim_trail(t_game *game, t_anim *anim);
+void			draw_anim_explotion(t_game *game, t_anim *anim, int x, int y);
 // BACKGROUND
 void			draw_background(t_game *game);
 // FLIP
@@ -336,6 +341,7 @@ t_box			map_box_scale(int x, int y);
 ////////////////////////////////////////////////////////////////////////////////
 // GAME
 int				update(t_game *game);
+void			update_explotion_state(t_game *game);
 // ANIM
 void			update_animation(t_game *game);
 void			update_anim_player(t_game *game);
@@ -344,6 +350,7 @@ void			update_anim_collectible(char **map, t_game *game);
 void			update_anim_bubble(t_game *game);
 void			update_particle_and_background(t_game *game);
 void			update_anim_trail(t_game *game);
+void			update_anim_explotion(t_game *game);
 // FRAME
 void			update_frame_bubble(t_game *game, t_anim *anim);
 void			update_frame_collectible(t_game *game, t_anim *anim);
@@ -405,6 +412,7 @@ void			init_player_run(t_game *g);
 void			init_player_jump(t_game *g);
 void			init_player_fall(t_game *g);
 void			init_player_hit(t_game *g);
+void			init_explotion(t_game *g);
 // ENEMY
 void			init_enemy_idle(t_game *g);
 void			init_enemy_attack(t_game *g);

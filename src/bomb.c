@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:03:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/08 16:23:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:45:39 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ void	shoot_bomb(t_game *game)
 	}
 }
 
+void	update_explotion_state(t_game *game)
+{
+	game->bomb.is_exploding = true;
+	game->bomb.explo_x = game->bomb.pos_x;
+	game->bomb.explo_y = game->bomb.pos_y;
+	game->bomb.bomb_number = 0;
+	game->bomb.pos_x = 0;
+	game->bomb.pos_y = -100;
+}
+
 void	update_bomb(t_game *game)
 {
 	t_box	box;
@@ -59,7 +69,7 @@ void	update_bomb(t_game *game)
 			|| game->bomb.pos_x < 0
 			|| game->bomb.pos_x > game->map_width * SCALE * SPRITE_SIZE)
 		{
-			game->bomb.bomb_number = 0;
+			update_explotion_state(game);
 			return ;
 		}
 		draw_sprite(game, game->sprites[BOMB], x, y);
