@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:41:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:47:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:45:46 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	display_win_message(void)
 
 void	display_end_message(t_game *game)
 {
-	if (game->collectibles_numbers == 0)
+	if (game->collectibles_numbers == 0 && game->play.health != 0)
 		display_win_message();
 	else
 		display_lose_message();

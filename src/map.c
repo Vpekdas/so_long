@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:05:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:43:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	check_fd(char *path, int *fd)
 	else
 	{
 		close(*fd);
-		ft_putstr_fd(RED "Error\n📁the map cannot be a directory\n", 2);
+		ft_putstr_fd(RED "Error\n📁the map cannot be a directory📁\n", 2);
 		return (false);
 	}
 }
@@ -70,9 +70,9 @@ char	**parse_map(t_game *game, char *path)
 	int		i;
 
 	i = 0;
-	if (is_map_ber(path) == false)
-		return (NULL);
 	if (check_fd(path, &fd) == false)
+		return (NULL);
+	if (is_map_ber(path) == false)
 		return (NULL);
 	map = malloc(sizeof(char *) * (count_map_height(path) + 1));
 	if (!map)

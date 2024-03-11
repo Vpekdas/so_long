@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:11:31 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:53:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ bool	check_map_character_overall(t_game *game)
 		return (false);
 	check_character_number(game);
 	if (game->character_map.collectible_nb == 0)
-		return (print_error("Error\nPlace atleast 1 collectible\n"));
+		return (print_error(RED "Error\n🪙Place atleast 1 collectible🪙\n"));
 	if (game->character_map.exit_nb != 1)
 		return (print_error("Error\nYou need to place only 1 exit\n"));
 	if (game->character_map.player_nb != 1)
