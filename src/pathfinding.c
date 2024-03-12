@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 17:45:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:33:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ void	pathfinding(int x, int y, int jump, t_game *game)
 		jmp(x, y, max_jump, game);
 }
 
+void	reset_pathfinding_accessible(t_game *game)
+{
+	game->accessible_collectibles = 0;
+	game->accessible_door = 0;
+}
+
 bool	is_map_finishable(t_game *game)
 {
 	t_node	*current;
@@ -88,8 +94,7 @@ bool	is_map_finishable(t_game *game)
 	if (game->accessible_collectibles != game->collectibles_numbers
 		|| game->accessible_door == 0)
 		return (false);
-	game->accessible_collectibles = 0;
-	game->accessible_door = 0;
+	reset_pathfinding_accessible(game);
 	while (current)
 	{
 		free_copy_map(game);
@@ -97,8 +102,7 @@ bool	is_map_finishable(t_game *game)
 		pathfinding(current->pos_x, current->pos_y, 0, game);
 		if (game->accessible_door == 0)
 			return (false);
-		game->accessible_collectibles = 0;
-		game->accessible_door = 0;
+		reset_pathfinding_accessible(game);
 		current = current->next;
 	}
 	return (true);

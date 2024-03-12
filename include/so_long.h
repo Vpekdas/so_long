@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:43:14 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:34:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,6 +452,8 @@ void			init_collectible(t_game *g);
 ////////////////////////////////////////////////////////////////////////////////
 // PLAYER / MAP
 int				init_player_and_map(t_game *game);
+void			init_player(t_game *game);
+void			init_bomb(t_game *game);
 int				count_map_height(char *path);
 void			find_player_position(t_game *game, char **map);
 // ENEMY
@@ -502,6 +504,7 @@ void			fall(int x, int y, int jump, t_game *game);
 void			pathfinding(int x, int y, int jump, t_game *game);
 // CHECKING
 bool			is_map_finishable(t_game *game);
+void			reset_pathfinding_accessible(t_game *game);
 
 ////////////////////////////////////////////////////////////////////////////////
 								// FREE //
