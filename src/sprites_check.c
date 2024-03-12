@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:27:15 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 14:47:27 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:28:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ bool	check_init_successfull(t_anim *anim)
 bool	check_all_sprite_load(t_game *game)
 {
 	if (check_init_successfull(&game->player_idle) == false)
-		return (print_error("Error\nAnim player idle failed to load"));
+		return (print_error(RED"Error\n🚨Anim player idle failed to load🚨\n"));
 	if (check_init_successfull(&game->player_run) == false)
-		return (print_error("Error\nAnim player run failed to load"));
+		return (print_error(RED"Error\n🚨Anim player run failed to load🚨\n"));
 	if (check_init_successfull(&game->player_jump) == false)
-		return (print_error("Error\nAnim player jump failed to load"));
+		return (print_error(RED"Error\n🚨Anim player jump failed to load🚨\n"));
 	if (check_init_successfull(&game->player_fall) == false)
-		return (print_error("Error\nAnim player fall failed to load"));
+		return (print_error(RED"Error\n🚨Anim player fall failed to load🚨\n"));
 	if (check_init_successfull(&game->player_hit) == false)
-		return (print_error("Error\nAnim player hit failed to load"));
+		return (print_error(RED"Error\n🚨Anim player hit failed to load🚨\n"));
 	if (check_init_successfull(&game->collectible) == false)
-		return (print_error("Error\nCollectible failed to load"));
+		return (print_error(RED"Error\n🚨Collectible failed to load🚨\n"));
 	if (check_init_successfull(&game->enemy_idle) == false)
-		return (print_error("Error\nAnim enemy idle failed to load"));
+		return (print_error(RED"Error\n🚨Anim enemy idle failed to load🚨\n"));
 	if (check_init_successfull(&game->enemy_attack) == false)
-		return (print_error("Error\nAnim enemy attack failed to load"));
+		return (print_error(RED"Error\n🚨Anim enemy attack failed to load🚨\n"));
 	if (check_init_successfull(&game->bubble) == false)
-		return (print_error("Error\nAnim bubble failed to load"));
+		return (print_error(RED"Error\n🚨Anim bubble failed to load🚨\n"));
 	if (check_init_successfull(&game->trail) == false)
-		return (print_error("Error\nAnim trail failed to load"));
+		return (print_error(RED"Error\nAnim trail failed to load🚨\n"));
 	if (check_init_successfull(&game->explotion) == false)
-		return (print_error("Error\nAnim explotion failed to load"));
+		return (print_error(RED"Error\n🚨Anim explotion failed to load🚨\n"));
 	return (true);
 }
