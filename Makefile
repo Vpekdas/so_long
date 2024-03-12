@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/10 18:42:29 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/12 18:05:32 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,11 +92,15 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 all: $(NAME)
 
 $(NAME): libft ft_printf minilibx $(OBJS)
-	@printf "$(LIGHT_BLUE)Starting compilation...\n"
 	@echo "$(LIGHT_CYAN)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
-	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
-	@printf "$(LIGHT_BLUE)----------------------------------------------------------\n"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
+	@printf "$(LIGHT_GREEN)\nLOADING GAME: ["
+	@for i in $$(seq 1 50); do \
+        sleep 0.1; \
+        printf "#"; \
+	done
+	@printf "]\n"
+	@printf "$(LIGHT_BLUE)\n----------------------------------------------------------\n"
 	@printf "$(LIGHT_BLUE)|You can execute './so_long' with a map in 'maps/' folder|\n"
 	@printf "$(LIGHT_BLUE)----------------------------------------------------------\n"
 
@@ -178,11 +182,11 @@ minilibx:
 
 clean:
 	@echo "$(LIGHT_PURPLE)"
-	$(RM) $(OBJS) $(BONUS_OBJS) *.d
+	$(RM) $(OBJS) $(BONUS_OBJS)
 	cd $(LIBFT_PATH) && make clean
 	cd $(FT_PRINTF_PATH) && make clean
 	cd $(MINILIBX_PATH) && make clean
-	$(RM) $(OBJS_PATH) $(SRCS:.c=.d)
+	$(RM) $(OBJS_PATH)
 	@printf "$(LIGHT_RED)Cleaned all object files.\n"
 
 fclean: clean
