@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:54:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 15:26:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:39:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	free_all_sprites(t_game *game)
 	free_anim_sprite(&game->explotion, game);
 	while (i < NUM_SPRITES)
 	{
-		mlx_destroy_image(game->mlx, game->sprites[i]);
+		if (game->sprites[i])
+			mlx_destroy_image(game->mlx, game->sprites[i]);
 		i++;
 	}
 	free(game->sprites);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:58:04 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/12 15:33:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:45:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	jmp(int x, int y, int jump, t_game *game)
 	if (game->map_copy.map[y - 1][x] == '1')
 	{
 		pathfinding(x, y + 1, 0, game);
-		if (game->map_copy.map[y - 1][x] != '1')
-			pathfinding(x + 1, y + 1, 0, game);
+		pathfinding(x + 1, y + 1, 0, game);
 		pathfinding(x - 1, y + 1, 0, game);
 	}
 	pathfinding(x, y - 1, jump - 1, game);
@@ -35,28 +34,31 @@ void	fall(int x, int y, int jump, t_game *game)
 	int	max_jump;
 
 	max_jump = 3;
-	(void)jump;
 	if (game->map_copy.map[y + 1][x] == '1')
 	{
-		pathfinding(x, y - 1, max_jump, game);
+		pathfinding(x, y - 1, jump - 1, game);
 		if (game->map_copy.map[y - 1][x] != '1'
-			&& game->map_copy.map[y][x + 1] != '1')
-		{
-			pathfinding(x + 1, y - 1, max_jump, game);
-			pathfinding(x - 1, y - 1, max_jump, game);
-		}
+		&& game->map_copy.map[y][x + 1] != '1')
+			pathfinding(x + 1, y - 1, jump - 1, game);
+		if (game->map_copy.map[y - 1][x] != '1'
+			&& game->map_copy.map[y][x - 1] != '1')
+			pathfinding(x - 1, y - 1, jump - 1, game);
 		pathfinding(x + 1, y, 0, game);
 		pathfinding(x - 1, y, 0, game);
 	}
 	if (game->map_copy.map[y - 1][x] != '1'
 		&& game->map_copy.map[y][x + 1] != '1')
 		pathfinding(x + 2, y + 1, 0, game);
-	pathfinding(x - 2, y + 1, 0, game);
+	if (game->map_copy.map[y + 1][x] != '1'
+			&& game->map_copy.map[y][x - 1] != '1')
+		pathfinding(x - 2, y + 1, 0, game);
 	pathfinding(x, y + 1, 0, game);
 	if (game->map_copy.map[y + 1][x] != '1'
 		&& game->map_copy.map[y][x + 1] != '1')
 		pathfinding(x + 1, y + 1, 0, game);
-	pathfinding(x - 1, y + 1, 0, game);
+	if (game->map_copy.map[y + 1][x] != '1'
+			&& game->map_copy.map[y][x - 1] != '1')
+		pathfinding(x - 1, y + 1, 0, game);
 }
 
 void	pathfinding(int x, int y, int jump, t_game *game)
@@ -76,7 +78,7 @@ void	pathfinding(int x, int y, int jump, t_game *game)
 	if (jump <= 0)
 		fall(x, y, max_jump, game);
 	else
-		jmp(x, y, max_jump, game);
+		jmp(x, y, jump, game);
 }
 
 void	reset_pathfinding_accessible(t_game *game)
@@ -100,6 +102,7 @@ bool	is_map_finishable(t_game *game)
 		free_copy_map(game);
 		game->map_copy.map = copy_map(game);
 		pathfinding(current->pos_x, current->pos_y, 0, game);
+		printf("%d\n", game->accessible_door);
 		if (game->accessible_door == 0)
 			return (false);
 		reset_pathfinding_accessible(game);

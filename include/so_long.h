@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/12 15:34:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:29:31 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ typedef struct s_pathfinding
 {
 	int	pos_x;
 	int	pos_y;
+	int	exit_pos_x;
+	int	exit_pos_y;
 }				t_pathfinding;
 
 //############################################################################//
@@ -491,6 +493,7 @@ bool			check_character_number(t_game *game);
 bool			check_map_character_overall(t_game *game);
 // SPRITES
 bool			check_init_successfull(t_anim *anim);
+bool			check_init_success_tiles(t_game *game);
 bool			check_all_sprite_load(t_game *game);
 // MESSAGE
 bool			print_error(char *str);
