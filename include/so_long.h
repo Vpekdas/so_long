@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/14 17:29:31 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:40:59 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -505,6 +505,8 @@ bool			print_error(char *str);
 void			jmp(int x, int y, int jump, t_game *game);
 void			fall(int x, int y, int jump, t_game *game);
 void			pathfinding(int x, int y, int jump, t_game *game);
+void			reset_pathfinding_accessible(t_game *game);
+
 // CHECKING
 bool			is_map_finishable(t_game *game);
 void			reset_pathfinding_accessible(t_game *game);

@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/14 16:10:27 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/15 15:22:46 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCS =	$(addprefix $(SRCS_PATH), \
 	map.c\
 	map_errors.c\
 	map_errors_utils.c\
+	pathfinding_utils.c\
 	overall_free_functions.c\
 	pathfinding.c\
 	player_box.c\
@@ -95,10 +96,10 @@ $(NAME): libft ft_printf minilibx $(OBJS)
 	@echo "$(LIGHT_CYAN)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
 	@printf "$(LIGHT_GREEN)\nLOADING GAME: ["
-	# @for i in $$(seq 1 50); do \
-    #     sleep 0.1; \
-    #     printf "#"; \
-	# done
+	@for i in $$(seq 1 50); do \
+        sleep 0.1; \
+        printf "#"; \
+	done
 	@printf "]\n"
 	@printf "$(LIGHT_BLUE)\n----------------------------------------------------------\n"
 	@printf "$(LIGHT_BLUE)|You can execute './so_long' with a map in 'maps/' folder|\n"
