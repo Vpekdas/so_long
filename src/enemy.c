@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/16 16:13:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:10:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,8 @@ void	move_enemy(t_game *game, t_enemy_list *enemy)
 		while (index)
 		{
 			enemy_box = enemy_box_y_off(index);
-			if (index->health == 0 || !index->alive)
-			{
-				index->pos_x = -1000;
-				index->pos_y = 1000;
-			}
+			if (index->health == 0)
+				update_death_enemy(index);
 			adjust_enemy_pos(game, index);
 			if (game->frame_count - index->last_frame >= 60)
 				index->invulnerable = false;

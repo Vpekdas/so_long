@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:20:06 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/16 15:31:51 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:09:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,10 @@ void	display_step_count(t_game *g)
 void	display_health(t_game *g)
 {
 	char	*player_health;
-	char	*enemy_health;
 
 	player_health = ft_itoa(g->play.health);
 	mlx_string_put(g->mlx, g->win, 30, 30, 0xFFFFFF, "player health :");
 	mlx_string_put(g->mlx, g->win, 150, 30, 0xFFFFFF, player_health);
-	if (g->enemy.number == 1)
-	{
-		enemy_health = ft_itoa(g->enemy.health);
-		mlx_string_put(g->mlx, g->win, 30, 70, 0xFFFFFF, "enemy health :");
-		mlx_string_put(g->mlx, g->win, 150, 70, 0xFFFFFF, enemy_health);
-		free(enemy_health);
-	}
 	free(player_health);
 }
 

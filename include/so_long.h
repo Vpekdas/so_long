@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/16 16:14:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:10:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -388,6 +388,7 @@ t_box			map_box_scale(int x, int y);
 int				update(t_game *game);
 void			update_explotion_state(t_game *game);
 void			update_collide_enemy(t_game *game, t_enemy_list	*index);
+void			update_death_enemy(t_enemy_list *index);
 // ANIM
 void			update_animation(t_game *game);
 void			update_anim_player(t_game *game);
