@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/11 15:37:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:25:27 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ bool	check_character_number(t_game *game)
 					game->character_map.exit_nb++;
 				else if (game->map[i][j] == 'P')
 					game->character_map.player_nb++;
-				else if (game->map[i][j] == 'G' && BONUS)
-					game->character_map.enemy_nb++;
 			}
 			j++;
 		}

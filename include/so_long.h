@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/15 15:40:59 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:14:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,24 @@ typedef struct s_node_bubble
 	struct s_node_bubble	*next;
 }				t_node_bubble;
 
+typedef struct s_enemy_list
+{
+	int						width;
+	int						height;						
+	int						pos_x;
+	int						pos_y;
+	int						vx;
+	int						vy;
+	int						off_x;
+	int						off_y;
+	int						health;
+	bool					alive;
+	long long				last_frame;
+	bool					invulnerable;
+	t_draw_info				draw_info;
+	struct s_enemy_list		*next;
+}				t_enemy_list;
+
 //############################################################################//
 								// MAP CHARACTER//
 //############################################################################//
@@ -270,6 +288,7 @@ typedef struct s_game
 	int					max_jump;
 	int					frame_count;
 	bool				is_trail_drawn;
+	bool				spawn_enemy;
 	t_img				*screen;
 	t_img				**sprites;
 	t_anim				player_idle;
@@ -289,6 +308,7 @@ typedef struct s_game
 	t_draw_info			draw_info_bomb;
 	t_node				*collectible_list;
 	t_node_bubble		*bubble_list;
+	t_enemy_list		*enemy_list;
 	t_pathfinding		**collectible_pos;
 	t_pathfinding		pathfinding;
 	t_player			play;
@@ -319,7 +339,7 @@ void			draw_map(char **map, t_game *game);
 // ANIM
 void			draw_anim_collectible(t_game *game, t_anim *anim, int x, int y);
 void			draw_anim_bubble(t_game *game, t_anim *anim, int x, int y);
-void			draw_anim_enemy(t_game *game, t_anim *anim);
+void			draw_anim_enemy(t_game *game, t_anim *anim, t_draw_info draw);
 void			draw_anim_player(t_game *game, t_anim *anim);
 void			draw_anim_trail(t_game *game, t_anim *anim);
 void			draw_anim_explotion(t_game *game, t_anim *anim, int x, int y);
@@ -355,7 +375,7 @@ t_box			player_box_x_y(t_game *game);
 t_box			player_box_x_y_off(t_game *g, float vx, float vy);
 t_box			player_box_x_y_off_below(t_game	*game);
 // ENEMY
-t_box			enemy_box_y_off(t_game *game, float velocity_y);
+t_box			enemy_box_y_off(t_enemy_list *enemy);
 // BOMB
 t_box			bomb_box(t_game *game);
 // MAP
@@ -367,6 +387,7 @@ t_box			map_box_scale(int x, int y);
 // GAME
 int				update(t_game *game);
 void			update_explotion_state(t_game *game);
+void			update_collide_enemy(t_game *game, t_enemy_list	*index);
 // ANIM
 void			update_animation(t_game *game);
 void			update_anim_player(t_game *game);
@@ -382,12 +403,13 @@ void			update_frame_collectible(t_game *game, t_anim *anim);
 // MOVE
 // // PLAYER
 void			move_player(t_game *game, float velocity_x, float velocity_y);
+void			adjust_velocity_player(t_game *game, float vx, float vy);
 void			adjust_velocity_x(t_game *game, float vx);
 void			adjust_velocity_y(t_game *game, float vy);
 void			update_move(t_game *game);
 // // ENEMY
-void			adjust_enemy_pos(t_game *game);
-void			move_enemy(t_game *game);
+void			adjust_enemy_pos(t_game *game, t_enemy_list *enemy);
+void			move_enemy(t_game *game, t_enemy_list *enemy_list);
 // BOMB
 void			update_bomb(t_game *game);
 void			shoot_bomb(t_game *game);
@@ -410,7 +432,9 @@ void			display_remaining_collectibles(t_game *g);
 // CLOSE
 int				close_game(t_game *game);
 // DODGE
-int				calcul_distance(t_enemy enemy, t_bomb bomb);
+int				calcul_distance(t_enemy_list enemy, t_bomb bomb);
+// BACKGROUND
+void			move_background(t_game *game);
 
 ////////////////////////////////////////////////////////////////////////////////
 								// LINKED LIST //
@@ -423,7 +447,10 @@ void			add_node_back(t_node **lst, t_node *node);
 t_node_bubble	*create_node_bubble(int x, int y, float velocity_y);
 t_node_bubble	*create_list_bubble(t_game *game);
 void			add_node_back_bubble(t_node_bubble **lst, t_node_bubble *node);
-
+// ENEMY
+t_enemy_list	*create_node_enemy(int x, int y);
+void			add_node_enemy_back(t_enemy_list **lst, t_enemy_list *new_node);
+t_enemy_list	*create_list_enemy(t_game *game);
 ////////////////////////////////////////////////////////////////////////////////
 								// INITIALIZE SPRITE //
 ////////////////////////////////////////////////////////////////////////////////
@@ -523,6 +550,7 @@ void			free_copy_map(t_game *game);
 // LINKED LIST
 void			free_list_bubble(t_node_bubble *list);
 void			free_list_collectible(t_node *collectible);
+void			free_list_enemy(t_enemy_list *enemy_list);
 // ERROR
 int				free_if_error_map(t_game *game);
 int				free_if_error_sprites(t_game *game);

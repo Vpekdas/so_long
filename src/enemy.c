@@ -6,38 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:52:02 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 16:52:55 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:13:19 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	find_enemy_position(t_game *game, char **map)
-{
-	int	x;
-	int	y;
-
-	if (!map || !*map)
-		return ;
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] && map[y][x] == 'G')
-			{
-				game->enemy.pos_x = x * SPRITE_SIZE * SCALE;
-				game->enemy.pos_y = y * SPRITE_SIZE * SCALE;
-				game->enemy.number = 1;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_anim_enemy(t_game *game, t_anim *anim)
+void	draw_anim_enemy(t_game *game, t_anim *anim, t_draw_info draw_info)
 {
 	if (game->frame_count % FRAME_INTER == 0)
 	{
@@ -49,70 +24,86 @@ void	draw_anim_enemy(t_game *game, t_anim *anim)
 			anim->frame = 0;
 		}
 	}
-	draw_sprite_enemy(game, anim->img[anim->anim_index], game->draw_info_enemy);
+	draw_sprite_enemy(game, anim->img[anim->anim_index], draw_info);
 }
 
-void	adjust_enemy_pos(t_game *game)
+void	adjust_enemy_pos(t_game *game, t_enemy_list *enemy)
 {
-	if (game->enemy.pos_x > game->play.x)
-		game->enemy.pos_x -= SPEED / 2;
-	else if (game->enemy.pos_x < game->play.x)
-		game->enemy.pos_x += SPEED / 2;
-	if (game->enemy.pos_y + 48 > game->play.y)
-		game->enemy.pos_y -= SPEED / 2;
-	else if (game->enemy.pos_y < game->play.y)
-		game->enemy.pos_y += SPEED / 2;
-	if (game->enemy.pos_y < 0)
-		game->enemy.pos_y = game->play.y;
-}
-
-void	move_enemy(t_game *game)
-{
-	t_box	enemy;
-	t_box	bomb;
-	t_box	player;
-
-	enemy = enemy_box_y_off(game, game->enemy.velocity_y);
-	player = player_box_y_off(game, game->play.velocity_y);
-	bomb = bomb_box(game);
-	if (game->enemy.health == 0 || game->enemy.number == 0)
-	{
-		game->enemy.pos_x = -1000;
-		game->enemy.pos_y = 1000;
+	if (game->frame_count < 200)
 		return ;
-	}
-	adjust_enemy_pos(game);
-	if (game->frame_count - game->enemy.last_frame >= 60)
-		game->enemy.invulnerable = false;
-	if (calcul_distance(game->enemy, game->bomb) <= 200
-		&& game->bomb.bomb_number == 1)
-		game->enemy.pos_y = 1;
-	if (collide(enemy, bomb) && !game->enemy.invulnerable)
+	if (enemy->pos_x > game->play.x)
+		enemy->pos_x -= SPEED / 2;
+	else if (enemy->pos_x < game->play.x)
+		enemy->pos_x += SPEED / 2;
+	if (enemy->pos_y + 48 > game->play.y)
+		enemy->pos_y -= SPEED / 2;
+	else if (enemy->pos_y < game->play.y)
+		enemy->pos_y += SPEED / 2;
+	if (enemy->pos_y < 0)
+		enemy->pos_y = game->play.y;
+}
+
+void	update_collide_enemy(t_game *game, t_enemy_list	*index)
+{
+	index->health--;
+	index->invulnerable = true;
+	index->last_frame = game->frame_count;
+}
+
+void	move_enemy(t_game *game, t_enemy_list *enemy)
+{
+	t_box			enemy_box;
+	t_enemy_list	*index;
+
+	index = enemy;
+	if (game->spawn_enemy)
 	{
-		game->enemy.health--;
-		game->enemy.invulnerable = true;
-		game->enemy.last_frame = game->frame_count;
+		while (index)
+		{
+			enemy_box = enemy_box_y_off(index);
+			if (index->health == 0 || !index->alive)
+			{
+				index->pos_x = -1000;
+				index->pos_y = 1000;
+			}
+			adjust_enemy_pos(game, index);
+			if (game->frame_count - index->last_frame >= 60)
+				index->invulnerable = false;
+			if (calcul_distance(*index, game->bomb) <= 200
+				&& game->bomb.bomb_number == 1)
+				index->pos_y = 1;
+			if (collide(enemy_box, bomb_box(game)) && !index->invulnerable)
+				update_collide_enemy(game, index);
+			index = index->next;
+		}
 	}
 }
 
-void	update_anim_enemy(t_game *game)
+void	update_anim_enemy(t_game *g)
 {
-	t_box	player;
-	t_box	enemy;
+	t_box			player;
+	t_box			enemy;
+	t_enemy_list	*index;
 
-	if (game->enemy.health > 0)
+	if (g->spawn_enemy == true)
 	{
-		player = player_box_y_off(game, game->play.velocity_y);
-		enemy = enemy_box_y_off(game, game->enemy.velocity_y);
-		game->draw_info_enemy.x = game->enemy.pos_x;
-		game->draw_info_enemy.y = game->enemy.pos_y;
-		if (game->play.x < game->enemy.pos_x)
-			game->draw_info_enemy.flip = true;
-		else
-			game->draw_info_enemy.flip = false;
-		if (collide(player, enemy))
-			draw_anim_enemy(game, &game->enemy_attack);
-		else
-			draw_anim_enemy(game, &game->enemy_idle);
+		index = g->enemy_list;
+		while (index)
+		{
+			if (index->health == 0)
+				index->pos_x = -1000;
+			player = player_box_y_off(g, g->play.velocity_y);
+			enemy = enemy_box_y_off(index);
+			index->draw_info.x = index->pos_x;
+			index->draw_info.y = index->pos_y;
+			if (g->play.x < index->pos_x)
+				index->draw_info.flip = true;
+			else
+				index->draw_info.flip = false;
+			if (collide(player, enemy))
+				return (draw_anim_enemy(g, &g->enemy_attack, index->draw_info));
+			draw_anim_enemy(g, &g->enemy_idle, index->draw_info);
+			index = index->next;
+		}
 	}
 }

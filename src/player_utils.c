@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:45:32 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 16:53:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:01:50 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ void	find_player_position(t_game *game, char **map)
 		}
 		y++;
 	}
+}
+
+void	adjust_velocity_player(t_game *game, float vx, float vy)
+{
+	adjust_velocity_x(game, vx);
+	adjust_velocity_y(game, vy);
 }

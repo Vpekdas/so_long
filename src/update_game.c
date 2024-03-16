@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:20:59 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 16:52:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:56:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	update_collide(t_game *game, t_box player_box)
 void	update_move(t_game *game)
 {
 	move_player(game, game->play.velocity_x, game->play.velocity_y);
-	move_enemy(game);
+	move_enemy(game, game->enemy_list);
 }
 
 void	update_animation(t_game *game)

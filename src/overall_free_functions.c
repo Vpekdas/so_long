@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:16:37 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 17:19:56 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:33:08 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	free_if_error_map(t_game *game)
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_list_bubble(game->bubble_list);
+	free_list_enemy(game->enemy_list);
 	free_list_collectible(game->collectible_list);
 	return (-1);
 }
@@ -31,6 +32,7 @@ int	free_if_error_sprites(t_game *game)
 	free_copy_map(game);
 	free_all_sprites(game);
 	free_list_bubble(game->bubble_list);
+	free_list_enemy(game->enemy_list);
 	free_list_collectible(game->collectible_list);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_image(game->mlx, game->screen);
@@ -45,6 +47,7 @@ void	free_if_no_error(t_game *game)
 	free_map(game);
 	free_all_sprites(game);
 	free_list_bubble(game->bubble_list);
+	free_list_enemy(game->enemy_list);
 	free_list_collectible(game->collectible_list);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_image(game->mlx, game->screen);

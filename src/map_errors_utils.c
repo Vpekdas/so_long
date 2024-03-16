@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/10 18:07:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:25:31 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ bool	is_valid_character(char character)
 	else if (character == 'E')
 		return (true);
 	else if (character == 'P')
-		return (true);
-	else if (character == 'G' && BONUS)
 		return (true);
 	else
 		return (false);

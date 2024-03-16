@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:47:50 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/09 16:51:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:13:16 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	collide_with_collectible(t_box player, t_game *game)
 			{
 				game->map[y][x] = '0';
 				game->collectibles_numbers--;
+				game->spawn_enemy = true;
 			}
 			x++;
 		}

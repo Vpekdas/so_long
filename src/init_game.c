@@ -6,20 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:19:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/12 15:31:47 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:47:24 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	init_enemy(t_game *game)
-{
-	game->enemy.width = 32 * SCALE;
-	game->enemy.height = 80 * SCALE;
-	game->enemy.offset_x = SPRITE_SIZE * SCALE;
-	game->enemy.offset_y = 0;
-	game->enemy.health = 3;
-}
 
 void	init_player(t_game *game)
 {
@@ -41,16 +32,15 @@ void	init_bomb(t_game *game)
 int	init_player_and_map(t_game *game)
 {
 	init_player(game);
-	init_enemy(game);
 	init_bomb(game);
 	game->map = parse_map(game, game->map_path);
 	if (!game->map)
 		return (-1);
 	find_player_position(game, game->map);
-	find_enemy_position(game, game->map);
 	game->collectibles_numbers = find_collectible_numbers(game, game->map);
 	game->bubble_list = create_list_bubble(game);
 	game->collectible_list = create_list_collectible(game);
+	game->enemy_list = create_list_enemy(game);
 	game->map_copy.map = copy_map(game);
 	return (0);
 }
