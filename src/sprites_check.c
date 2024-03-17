@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:27:15 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/14 15:36:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:07:01 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include <stdbool.h>
 
 t_img	*load_sprite(void *img, char *filename)
 {
@@ -27,6 +26,8 @@ bool	check_init_successfull(t_anim *anim)
 {
 	int	i;
 
+	if (!anim)
+		return (false);
 	i = 0;
 	while (i < anim->frame_count)
 	{
@@ -43,6 +44,8 @@ bool	check_init_success_tiles(t_game *game)
 	int	i;
 
 	i = 0;
+	if (!game)
+		return (false);
 	while (i < NUM_SPRITES)
 	{
 		if (!game->sprites[i])
