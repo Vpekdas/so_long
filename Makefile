@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/16 16:52:04 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/17 14:17:45 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ NAME = so_long
 CC=cc
 CFLAGS= -Wall -Wextra -Werror -g3 -MMD -O2 -fno-builtin -I include/
 RM = rm -rf
+NORM = norminette
 
 LIBFT_PATH = Libft
 FT_PRINTF_PATH = ft_printf
 MINILIBX_PATH = minilibx-linux
 SRCS_PATH = src/
 OBJS_PATH = obj/
+
 
 SRCS =	$(addprefix $(SRCS_PATH), \
 	background.c\
@@ -152,6 +154,28 @@ minilibx:
 	@echo "$(LIGHT_CYAN)"
 	$(MAKE) -C $(MINILIBX_PATH)  
 	@printf "$(LIGHT_GREEN)Compilation completed successfully.\n"
+
+norminette:
+	@printf "$(LIGHT_CYAN)-----------------------------\n"
+	@printf "$(LIGHT_CYAN)|NORMINETTE FOR THIS PROJECT|\n"
+	@printf "$(LIGHT_CYAN)-----------------------------\n"
+	@printf "$(LIGHT_GREEN)" 
+	$(NORM) $(SRCS_PATH)
+	@printf "$(LIGHT_CYAN)----------------------\n"
+	@printf "$(LIGHT_CYAN)|NORMINETTE FOR LIBFT|\n"
+	@printf "$(LIGHT_CYAN)----------------------\n"
+	@printf "$(LIGHT_GREEN)" 
+	$(NORM) $(LIBFT_PATH)
+	@printf "$(LIGHT_CYAN)--------------------------\n"
+	@printf "$(LIGHT_CYAN)|NORMINETTE FOR FT_PRINTF|\n"
+	@printf "$(LIGHT_CYAN)--------------------------\n"
+	@printf "$(LIGHT_GREEN)" 
+	$(NORM) $(FT_PRINTF_PATH)
+	@printf "$(LIGHT_CYAN)--------------------------\n"
+	@printf "$(LIGHT_CYAN)|NORMINETTE FOR INCLUDE|\n"
+	@printf "$(LIGHT_CYAN)--------------------------\n"
+	@printf "$(LIGHT_GREEN)" 
+	$(NORM) include
 
 clean:
 	@echo "$(LIGHT_PURPLE)"
