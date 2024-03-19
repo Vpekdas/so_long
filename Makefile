@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:39:18 by vopekdas          #+#    #+#              #
-#    Updated: 2024/03/17 14:17:45 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/18 16:17:02 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,12 +99,6 @@ all: $(NAME)
 $(NAME): libft ft_printf minilibx $(OBJS)
 	@echo "$(LIGHT_CYAN)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -LLibft -lft -Lft_printf -lftprintf -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm
-	@printf "$(LIGHT_GREEN)\nLOADING GAME: ["
-	@for i in $$(seq 1 50); do \
-        sleep 0.1; \
-        printf "#"; \
-	done
-	@printf "]\n"
 	@printf "$(LIGHT_BLUE)\n----------------------------------------------------------\n"
 	@printf "$(LIGHT_BLUE)|You can execute './so_long' with a map in 'maps/' folder|\n"
 	@printf "$(LIGHT_BLUE)----------------------------------------------------------\n"

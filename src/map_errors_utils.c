@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/16 16:25:31 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:50:34 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	is_map_ber(char *str)
 	int	len;
 
 	len = ft_strlen(str);
-	if (ft_strncmp(str + len - 4, ".ber", 4) != 0)
+	if (len < 5 || ft_strncmp(str + len - 4, ".ber", 4) != 0)
 	{
 		ft_putstr_fd(RED"Error\n⛔the map is not a .ber⛔\n", 2);
 		return (false);
