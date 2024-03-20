@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/18 15:50:34 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:44:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,12 @@ bool	is_map_ber(char *str)
 		ft_putstr_fd(RED"Error\n⛔the map is not a .ber⛔\n", 2);
 		return (false);
 	}
+	return (true);
+}
+
+bool	is_player_in_air(t_game *game)
+{
+	if (game->pathfinding.pos_y + 1 != '1')
+		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:45:12 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/16 17:10:12 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:43:55 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -511,6 +511,7 @@ bool			check_last_column(t_game *game);
 bool			is_map_rectangular(t_game *game);
 // SURROUNDED
 bool			is_map_surrounded_walls(t_game *game);
+bool			is_player_in_air(t_game *game);
 // FORMAT
 bool			is_valid_character(char character);
 bool			is_map_ber(char *str);

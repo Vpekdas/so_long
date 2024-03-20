@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 04:45:01 by dtelnov           #+#    #+#              #
-#    Updated: 2024/03/19 19:07:56 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/03/20 15:38:42 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,8 +171,6 @@ define GET_G_GRADIENT
 $(word $(1),$(GRADIENT_G))
 endef
 
-# ================================== RULES =================================== #
-
 all: $(NAME)
 
 $(NAME): $(OBJS) libft ft_printf minilibx
@@ -222,7 +220,6 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 		echo -n █; \
 	done
 	@printf "\r"
-#	@printf "\t$(BWHITE)Compiling: $@%*s...$(NC)$(ERASE_L)\n"
 	@printf "\t$(A_BLACK)$(BOLD)$(WHITE_BG) Compiling: $@%*s...$(NC)\n"
 #	=================== draw progress bar ====================
 	@printf "\t█$(call GET_G_GRADIENT, $(GRAD_G_PROG))"
@@ -239,27 +236,60 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@printf "$(CURS_UP)$(CURS_UP)"
 	@printf "\b\b\b\b\b$(A_BLACK)$(WHITE_BG)$(BOLD)%3d%%$(NC)\r" $(PERCENT)
 #	==========================================================
-#	@sleep 1
 
 bonus: all
+	@printf "\n"
+	@printf "$(PURPLE)██████╗ $(CYAN) ██████╗ $(PURPLE)███╗   ██╗$(CYAN)██╗   ██╗$(PURPLE)███████╗\n"
+	@printf "$(PURPLE)██╔══██╗$(CYAN)██╔═══██╗$(PURPLE)████╗  ██║$(CYAN)██║   ██║$(PURPLE)██╔════╝\n"
+	@printf "$(PURPLE)██████╔╝$(CYAN)██║   ██║$(PURPLE)██╔██╗ ██║$(CYAN)██║   ██║$(PURPLE)███████╗\n"
+	@printf "$(PURPLE)██╔══██╗$(CYAN)██║   ██║$(PURPLE)██║╚██╗██║$(CYAN)██║   ██║$(PURPLE)╚════██║\n"
+	@printf "$(PURPLE)██████╔╝$(CYAN)╚██████╔╝$(PURPLE)██║ ╚████║$(CYAN)╚██████╔╝$(PURPLE)███████║\n"
+	@printf "$(PURPLE)╚═════╝ $(CYAN) ╚═════╝ $(PURPLE)╚═╝  ╚═══╝$(CYAN) ╚═════╝ $(PURPLE)╚══════╝\n"
+	@printf "$(LIGHT_MAGENTA)\nYou don't need to buy the DLC to enjoy enemy features😁, it's already included in mandatory version\n"
 
 libft:
-	$(MAKE) -C $(LIBFT_PATH)
+	@$(MAKE) -s -C $(LIBFT_PATH)
 
 ft_printf:
-	$(MAKE) -C $(FT_PRINTF_PATH)
+	@$(MAKE) -s -C $(FT_PRINTF_PATH)
 
 minilibx: 
-	$(MAKE) -C $(MINILIBX_PATH)
+	@$(MAKE) -C $(MINILIBX_PATH)
+
+norminette:
+	@printf "$(CYAN)-----------------------------\n"
+	@printf "$(CYAN)|NORMINETTE FOR THIS PROJECT|\n"
+	@printf "$(CYAN)-----------------------------\n"
+	@printf "$(GREEN)" 
+	@$(NORM) $(SRCS_PATH)
+	@printf "$(CYAN)----------------------\n"
+	@printf "$(CYAN)|NORMINETTE FOR LIBFT|\n"
+	@printf "$(CYAN)----------------------\n"
+	@printf "$(GREEN)" 
+	@$(NORM) $(LIBFT_PATH)
+	@printf "$(CYAN)--------------------------\n"
+	@printf "$(CYAN)|NORMINETTE FOR FT_PRINTF|\n"
+	@printf "$(CYAN)--------------------------\n"
+	@printf "$(GREEN)" 
+	@$(NORM) $(FT_PRINTF_PATH)
+	@printf "$(CYAN)------------------------\n"
+	@printf "$(CYAN)|NORMINETTE FOR INCLUDE|\n"
+	@printf "$(CYAN)------------------------\n"
+	@printf "$(GREEN)" 
+	@$(NORM) include
+
+	@printf "$(GREEN)" 
 
 clean:
+	@printf "$(PURPLE)"
 	@$(RM) $(OBJS) obj
-	cd $(LIBFT_PATH) && make clean
-	cd $(FT_PRINTF_PATH) && make clean
-	cd $(MINILIBX_PATH) && make clean
+	@cd $(LIBFT_PATH) && make clean
+	@cd $(FT_PRINTF_PATH) && make clean
+	@cd $(MINILIBX_PATH) && make clean
 	@echo "[🧼] $(BYELLOW)Objects $(YELLOW)files have been cleaned from $(PROJECT_NAME), $(LIBFT_PATH) and $(MINILIBX_PATH) ✔️$(NC)\n"
 
 fclean: clean
+	@printf "$(PURPLE)"
 	@$(RM) $(NAME)
 	@echo "[🚮] $(BRED)All $(RED)files have been cleaned ✔️$(NC)\n"
 
