@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/20 15:45:03 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:58:52 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ bool	check_map_character_overall(t_game *game)
 	if (is_map_finishable(game) == false)
 		return (print_error(RED "Error\n❌🏁You can't finish the map🏁❌\n"));
 	if (is_player_in_air(game) == false)
-		return (print_error(RED "Error\n🌏Please place the player on a ground🌏\n"));
+		return (print_error(RED"Error\n🌏Please place the player on a ground🌏\n"));
 	return (true);
 }

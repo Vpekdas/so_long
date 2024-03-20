@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/20 15:44:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:59:12 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ bool	is_map_ber(char *str)
 
 bool	is_player_in_air(t_game *game)
 {
-	if (game->pathfinding.pos_y + 1 != '1')
+	int	x;
+	int	y;
+
+	x = game->pathfinding.pos_x;
+	y = game->pathfinding.pos_y;
+	if (game->map[y + 1][x] != '1')
 		return (false);
 	return (true);
 }
