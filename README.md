@@ -1,4 +1,4 @@
-# So_Long = And thanks for all the fish!
+# So_Long - And thanks for all the fish!
 
 Ahoy, brave adventurer! Welcome aboard the maiden voyage of So_Long, a thrilling quest through the uncharted seas of game development, where every challenge brings ye closer to glory. Prepare to embark on an epic journey filled with danger, excitement, and the promise of untold riches.
 
@@ -67,12 +67,8 @@ Take command of yer fate and set sail into the unknown:
 
 ## Credits
 
-So_Long was created with love and dedication by [Your Name]. Special thanks to the following individuals for their contributions, support, and inspiration:
+So_Long was created with love and dedication by Volkan PEKDAS. Special thanks to the following individuals for their contributions, support, and inspiration:
 
 - [Contributor 1]: Insert description of contribution or support.
 - [Contributor 2]: Insert description of contribution or support.
 - [Contributor 3]: Insert description of contribution or support.
-
-We would also like to extend our gratitude to the community at Ecole 42 and the developers of any libraries or resources used in the creation of this game.
-
-
