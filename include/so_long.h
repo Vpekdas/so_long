@@ -23,10 +23,6 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-# ifndef BONUS
-#  define BONUS 0
-# endif
-
 # define BLK "\x1b[0;30m"
 # define RED "\x1b[0;31m"
 # define GRN "\x1b[0;32m"
