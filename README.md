@@ -96,6 +96,7 @@ Take command of yer fate and set sail into the unknown:
 
 So_Long was created with love and dedication by Volkan PEKDAS. Special thanks to the following individuals for their contributions, support, and inspiration:
 
-- [Contributor 1]: Insert description of contribution or support.
-- [Contributor 2]: Insert description of contribution or support.
-- [Contributor 3]: Insert description of contribution or support.
+- [Pixel Frog](https://pixelfrog-assets.itch.io/): For providing player, enemy and bomb animated textures.
+- [Ludenc](https://ludenc.itch.io/): For providing Cave background and tileset.
+- [Totuslotus](https://totuslotus.itch.io/): For providing animated coins textures.
+- 
