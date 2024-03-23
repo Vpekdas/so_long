@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:27:28 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/21 13:07:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/03/23 15:38:36 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,6 @@ bool	check_map_character_overall(t_game *game)
 		return (print_error(RED "Error\n🔚You need to place only 1 exit🔚\n"));
 	if (game->character_map.player_nb != 1)
 		return (print_error(RED "Error\n🎮You need to place only 1 player🎮\n"));
-	if (game->character_map.enemy_nb > 1 && BONUS)
-		return (print_error(RED "Error\n👻You can only place 1 enemy maximum👻\n"));
 	if (is_map_finishable(game) == false)
 		return (print_error(RED "Error\n❌🏁You can't finish the map🏁❌\n"));
 	if (is_player_in_air(game) == false)
