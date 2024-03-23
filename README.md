@@ -27,6 +27,9 @@
 
 Ahoy, brave adventurer! Welcome aboard the maiden voyage of So_Long, a thrilling quest through the uncharted seas of game development, where every challenge brings ye closer to glory. Prepare to embark on an epic journey filled with danger, excitement, and the promise of untold riches.
 
+https://github.com/Vpekdas/so_long/assets/135771100/2ba7c2e2-e7ab-4326-8c67-0f7975cf201a
+
+
 ## Table of Contents
 
 - [Overview](#overview)
