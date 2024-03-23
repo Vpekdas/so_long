@@ -99,4 +99,4 @@ So_Long was created with love and dedication by Volkan PEKDAS. Special thanks to
 - [Pixel Frog](https://pixelfrog-assets.itch.io/): For providing player, enemy and bomb animated textures.
 - [Ludenc](https://ludenc.itch.io/): For providing Cave background and tileset.
 - [Totuslotus](https://totuslotus.itch.io/): For providing animated coins textures.
-- 
+- [FirePh0enix](https://github.com/FirePh0enix): For explaining me the basics of drawing sprite, detecting key, calculating collision, managing gravity, displaying a parallax effect and how to code a player camera !
