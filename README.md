@@ -1,4 +1,29 @@
 # So_Long - And thanks for all the fish!
+```
+             . . .                         
+              \|/                          
+            `--+--'                        
+              /|\                          
+             ' | '                         
+               |                           
+               |                           
+           ,--'#`--.                       
+           |#######|                       
+        _.-'#######`-._                    
+     ,-'###############`-.                 
+   ,'#####################`,               
+  /#########################\              
+ |###########################|             
+|#############################|            
+|#############################|            
+|#############################|            
+|#############################|            
+ |###########################|             
+  \#########################/              
+   `.#####################,'               
+     `._###############_,'                 
+        `--..#####..--'
+```
 
 Ahoy, brave adventurer! Welcome aboard the maiden voyage of So_Long, a thrilling quest through the uncharted seas of game development, where every challenge brings ye closer to glory. Prepare to embark on an epic journey filled with danger, excitement, and the promise of untold riches.
 
