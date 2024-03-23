@@ -92,6 +92,10 @@ Take command of yer fate and set sail into the unknown:
 ./so_long [map_name]
 ```
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Credits
 
 So_Long was created with love and dedication by Volkan PEKDAS. Special thanks to the following individuals for their contributions, support, and inspiration:
