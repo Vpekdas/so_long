@@ -291,6 +291,8 @@ clean:
 fclean: clean
 	@printf "$(PURPLE)"
 	@$(RM) $(NAME)
+	@cd $(LIBFT_PATH) && make fclean
+	@cd $(FT_PRINTF_PATH) && make fclean
 	@echo "[🚮] $(BRED)All $(RED)files have been cleaned ✔️$(NC)\n"
 
 re: clean all
