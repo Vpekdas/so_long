@@ -27,6 +27,14 @@
 
 Ahoy, brave adventurer! Welcome aboard the maiden voyage of So_Long, a thrilling quest through the uncharted seas of game development, where every challenge brings ye closer to glory. Prepare to embark on an epic journey filled with danger, excitement, and the promise of untold riches.
 
+## Screenshots
+
+![Screenshot](https://github.com/Vpekdas/so_long/assets/135771100/8ca41586-b4c1-41f3-b854-1607b83bcf2e)
+![Screenshot2](https://github.com/Vpekdas/so_long/assets/135771100/3ec73123-3419-4cf2-81a0-b0f8e8eb7a60)
+![Screenshot3](https://github.com/Vpekdas/so_long/assets/135771100/0c883d22-1085-42be-896a-f5845a53cc85)
+![Screenshot4](https://github.com/Vpekdas/so_long/assets/135771100/c18fc6bb-f28d-40ca-bcce-8cb55505b94e)
+![Screenshot5](https://github.com/Vpekdas/so_long/assets/135771100/51146d3c-1179-4dee-b57a-fd1e0df6dddd)
+
 https://github.com/Vpekdas/so_long/assets/135771100/98245c2f-3c4a-484f-ad12-3508be37d7b3
 
 ## Table of Contents
