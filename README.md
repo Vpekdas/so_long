@@ -113,3 +113,4 @@ So_Long was created with love and dedication by Volkan PEKDAS. Special thanks to
 - [Totuslotus](https://totuslotus.itch.io/): For providing animated coins textures.
 - [FirePh0enix](https://github.com/FirePh0enix): For explaining me the basics of drawing sprite, detecting key, calculating collision, managing gravity, displaying a parallax effect and how to code a player camera !
 - [Fidwig](https://github.com/fidwig): For coding the vignette, optimizing collision when falling and coding the beginning of pathdinfing with max jump factor.
+- [ForAbby-X](https://github.com/ForAbby-X): For giving some reference in 2D game and exposing ideas to make the game more immersive.
