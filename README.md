@@ -106,11 +106,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Credits
 
-So_Long was created with love and dedication by Volkan PEKDAS. Special thanks to the following individuals for their contributions, support, and inspiration:
+Special thanks to the following individuals and assets for their contributions to this project:
 
-- [Pixel Frog](https://pixelfrog-assets.itch.io/): For providing player, enemy and bomb animated textures.
-- [Ludenc](https://ludenc.itch.io/): For providing Cave background and tileset.
-- [Totuslotus](https://totuslotus.itch.io/): For providing animated coins textures.
-- [FirePh0enix](https://github.com/FirePh0enix): For explaining me the basics of drawing sprite, detecting key, calculating collision, managing gravity, displaying a parallax effect and how to code a player camera !
-- [Fidwig](https://github.com/fidwig): For coding the vignette, optimizing collision when falling and coding the beginning of pathdinfing with max jump factor.
-- [ForAbby-X](https://github.com/ForAbby-X): For giving some reference in 2D game and exposing ideas to make the game more immersive.
+- [FirePh0enix](https://github.com/FirePh0enix): Thank you for explaining the basics of sprite drawing, key detection, collision calculation, gravity management, parallax effects, and player camera coding.
+- [Fidwig](https://github.com/fidwig): Special thanks for coding the vignette, optimizing falling collision, and initiating pathfinding with the max jump factor.
+- [ForAbby-X](https://github.com/ForAbby-X): Gratitude for providing references in 2D game development and sharing ideas to enhance the game's immersion.
+- [Ludenc](https://ludenc.itch.io/): Providing the Cave background and tileset.
+- [Pixel Frog](https://pixelfrog-assets.itch.io/): Supplying player, enemy, and bomb animated textures.
+- [Totuslotus](https://totuslotus.itch.io/): Contributing animated coin textures.
+
+
