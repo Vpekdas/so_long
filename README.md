@@ -1,3 +1,5 @@
+![Screenshot](https://github.com/Vpekdas/so_long/assets/135771100/8ca41586-b4c1-41f3-b854-1607b83bcf2e)
+
 # So_Long - And thanks for all the fish!
 ```
              . . .                         
@@ -29,7 +31,6 @@ Ahoy, brave adventurer! Welcome aboard the maiden voyage of So_Long, a thrilling
 
 ## Screenshots
 
-![Screenshot](https://github.com/Vpekdas/so_long/assets/135771100/8ca41586-b4c1-41f3-b854-1607b83bcf2e)
 ![Screenshot2](https://github.com/Vpekdas/so_long/assets/135771100/3ec73123-3419-4cf2-81a0-b0f8e8eb7a60)
 ![Screenshot3](https://github.com/Vpekdas/so_long/assets/135771100/0c883d22-1085-42be-896a-f5845a53cc85)
 ![Screenshot4](https://github.com/Vpekdas/so_long/assets/135771100/c18fc6bb-f28d-40ca-bcce-8cb55505b94e)
