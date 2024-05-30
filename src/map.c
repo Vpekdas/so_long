@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:43:00 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/03/18 16:19:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:06:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ bool	check_fd(char *path, int *fd)
 			ft_putstr_fd(RED "Error\n❌the map does not exist❌\n", 2);
 			return (false);
 		}
+		close(*fd);
 		return (true);
 	}
 	else
