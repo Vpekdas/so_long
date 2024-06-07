@@ -102,6 +102,8 @@ Finally, we had to develop an algorithm to check if the game is finishable. This
 We write pixels into a buffer. An XPM file is essentially a `char **` array, where each character represents a color. We parse the XPM file, where each index is a color, and copy this pixel to our game screen buffer. We need to ensure that the sum of the screen index and image index is within our screen. If not, it will cause a segmentation fault because we would be trying to add a pixel outside of our buffer. By doing this, we can ensure that if, for example, an enemy is visible, we won't print its pixel.
 
 * In reality, this code is quite straightforward. To simulate a camera effect, we subtract the position of our player from everything else. This creates the illusion of screen scrolling.
+  
+* Another advantage is that we can handle transparency. This is achieved by using the color black (0xFF000000) as a stand-in for transparency in the image data. When the code encounters a pixel of this color, it simply skips over it without drawing anything, allowing whatever is behind it to show through. This creates the effect of transparency.
 ```C
 void	draw_sprite(t_game *game, t_img *img, int x, int y)
 {
