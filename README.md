@@ -77,27 +77,28 @@ This will create an executable file named so_long.
 
 ## Key Features
 
-***Introduction and Project Choice:***
+### Introduction and Project Choice:
 Firstly, I chose to code a 2D platformer game, finding it more enjoyable to play and a bit different from what other students at 42 were doing. I'll briefly explain the challenges I faced during this project.
 
-***Understanding minilibx and Developing a Game Engine:***
+### Understanding minilibx and Developing a Game Engine:
 Understanding how the minilibx library works was the initial step. This involved learning how to create a window, establish a game loop, and close the window, among other things. Fortunately, I had some knowledgeable peers who helped me grasp the basics. However, I quickly realized that minilibx wouldn't be sufficient for creating an engaging game, leading us to develop a small game engine.
 
-***Rendering Pixels and Converting Sprites:***
+### Rendering Pixels and Converting Sprites:
 The next step was to render pixels and find appealing sprites, which had to be converted to XPM format as minilibx only supports this format.
 
-***Implementing Collision Detection and Handling Large Maps:***
+### Implementing Collision Detection and Handling Large Maps:
 Once I had a grasp on that, I needed to implement collision detection. Thanks to my peers, I learned a useful calculation for detecting collisions between two 2D boxes. Then, I had to handle scenarios where the map was larger than the window. While some students chose not to start the game in such cases (which is perfectly acceptable), I decided to code a camera centered on the player to address this issue.
 
-***Learning New Concepts and Enhancing the Game:***
+### Learning New Concepts and Enhancing the Game:
 As I progressed, many talented individuals shared their ideas for enhancing the game. I learned about concepts like parallax and "vignette" (darkening the corners of the game to simulate being in a darker place, like a cave). I also learned how animations work - they're essentially a series of images displayed frame by frame, creating the illusion of movement. To increase the game's difficulty, I added enemies capable of dodging (someone even said my game resembles Dark Souls!).
 
-***Adding Particles and Discovering Randomization:***
+### Adding Particles and Discovering Randomization:
 Later, I learned about particles and decided to add bubbles popping from the bottom. I also discovered a handy function for randomization. Importantly, all of this was accomplished without using any forbidden functions.
 
-***Developing a Finishability Algorithm:***
+### Developing a Finishability Algorithm:
 Finally, we had to develop an algorithm to check if the game is finishable. This was the part that intimidated me the most. Thankfully, the community at 42 was incredibly supportive, helping me code a modified flood fill algorithm that incorporated gravity and jump conditions.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * The technique I used for printing pixels is as follows:
 We write pixels into a buffer. An XPM file is essentially a `char **` array, where each character represents a color. We parse the XPM file, where each index is a color, and copy this pixel to our game screen buffer. We need to ensure that the sum of the screen index and image index is within our screen. If not, it will cause a segmentation fault because we would be trying to add a pixel outside of our buffer. By doing this, we can ensure that if, for example, an enemy is visible, we won't print its pixel.
 
@@ -443,7 +444,25 @@ If you have any questions, issues, or if you want to contribute, feel free to re
 
 ## Project Development
 
-This project started as a simple tool for personal use and is evolving into a full-fledged library. While it has been a solo endeavor so far, contributions from the community are welcome and appreciated.
+### Development Process
+
+The development of "so_long" started with a simple goal: to print a pixel on the screen. After learning the basics of the MiniLibX library and with the help of some friends, I was able to implement basic features like drawing a sprite. The rest of the features were developed independently, often by watching tutorials in other languages and adapting the concepts to C. The project was structured around various entities and features, with each one having its own dedicated file.
+
+### Challenges and Solutions
+
+The main challenges faced during the development of "so_long" were related to rendering characters and tiles correctly on the screen, handling collisions, correctly displaying sprites with necessary offsets, and coding animations and projectiles. Overcoming these challenges often involved watching basic tutorials and then translating the concepts into C. A lot of trial and error was involved, but this process was both fun and educational.
+
+### Tools and Technologies Used
+
+"So_long" was developed using C and the MiniLibX library. The game was built and tested on a linux machine.
+
+### Lessons Learned
+
+The development of "so_long" provided a deep understanding of how basic games work, including concepts like animation, collision detection, and camera control. It also sparked an interest in game engines and admiration for the complexity and sophistication of modern games.
+
+### Future Plans
+
+While there are currently no plans to update "so_long", the experience of developing it has led to a new project using the Godot engine. The journey from coding a simple game in C to exploring a full-fledged game engine has been exciting and rewarding.
 
 ### Current Status
 
