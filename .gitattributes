@@ -1,9 +1,1 @@
-*.1 linguist-language=ignore
-*.2 linguist-language=ignore
-*.3 linguist-language=ignore
-*.4 linguist-language=ignore
-*.5 linguist-language=ignore
-*.6 linguist-language=ignore
-*.7 linguist-language=ignore
-*.8 linguist-language=ignore
-*.9 linguist-language=ignore
+minilibx-linux/* linguist-vendored
