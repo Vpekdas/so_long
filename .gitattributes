@@ -1,3 +1,4 @@
 minilibx-linux/ linguist-vendored
 textures/ linguist-vendored
 maps/ linguist-vendored
+*.roff linguist-vendored
