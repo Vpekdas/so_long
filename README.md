@@ -263,9 +263,9 @@ int	init_mlx_settings(t_game *game, char **av)
 }
 ```
 
-For collison part, i m creating bounding box in 2D, i m using the same logic for my collectible, enemy collision or bomb collision.
+* For collison part, i m creating bounding box in 2D, i m using the same logic for my collectible, enemy collision or bomb collision.
 
-This function check if 2 bounding box collides in a 2D.
+* This function check if 2 bounding box collides in a 2D.
 ```C
 bool	collide(t_box player, t_box object)
 {
@@ -276,7 +276,7 @@ bool	collide(t_box player, t_box object)
 }
 ```
 
-This function create a boundix box for a wall.
+* This function create a boundix box for a wall.
 ```C
 t_box	map_box_scale(int x, int y)
 {
@@ -289,7 +289,7 @@ t_box	map_box_scale(int x, int y)
 	return (box);
 }
 ```
-This function check every frame if there is a collision between player and map.
+* This function check every frame if there is a collision between player and map.
 ```C
 bool	collide_with_map(t_box player, t_game *game)
 {
@@ -467,10 +467,6 @@ While there are currently no plans to update "so_long", the experience of develo
 ### Current Status
 
 The project is currently complete and not in active development. However, maintenance and updates will be done as needed.
-
-### Future Plans
-
-Plans for future development include adding more functions, improving performance, and expanding the documentation.
 
 ### Known Issues
 
