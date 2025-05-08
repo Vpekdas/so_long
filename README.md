@@ -148,3 +148,8 @@ If you'd like to contribute, please follow the steps outlined in [CONTRIBUTING.m
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+### Third-Party Licenses
+
+- **MiniLibX**, provided by École 42, is included in this project and is licensed under the [BSD 2-Clause License](minilibx-linux/README.md).  
+  Please refer to the linked file for full license terms.
